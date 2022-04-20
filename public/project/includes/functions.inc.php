@@ -2,7 +2,7 @@
 require_once 'dbh.inc.php';
 
 function emptyInputSignup($name, $email, $username, $pwd, $pwdRepeat) {
-    $result;
+    $result = null;
     if (empty($name) || empty($email) || empty($username) || empty($pwd) || empty($pwdRepeat)) {
         $result = true;
     }
@@ -13,7 +13,7 @@ function emptyInputSignup($name, $email, $username, $pwd, $pwdRepeat) {
 }
 
 function invalidUid($username) {
-    $result;
+    $result = null;
     if (!preg_match("/^[a-zA-Z0-9]*$/", $username)) {
         $result = true;
     }
@@ -24,7 +24,7 @@ function invalidUid($username) {
 }
 
 function invalidEmail($email) {
-    $result;
+    $result= null;
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $result = true;
     }
@@ -35,7 +35,7 @@ function invalidEmail($email) {
 }
 
 function pwdMatch($pwd, $pwdRepeat) {
-    $result;
+    $result = null;
     if ($pwd !== $pwdRepeat) {
         $result = true;
     }
@@ -104,7 +104,7 @@ function createUser($conn, $name, $email, $username, $pwd) {
 
 
 function emptyInputLogin($username, $pwd) {
-    $result;
+    $result = null;
     if (empty($username) || empty($pwd)) {
         $result = true;
     }
@@ -150,7 +150,7 @@ function showUsers($conn) {
         header("location: ../select.php?error=stmtfailed");
         exit();
     }
-    $result = mysql_query($conn, $sql);
+    $result = mysqli_query($conn, $sql);
     $resultCheck = mysqli_num_rows($result);
     if ($resultCheck > 0) {
         while ($row = mysqli_fetch_assoc($result)) {
