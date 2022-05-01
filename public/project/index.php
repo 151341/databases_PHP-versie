@@ -11,6 +11,8 @@ if (isset($_SESSION['useruid'])) {
 
 }
 ?>
+
 <?php
+
 include_once 'footer.php'
 ?>

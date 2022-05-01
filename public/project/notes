@@ -1,0 +1,7 @@
+CREATE TABLE products (
+    productsId int(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    productsName varchar(255) NOT NULL,
+    productsPrice varchar(255) NOT NULL,
+    productsImage varbinary(max) NOT NULL,
+    productAddedByUserId int(11) NOT NULL
+);

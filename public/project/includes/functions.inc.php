@@ -162,3 +162,66 @@ function showUsers($conn) {
 function ech() {
     echo 'hoi';
 }
+
+
+function emptyInputAddProduct($productname, $productdesc, $price) {
+    $result = null;
+    if (empty($productname) || empty($productdesc) || empty($price)) {
+        $result = true;
+    }
+    else {
+        $result = false;
+    }
+    return $result;
+}
+
+function invalidProductName($productname) {
+    $result = null;
+    if (!preg_match("/^[a-zA-Z0-9]*$/", $productname)) {
+        $result = true;
+    }
+    else {
+        $result = false;
+    }
+    return $result;
+}
+
+
+function productNameExists($conn, $productname) {
+    $sql = "SELECT * FROM products WHERE productsName = ?;";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: ../add_product.php?error=stmtfailed");
+        exit();
+    }
+    mysqli_stmt_bind_param($stmt, "s", $productname);
+    mysqli_stmt_execute($stmt);
+
+    $resultData = mysqli_stmt_get_result($stmt);
+
+    if ($row = mysqli_fetch_assoc($resultData)) {
+        return $row;
+    }
+    else {
+        $result = false;
+        return $result;
+    }
+
+    mysqli_stmt_close($stmt);
+}
+
+
+function createProduct($conn, $productname, $price, $adderid, $productdesc) {
+    $sql = "INSERT INTO products (productsName, productsPrice, productAddedByUserId, productsDescription) VALUES (?, ?, ?, ?);";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: ../add_product.php?error=stmtfailed");
+        exit();
+    }
+
+    mysqli_stmt_bind_param($stmt, "ssss", $productname, $price, $adderid, $productdesc);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
+    header("location: ../products.php?error=none");
+    exit();
+}

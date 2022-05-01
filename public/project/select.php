@@ -10,7 +10,7 @@ if (!isset($_SESSION['useruid'])) {
 }
 ?>
 
-<h1>select</h1>
+<h1>select new managers</h1>
 
 <?php
 require('includes/functions.inc.php');
@@ -24,7 +24,7 @@ $result = mysqli_query($conn, $sql);
 $resultCheck = mysqli_num_rows($result);
 if ($resultCheck > 0) {
     while ($row = mysqli_fetch_assoc($result)) {
-    echo $row['usersName'] .' '. $row['usersEmail']. ' '. $row['usersId']; ?>
+    echo $row['usersName'] .' | '. $row['usersEmail']. ' | '. $row['usersId'] . ' | '. $row['isManager']; ?>
         <br> <?php
     }
 }
