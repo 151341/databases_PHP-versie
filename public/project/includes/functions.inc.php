@@ -45,7 +45,7 @@ function pwdMatch($pwd, $pwdRepeat) {
     return $result;
 }
 
-function uidExists($conn, $username, $email) {
+function usernameExists($conn, $username, $email) {
     $sql = "SELECT * FROM users WHERE usersUid = ? OR usersEmail = ?;";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
@@ -67,6 +67,8 @@ function uidExists($conn, $username, $email) {
 
     mysqli_stmt_close($stmt);
 }
+
+
 
 // function invalidImage($profile_image) {
 //     $check = getimagesize($profile_image);
@@ -115,7 +117,7 @@ function emptyInputLogin($username, $pwd) {
 }
 
 function LoginUser($conn, $username, $pwd) {
-    $uidExists = uidExists($conn, $username, $username);
+    $uidExists = usernameExists($conn, $username, $username);
 
     if ($uidExists === false) {
         header("location: ../login.php?error=wronglogin");
@@ -210,6 +212,15 @@ function productNameExists($conn, $productname) {
     mysqli_stmt_close($stmt);
 }
 
+function notInt($price) {
+    if (is_int($price)) {
+        return false;
+    }
+    else {
+        return true;
+    }
+}
+
 
 function createProduct($conn, $productname, $price, $adderid, $productdesc) {
     $sql = "INSERT INTO products (productsName, productsPrice, productAddedByUserId, productsDescription) VALUES (?, ?, ?, ?);";
@@ -219,9 +230,23 @@ function createProduct($conn, $productname, $price, $adderid, $productdesc) {
         exit();
     }
 
-    mysqli_stmt_bind_param($stmt, "ssss", $productname, $price, $adderid, $productdesc);
+    mysqli_stmt_bind_param($stmt, "ssss", $productname, intval($price), intval($adderid), $productdesc);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
     header("location: ../products.php?error=none");
+    exit();
+}
+
+function deleteProduct($conn, $deleteproductid) {
+    $sql = "DELETE * FROM products WHERE productsId = ?;";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: ../products.php?error=stmtfailed");
+        exit();
+    }
+    mysqli_stmt_bind_param($stmt, "s", $deleteproductid);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
+    header("location: ../products.php?error=productdeleted");
     exit();
 }

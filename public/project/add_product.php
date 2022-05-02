@@ -28,7 +28,7 @@ echo $_SESSION['userid']
     <form action="includes/add_product.inc.php" method="post">
         <input type="text" name="productname" placeholder="name product"><br>
         <input type="text" name="productdesc" placeholder="description of product"><br>
-        <input type="text" name="price" placeholder="price"><br>
+        <input type="number" name="price" placeholder="price"><br>
 <!-- added later -->
         <!-- <label for="profile_image">Pick Your Profile Image:</label> -->
         <!-- <input type="file" id="profile_image" name="file"> -->
@@ -58,6 +58,9 @@ if (isset($_GET["error"])) {
     }
     else if ($_GET["error"] == "invalidproductname") {
         echo 'you cannot upload files of this type';
+    }
+    else if ($_GET["error"] == "notint") {
+        echo 'price has to be a number';
     }
     
 // -------- self made delete soon -----------

@@ -5,3 +5,26 @@ CREATE TABLE products (
     productsImage varbinary(max) NOT NULL,
     productAddedByUserId int(11) NOT NULL
 );
+
+ismanager bit
+
+
+deleteproduct
+<form action="includes/delete_product.inc.php" method="post">
+            <?php
+            while ($row = mysqli_fetch_assoc($result)) {
+                ?>
+                <!-- echo $row['productsName'] .' by ' . $row['productAddedByUserId'] .'<button type="submit" name="product" value="test">delete '. $row['productsName'] .'</button> <br>'; -->
+                <p><?php
+                echo $row['productsName'];
+                ?>
+                </p>
+                <!-- <input type="submit" name="foo" value="ggg"/> -->
+               <input type="submit" name="product" value="test"><br>
+
+                <br>
+
+            <?php
+            }
+            ?>
+        </form>

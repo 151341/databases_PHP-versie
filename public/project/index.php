@@ -10,9 +10,6 @@ if (isset($_SESSION['useruid'])) {
     echo "<p>Hi " . $_SESSION["useruid"] . "</p>";
 
 }
-?>
-
-<?php
 
 include_once 'footer.php'
 ?>

@@ -3,8 +3,7 @@ if (isset($_POST["submit"])) {
     $productname = $_POST["productname"];
     $productdesc = $_POST["productdesc"];
     $price = $_POST["price"];
-    $adderid = intval($_SESSION["userid"]);
-    
+    $adderid = intval($_SESSION['userid']);
     
     // $profile_image = $_FILES["file"]; 
 
@@ -59,6 +58,10 @@ if (isset($_POST["submit"])) {
         header("location: ../add_product.php?error=productnametaken");
         exit();
     }
+    // if (notInt($price) !== false){
+    //     header("location: ../add_product.php?error=notint");
+    //     exit();
+    // }
     // if (invalidImage($profile_image) !== false) {
     //     header("location: ../signup.php?error=invalidimage");
     //     exit();
