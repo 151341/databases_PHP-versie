@@ -45,7 +45,7 @@ function pwdMatch($pwd, $pwdRepeat) {
     return $result;
 }
 
-function usernameExists($conn, $username, $email) {
+function usernameoremailExists($conn, $username, $email) {
     $sql = "SELECT * FROM users WHERE usersUid = ? OR usersEmail = ?;";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
@@ -68,6 +68,53 @@ function usernameExists($conn, $username, $email) {
     mysqli_stmt_close($stmt);
 }
 
+function usernameExists($conn, $username) {
+    $sql = "SELECT * FROM users WHERE usersUid = ?;";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: ../signup.php?error=stmtfailed");
+        exit();
+    }
+    mysqli_stmt_bind_param($stmt, "s", $username);
+    mysqli_stmt_execute($stmt);
+
+    $resultData = mysqli_stmt_get_result($stmt);
+
+    if ($row = mysqli_fetch_assoc($resultData)) {
+        return $row;
+    }
+    else {
+        $result = false;
+        return $result;
+    }
+
+    mysqli_stmt_close($stmt);
+}
+
+
+
+function emailExists($conn, $email) {
+    $sql = "SELECT * FROM users WHERE usersEmail = ?;";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: ../signup.php?error=stmtfailed");
+        exit();
+    }
+    mysqli_stmt_bind_param($stmt, "s", $email);
+    mysqli_stmt_execute($stmt);
+
+    $resultData = mysqli_stmt_get_result($stmt);
+
+    if ($row = mysqli_fetch_assoc($resultData)) {
+        return $row;
+    }
+    else {
+        $result = false;
+        return $result;
+    }
+
+    mysqli_stmt_close($stmt);
+}
 
 
 // function invalidImage($profile_image) {
@@ -117,7 +164,8 @@ function emptyInputLogin($username, $pwd) {
 }
 
 function LoginUser($conn, $username, $pwd) {
-    $uidExists = usernameExists($conn, $username, $username);
+    $uidExists = usernameoremailExists($conn, $username, $username);
+    // $emailExists = emailExists($conn, $username);
 
     if ($uidExists === false) {
         header("location: ../login.php?error=wronglogin");
@@ -248,5 +296,19 @@ function deleteProduct($conn, $deleteproductid) {
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
     header("location: ../products.php?error=productdeleted");
+    exit();
+}
+
+function updateUser($conn, $name, $email, $username, $userid) {
+    $sql = "UPDATE `users` SET usersName = '$name', usersEmail= '$email', usersUid= '$username' WHERE usersId = '$userid';";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: ../profile.php?error=stmtfailed");
+        exit();
+    }
+    mysqli_stmt_execute($stmt);
+    mysqli_query($conn, $sql);
+    mysqli_stmt_close($stmt);
+    header("location: ../profile.php?error=profilechanged");
     exit();
 }

@@ -10,7 +10,28 @@ if (!isset($_SESSION['useruid'])) {
 }
 ?>
 <h1>your profile</h1>
-<a href="">change</a>
+<form action="includes/profile.inc.php" method="POST">
+    name: <input type="text" name="name"
+    value=
+    <?php
+    echo $_SESSION["username"] 
+    ?>
+    ><br>
+    username: <input type="text" name="uid"
+    value=
+    <?php
+    echo $_SESSION["useruid"] 
+    ?>
+    ><br>
+    email: <input type="text" name="email"
+    value=
+    <?php
+    echo $_SESSION["useremail"] 
+    ?>
+    ><br>
+    <button type="submit" name="submit">Change</button>
+
+</form>
 <?php
 echo "<p>userid:  " . $_SESSION["userid"] . "</p>";
 echo "<p>name:  " . $_SESSION["username"] . "</p>";

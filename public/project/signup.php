@@ -53,6 +53,9 @@ if (isset($_GET["error"])) {
     else if ($_GET["error"] == "usernametaken") {
         echo "username already taken";
     }
+    else if ($_GET["error"] == "emailtaken") {
+        echo "email already taken";
+    }
     else if ($_GET["error"] == "stmtfailed") {
         echo "something went wrong. try again";
     }

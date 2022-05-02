@@ -1,5 +1,7 @@
 <?php
+
 if (isset($_POST["submit"])) {
+
     $productname = $_POST["productname"];
     $productdesc = $_POST["productdesc"];
     $price = $_POST["price"];

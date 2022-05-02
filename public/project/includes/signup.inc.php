@@ -63,10 +63,16 @@ if (isset($_POST["submit"])) {
         header("location: ../signup.php?error=pwdnotmatch");
         exit();
     }
-    if (usernameExists($conn, $username, $email) !== false) {
+    if (usernameExists($conn, $username) !== false) {
         header("location: ../signup.php?error=usernametaken");
         exit();
     }
+    if (emailExists($conn, $email) !== false) {
+        header("location: ../signup.php?error=emailtaken");
+        exit();
+    }
+
+
     // if (invalidImage($profile_image) !== false) {
     //     header("location: ../signup.php?error=invalidimage");
     //     exit();
