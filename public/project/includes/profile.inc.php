@@ -1,20 +1,26 @@
 <?php
-
 if (isset($_POST["submit"])) {
-    require_once 'dbh.inc.php';
+    require('dbh.inc.php');
 
+    // if (!$conn) {
+    // die("Verbinding mislukt: " . mysqli_connect_error());
+    // }
+    // else {
+    // echo '<i>verbinding database succesvol</i><br>';
+    // }
+   
     $name = $_POST["name"];
     $email = $_POST["email"];
     $username = $_POST["uid"];
-    $userid = $_SESSION["userid"];
-    updateUser($conn, $name, $email, $username, $userid);
-    // echo $name, $email, $username, $userid;
-    // echo  $_SESSION["userid"];
+    $userid = $_POST["id"];
+    $pwdHashed = $_POST["pwd"];
 
-    // $sql = "UPDATE `users` SET usersName = '$name', usersEmail= '$email', usersEmail= '$username' WHERE usersId = 1;";
-    // mysqli_query($conn, $sql);
+
+    
+    updateUser($conn, $name, $email, $username, $userid);
     // header("location: ../profile.php?error=none");
     // exit();
+    echo $pwd;
 
 
 }

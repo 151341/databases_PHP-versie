@@ -13,9 +13,9 @@ if (!isset($_SESSION['useruid'])) {
 <form action="includes/profile.inc.php" method="POST">
     name: <input type="text" name="name"
     value=
-    <?php
+    "<?php
     echo $_SESSION["username"] 
-    ?>
+    ?>"
     ><br>
     username: <input type="text" name="uid"
     value=
@@ -27,6 +27,18 @@ if (!isset($_SESSION['useruid'])) {
     value=
     <?php
     echo $_SESSION["useremail"] 
+    ?>
+    ><br>
+    <input type="hidden" name="id"
+    value=
+    <?php
+    echo $_SESSION["userid"] 
+    ?>
+    ><br>
+    <input type="hidden" name="pwd"
+    value=
+    <?php
+    echo $_SESSION["userpwd"] 
     ?>
     ><br>
     <button type="submit" name="submit">Change</button>

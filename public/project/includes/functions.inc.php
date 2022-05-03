@@ -1,5 +1,5 @@
 <?php
-require_once 'dbh.inc.php';
+require('dbh.inc.php');
 
 function emptyInputSignup($name, $email, $username, $pwd, $pwdRepeat) {
     $result = null;
@@ -186,12 +186,47 @@ function LoginUser($conn, $username, $pwd) {
         $_SESSION["useruid"] = $uidExists["usersUid"];
         $_SESSION["useremail"] = $uidExists["usersEmail"];
         $_SESSION["ismanager"] = $uidExists["isManager"];
-        $_SESSION["profileimg"] = $uidExists["profileImg"];
+        // $_SESSION["profileimg"] = $uidExists["profileImg"];
+        $_SESSION["userpwd"] = $uidExists["usersPwd"];
 
         header("location: ../index.php");
         exit();
     }
 }
+
+// function LoginUserAfterUpdate($conn, $username, $pwd) {
+//     $uidExists = usernameoremailExists($conn, $username, $username);
+//     // $emailExists = emailExists($conn, $username);
+
+//     if ($uidExists === false) {
+//         header("location: ../login.php?error=wronglogin");
+//         exit();
+//     }
+
+//     $pwdHashed = $uidExists["usersPwd"];
+//     $checkPwd = password_verify($pwd, $pwdHashed);
+
+//     if ($checkPwd === false) {
+//         header("location: ../login.php?error=wronglogin");
+//         exit();
+//     }
+//     else if ($checkPwd === true) {
+//         session_start();
+//         $_SESSION["userid"] = $uidExists["usersId"];
+//         $_SESSION["username"] = $uidExists["usersName"];
+//         $_SESSION["useruid"] = $uidExists["usersUid"];
+//         $_SESSION["useremail"] = $uidExists["usersEmail"];
+//         $_SESSION["ismanager"] = $uidExists["isManager"];
+//         // $_SESSION["profileimg"] = $uidExists["profileImg"];
+//         $_SESSION["userpwd"] = $uidExists["usersPwd"];
+
+//         header("location: ../index.php");
+//         exit();
+//     }
+// }
+
+
+
 
 function showUsers($conn) {
     $sql = "SELECT * FROM users;";
@@ -300,15 +335,40 @@ function deleteProduct($conn, $deleteproductid) {
 }
 
 function updateUser($conn, $name, $email, $username, $userid) {
-    $sql = "UPDATE `users` SET usersName = '$name', usersEmail= '$email', usersUid= '$username' WHERE usersId = '$userid';";
-    $stmt = mysqli_stmt_init($conn);
-    if (!mysqli_stmt_prepare($stmt, $sql)) {
-        header("location: ../profile.php?error=stmtfailed");
-        exit();
-    }
-    mysqli_stmt_execute($stmt);
+    require('dbh.inc.php');
+    $sql = "UPDATE users SET usersName='" . $name . "',usersEmail='" . $email . "',usersUid='" . $username . "' WHERE usersId='" .$userid. "' ";
     mysqli_query($conn, $sql);
-    mysqli_stmt_close($stmt);
-    header("location: ../profile.php?error=profilechanged");
-    exit();
+    
+
+    // $uidExists = usernameoremailExists($conn, $username, $email);
+    // $emailExists = emailExists($conn, $email);
+
+    // if ($emailExists === false) {
+    //     header("location: ../profile.php?error=wronglogin");
+    //     exit();
+    // }
+
+    // $pwdHashed = $emailExists["usersPwd"];
+    // $checkPwd = password_verify($pwd, $pwdHashed);
+
+    // if ($checkPwd === false) {
+    //     header("location: ../profile.php?error=wronglogin");
+    //     exit();
+    // }
+    // else if ($checkPwd === true) {
+    //     session_start();
+    //     $_SESSION["userid"] = $emailExists["usersId"];
+    //     $_SESSION["username"] = $emailExists["usersName"];
+    //     $_SESSION["useruid"] = $emailExists["usersUid"];
+    //     $_SESSION["useremail"] = $emailExists["usersEmail"];
+    //     $_SESSION["ismanager"] = $emailExists["isManager"];
+    //     // $_SESSION["profileimg"] = $uidExists["profileImg"];
+    //     $_SESSION["userpwd"] = $emailExists["usersPwd"];
+
+    //     header("location: ../profile.php");
+    //     exit();
+    // }
+
+    // header("location: ../profile.php");
+    // exit();
 }

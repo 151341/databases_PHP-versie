@@ -8,6 +8,7 @@ include_once 'header.php';
 <?php
 if (isset($_SESSION['useruid'])) {
     echo "<p>Hi " . $_SESSION["useruid"] . "</p>";
+    echo "<p>Hi " . $_SESSION["userpwd"];
 
 }
 
