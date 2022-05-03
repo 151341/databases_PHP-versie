@@ -1,24 +1,14 @@
 <?php
-// if (isset($_POST["submit"])) {
-//     echo 'hoi';
-
-//     $test = $_POST["foo"];
-//     echo $test;
-//     $deleteproductid = $_POST["deleteproductid"];
-//     if ($_SESSION["ismanager"] === 1) {
-//         require_once 'dbh.inc.php';
-//         require_once 'functions.inc.php';
-//         deleteProduct($conn, $deleteproductid);
-//     }
-//     else {
-//         header("location: ../products.php?error=notallowed");
-//         exit();
-//     }
-// }
-
-
 if (isset($_POST["submit"])) {
-    if ($_POST["delete"] == 'delete') {
-        echo 'hoi';
+    $aDoor = $_POST['delete'];
+    if(empty($aDoor)) {
+        echo("You didn't select any products.");
+    } 
+    else {
+        $N = count($aDoor);
+        echo("You selected $N product(s): ");
+        for($i=0; $i < $N; $i++) {
+            echo($aDoor[$i] . " ");
+        }
     }
 }

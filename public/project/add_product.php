@@ -29,10 +29,6 @@ echo $_SESSION['userid']
         <input type="text" name="productname" placeholder="name product"><br>
         <input type="text" name="productdesc" placeholder="description of product"><br>
         <input type="number" name="price" placeholder="price"><br>
-<!-- added later -->
-        <!-- <label for="profile_image">Pick Your Profile Image:</label> -->
-        <!-- <input type="file" id="profile_image" name="file"> -->
-<!-- added later -->
         <button type="submit" name="submit">Add</button>
     </form>
     
@@ -82,8 +78,4 @@ if (isset($_GET["error"])) {
 
 <?php
 require('includes/functions.inc.php');
-
-
-// showUsers($DBverbinding);
-
 ?>

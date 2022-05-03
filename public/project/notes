@@ -28,3 +28,14 @@ deleteproduct
             }
             ?>
         </form>
+
+
+stond bij products.php
+?>
+    <section>
+        <form action="includes/delete_product.inc.php" method="POST">
+            <input type="checkbox" id="delete" name="delete" value="delete" />
+            <label for="delete"> test</label><br />
+            <button class="btn btn--main" type="submit">Submit</button>
+        </form>
+    </section>
