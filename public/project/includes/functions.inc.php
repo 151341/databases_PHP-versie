@@ -23,6 +23,17 @@ function emptyInputProfile($name, $email, $username) {
     return $result;
 }
 
+// function emptyInputAddProduct($productname, $productprice, $productdescription) {
+//     $result = null;
+//     if (empty($name) || empty($email) || empty($username)) {
+//         $result = true;
+//     }
+//     else {
+//         $result = false;
+//     }
+//     return $result;
+// }
+
 function invalidUid($username) {
     $result = null;
     if (!preg_match("/^[a-zA-Z0-9]*$/", $username)) {

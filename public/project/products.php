@@ -34,7 +34,8 @@ $result = mysqli_query($conn, $sql);
 $resultCheck = mysqli_num_rows($result);
 if ($resultCheck > 0) {
     while ($row = mysqli_fetch_assoc($result)) {
-        echo $row['productsName'] . "<br>";        
+        echo "<br>". $row['productsName'] . "<br>";  
+        print '<a href="change_product.php?id=' . $row['productsId'] . '">View product</a>';
     }
 }
 include_once 'footer.php'
