@@ -14,9 +14,9 @@ if (isset($_SESSION['useruid'])) {
 
 }
 echo "<br>";
-if ('hoi' === 'hoi') {
-    echo 'hoi';
-}
+
+ 
+echo $_SESSION['useremail'];
 
 include_once 'footer.php'
 ?>

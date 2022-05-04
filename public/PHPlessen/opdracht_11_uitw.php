@@ -28,7 +28,7 @@ function toon_tabel($sql,$DBverbinding) {
 /****************************
 TYP HIERONDER JOUW PHPCODE
 ****************************/
-      
+
 $sql = "SELECT * FROM stations"; 
 toon_tabel($sql,$DBverbinding);
 

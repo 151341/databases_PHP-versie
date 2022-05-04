@@ -1,8 +1,12 @@
 <head>
-    <title>products</title>
+    <title>delete products</title>
 </head>
 <?php
 include_once 'header.php';
+if ($_SESSION['ismanager'] !== 1) {
+    header("location: ./products.php");
+    exit();
+}
 ?>
 <?php
 if (isset($_GET["error"])) {
@@ -30,17 +34,17 @@ if ($resultCheck > 0) {?>
                 ?>
                 <input type="checkbox" 
                 
-                id='product'
-                name="delete" 
+                id='products'
+                name="products[]" 
 
                 value=
                 "<?php
-                echo $_SESSION["username"] 
+                echo $row["productsName"] 
                 ?>"
                 />
 
                 <label
-                for='product'
+                for='products'
                 >
                     <?php
                     echo $row['productsName'] . "<br>";

@@ -39,3 +39,10 @@ stond bij products.php
             <button class="btn btn--main" type="submit">Submit</button>
         </form>
     </section>
+
+    in if ($resultCheck > 0) {?> (bij select.php)
+
+    while ($row = mysqli_fetch_assoc($result)) {
+    echo $row['usersName'] .' | '. $row['usersEmail']. ' | '. $row['usersId'] . ' | '. $row['isManager']; ?>
+        <br> <?php
+    }

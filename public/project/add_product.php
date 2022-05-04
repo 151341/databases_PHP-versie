@@ -4,7 +4,7 @@
 <?php
 include_once 'header.php';
 if ($_SESSION['ismanager'] !== 1) {
-    header("location: ./login.php");
+    header("location: ./products.php");
     exit();
 }
 require('includes/dbh.inc.php');

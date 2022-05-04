@@ -375,19 +375,19 @@ function createProduct($conn, $productname, $price, $adderid, $productdesc) {
     exit();
 }
 
-function deleteProduct($conn, $deleteproductid) {
-    $sql = "DELETE * FROM products WHERE productsId = ?;";
-    $stmt = mysqli_stmt_init($conn);
-    if (!mysqli_stmt_prepare($stmt, $sql)) {
-        header("location: ../products.php?error=stmtfailed");
-        exit();
-    }
-    mysqli_stmt_bind_param($stmt, "s", $deleteproductid);
-    mysqli_stmt_execute($stmt);
-    mysqli_stmt_close($stmt);
-    header("location: ../products.php?error=productdeleted");
-    exit();
-}
+// function deleteProduct($conn, $deleteproductid) {
+//     $sql = "DELETE * FROM products WHERE productsId = ?;";
+//     $stmt = mysqli_stmt_init($conn);
+//     if (!mysqli_stmt_prepare($stmt, $sql)) {
+//         header("location: ../products.php?error=stmtfailed");
+//         exit();
+//     }
+//     mysqli_stmt_bind_param($stmt, "s", $deleteproductid);
+//     mysqli_stmt_execute($stmt);
+//     mysqli_stmt_close($stmt);
+//     header("location: ../products.php?error=productdeleted");
+//     exit();
+// }
 
 function updateUser($conn, $name, $email, $username, $userid, $pwdHashedP) {
     require('dbh.inc.php');
@@ -420,4 +420,34 @@ function updateUser($conn, $name, $email, $username, $userid, $pwdHashedP) {
 
     // header("location: ../profile.php");
     // exit();
+}
+
+function deleteProduct($conn, $deleted_product) {
+    require('dbh.inc.php');
+    $sql = "DELETE FROM products WHERE productsName='" .$deleted_product. "';";
+    mysqli_query($conn, $sql);
+    
+    // header("location: ../profile.php");
+    // exit();
+}
+
+function isBoss() {
+    if ( !( $_SESSION['useremail'] === 'christiaan.vlas@gmail.com' ) || !( $_SESSION['useremail'] === 'stef.delnoye@gmail.com' ) ) {
+        return false;
+    }
+    else {
+        return true;
+    }
+}
+
+function deleteEmployee($conn, $deleted_employee) {
+    require('dbh.inc.php');
+    $sql = "UPDATE users SET isManager = 0 WHERE usersEmail='" .$deleted_employee. "';";
+    mysqli_query($conn, $sql);   
+}
+
+function addEmployee($conn, $deleted_employee) {
+    require('dbh.inc.php');
+    $sql = "UPDATE users SET isManager = 1 WHERE usersEmail='" .$deleted_employee. "';";
+    mysqli_query($conn, $sql);   
 }

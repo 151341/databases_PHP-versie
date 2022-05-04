@@ -12,8 +12,14 @@ if (isset($_GET["error"])) {
 }
 ?>
 <h1>all products</h1>
-<a href="add_product.php">add product</a><br>
-<a href="delete_product.php">delete product</a><br>
+<?php
+if ($_SESSION['ismanager'] === 1) {
+    ?>
+    <a href="add_product.php">add product</a><br>
+    <a href="delete_product.php">delete product</a><br>
+    <?php
+}
+?>
 
 
 <?php
