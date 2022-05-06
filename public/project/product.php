@@ -4,10 +4,6 @@
 <?php
 include_once 'header.php';
 $productid = $_GET['id'];
-if ($_SESSION['ismanager'] !== 1) {
-    header("location: ./products.php");
-    exit();
-}
 $productname;
 $productprice;
 $productdescription;
@@ -27,41 +23,17 @@ if ($resultCheck == 1) {
         $productname = $row['productsName'];
         $productprice = $row['productsPrice'];
         $productdescription = $row['productsDescription'];
+        $productimage = $row['productsImage'];
     }
 }
 ?>
 
-<h1>change <?php echo $productname ?></h1>
+<h1><?php echo $productname ?></h1>
+<p><?php echo $productdescription ?></p>
+<p>$<?php echo $productid ?></p>
+<p><?php echo $productimage ?></p>
+<img src="uploads/6274dc0e03f6f5.38572746.jpg" alt="">
 
-
-<form action="includes/change_product.inc.php" method="POST">
-    name: <input type="text" name="name"
-    value=
-    "<?php
-    echo $productname
-    ?>"
-    ><br>
-    price: <input type="number" name="price"
-    value=
-    <?php
-    echo $productprice
-    ?>
-    ><br>
-    description: <input type="text" name="description"
-    value=
-    <?php
-    echo $productdescription
-    ?>
-    ><br>
-    <input type="hidden" name="id"
-    value=
-    <?php
-    echo $productid
-    ?>
-    ><br>
-    <button type="submit" name="submit">Change</button>
-
-</form>
 <?php
 include_once 'footer.php';
 ?>

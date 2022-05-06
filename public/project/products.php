@@ -35,7 +35,10 @@ $resultCheck = mysqli_num_rows($result);
 if ($resultCheck > 0) {
     while ($row = mysqli_fetch_assoc($result)) {
         echo "<br>". $row['productsName'] . "<br>";  
-        print '<a href="change_product.php?id=' . $row['productsId'] . '">View product</a>';
+        if ($_SESSION['ismanager'] === 1) {
+            print '<a href="change_product.php?id=' . $row['productsId'] . '">Change product</a>';
+        }
+        print '<a href="product.php?id=' . $row['productsId'] . '">View product</a>';
     }
 }
 include_once 'footer.php'

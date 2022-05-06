@@ -371,15 +371,15 @@ function notInt($price) {
 }
 
 
-function createProduct($conn, $productname, $price, $adderid, $productdesc) {
-    $sql = "INSERT INTO products (productsName, productsPrice, productAddedByUserId, productsDescription) VALUES (?, ?, ?, ?);";
+function createProduct($conn, $productname, $price, $adderid, $productdesc, $fileTmpName) {
+    $sql = "INSERT INTO products (productsName, productsPrice, productAddedByUserId, productsDescription, productsImage) VALUES (?, ?, ?, ?, ?);";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
         header("location: ../add_product.php?error=stmtfailed");
         exit();
     }
 
-    mysqli_stmt_bind_param($stmt, "ssss", $productname, intval($price), intval($adderid), $productdesc);
+    mysqli_stmt_bind_param($stmt, "sssss", $productname, intval($price), intval($adderid), $productdesc, $fileTmpName);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
     header("location: ../products.php?error=none");

@@ -25,10 +25,11 @@ if ($_GET["error"] == "stmtfailed") {
 echo $_SESSION['userid']
 ?>
 <section>
-    <form action="includes/add_product.inc.php" method="post">
+    <form action="includes/add_product.inc.php" method="POST" enctype="multipart/form-data">
         <input type="text" name="productname" placeholder="name product"><br>
         <input type="text" name="productdesc" placeholder="description of product"><br>
         <input type="number" name="price" placeholder="price"><br>
+        <input type="file" name="file">
         <button type="submit" name="submit">Add</button>
     </form>
     

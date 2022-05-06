@@ -41,7 +41,7 @@ if ($resultCheck > 0) {
 }
 ?>
 
-<h1>select new managers</h1>
+<h1>select new employees</h1>
 <h3>all users</h3>
 <?php
 require('includes/functions.inc.php');

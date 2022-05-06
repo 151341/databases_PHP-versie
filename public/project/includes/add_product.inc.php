@@ -1,11 +1,65 @@
 <?php
 
 if (isset($_POST["submit"])) {
-
     $productname = $_POST["productname"];
     $productdesc = $_POST["productdesc"];
     $price = $_POST["price"];
     $adderid = intval($_SESSION['userid']);
+
+    require_once 'dbh.inc.php';
+    require_once 'functions.inc.php';
+
+    if (emptyInputAddProduct($productname, $productdesc, $price) !== false) { 
+        header("location: ../add_product.php?error=emptyinput");
+        exit();
+    }
+    if (invalidProductName($productname) !== false) {
+        header("location: ../add_product.php?error=invalidproductname");
+        exit();
+    }
+    if (productNameExists($conn, $productname) !== false) {
+        header("location: ../add_product.php?error=productnametaken");
+        exit();
+    }
+    
+    $file = $_FILES['file'];
+    $fileName = $_FILES['file']['name'];
+    $fileTmpName = $_FILES['file']['tmp_name'];
+    $fileSize = $_FILES['file']['size'];
+    $fileError = $_FILES['file']['error'];
+    $fileType = $_FILES['file']['type'];
+
+    $fileExt = explode('.', $fileName);
+    $fileActualExt = strtolower(end($fileExt));
+
+    $allowed = array('jpg','jpeg','png','pdf');
+
+    if (in_array($fileActualExt, $allowed)) {
+        if ($fileError === 0) {
+            if ($fileSize < 2000000) {
+                $fileNameNew = uniqid('', true).".".$fileActualExt;
+                $fileDestination = 'uploads/'.$fileNameNew;
+                move_uploaded_file($fileTmpName,$fileDestination);
+            }
+            else {
+                // header("location: ../signup.php?error=imgtoobig");
+                // exit();
+                echo 'file too big';
+            }
+        }
+        else {
+            header("location: ../add_product.php?error=unknown");
+            exit();
+        }
+    }
+    else {
+        echo 'you cannot upload this file';
+    }
+
+
+
+
+
     
     // $profile_image = $_FILES["file"]; 
 
@@ -45,21 +99,7 @@ if (isset($_POST["submit"])) {
 
 
 
-    require_once 'dbh.inc.php';
-    require_once 'functions.inc.php';
-
-    if (emptyInputAddProduct($productname, $productdesc, $price) !== false) { 
-        header("location: ../add_product.php?error=emptyinput");
-        exit();
-    }
-    if (invalidProductName($productname) !== false) {
-        header("location: ../add_product.php?error=invalidproductname");
-        exit();
-    }
-    if (productNameExists($conn, $productname) !== false) {
-        header("location: ../add_product.php?error=productnametaken");
-        exit();
-    }
+    
     // if (notInt($price) !== false){
     //     header("location: ../add_product.php?error=notint");
     //     exit();
@@ -69,7 +109,7 @@ if (isset($_POST["submit"])) {
     //     exit();
     // }
     
-    createProduct($conn, $productname, $price, $adderid, $productdesc);
+    createProduct($conn, $productname, $price, $adderid, $productdesc, $fileTmpName);
 }
 else {
     header("location: ../add_product.php");

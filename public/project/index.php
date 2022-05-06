@@ -14,6 +14,9 @@ if (isset($_SESSION['useruid'])) {
 
 }
 echo "<br>";
+?>
+<img src="uploads/6274dc0e03f6f5.38572746.jpg" alt="">
+<?php
 
  
 echo $_SESSION['useremail'];
