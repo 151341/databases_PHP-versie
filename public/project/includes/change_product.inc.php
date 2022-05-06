@@ -5,6 +5,7 @@ if (isset($_POST["submit"])) {
     $productname = $_POST["name"];
     $productprice = $_POST["price"];
     $productdescription = $_POST["description"];
+    $file = $_POST["file"];
     $productid = $_POST["id"];
     
     if (emptyInputAddProduct($productname, $productdescription, $productprice) !== false) { 
@@ -12,9 +13,9 @@ if (isset($_POST["submit"])) {
         exit();
     }
     
-    updateUser($conn, $name, $email, $username, $userid, $pwdHashed);
+    updateProduct($conn, $productname, $productprice, $productdescription, $productid, $file);
 }
 else {
-    header("location: ../profile.php");
+    header("location: ../product.php?id=' . $productid . '");
     exit();
 }

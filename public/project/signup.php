@@ -23,7 +23,7 @@ echo '<i>verbinding database succesvol</i>';
 ?>
 <h1>sign up</h1>
 <section>
-    <form action="includes/signup.inc.php" method="post">
+    <form action="includes/signup.inc.php" method="POST" enctype="multipart/form-data">
         <input type="text" name="name" placeholder="full name"><br>
         <input type="text" name="email" placeholder="email"><br>
         <input type="text" name="uid" placeholder="username"><br>
@@ -31,6 +31,7 @@ echo '<i>verbinding database succesvol</i>';
         <!-- <label for="profile_image">Pick Your Profile Image:</label> -->
         <!-- <input type="file" id="profile_image" name="file"> -->
 <!-- added later -->
+        <input type="file" name="file"><br>
         <input type="password" name="pwd" placeholder="password"><br>
         <input type="password" name="pwdrepeat" placeholder="repeat password"><br>
         <button type="submit" name="submit">Sign Up</button>

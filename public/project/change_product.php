@@ -34,7 +34,7 @@ if ($resultCheck == 1) {
 <h1>change <?php echo $productname ?></h1>
 
 
-<form action="includes/change_product.inc.php" method="POST">
+<form action="includes/change_product.inc.php" method="POST" enctype="multipart/form-data">
     name: <input type="text" name="name"
     value=
     "<?php
@@ -60,7 +60,6 @@ if ($resultCheck == 1) {
     ?>
     ><br>
     <button type="submit" name="submit">Change</button>
-
 </form>
 <?php
 include_once 'footer.php';

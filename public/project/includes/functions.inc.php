@@ -199,17 +199,16 @@ function emailExistsProfile($conn, $email, $userid) {
 //     }
 // }
 
-function createUser($conn, $name, $email, $username, $pwd) {
-    $sql = "INSERT INTO users (usersName, usersEmail, usersUid, usersPwd) VALUES (?, ?, ?, ?);";
+function createUser($conn, $name, $email, $username, $pwd, $fileNameNew) {
+    $sql = "INSERT INTO users (usersName, usersEmail, usersUid, usersPwd, usersImage) VALUES (?, ?, ?, ?, ?);";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
         header("location: ../signup.php?error=stmtfailed");
         exit();
     }
-
     $hashedPwd = password_hash($pwd, PASSWORD_DEFAULT);
 
-    mysqli_stmt_bind_param($stmt, "ssss", $name, $email, $username, $hashedPwd);
+    mysqli_stmt_bind_param($stmt, "sssss", $name, $email, $username, $hashedPwd, $fileNameNew);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
     header("location: ../signup.php?error=none");
@@ -252,7 +251,7 @@ function LoginUser($conn, $username, $pwd) {
         $_SESSION["useruid"] = $uidExists["usersUid"];
         $_SESSION["useremail"] = $uidExists["usersEmail"];
         $_SESSION["ismanager"] = $uidExists["isManager"];
-        // $_SESSION["profileimg"] = $uidExists["profileImg"];
+        $_SESSION["userimg"] = $uidExists["usersImage"];
         $_SESSION["userpwd"] = $uidExists["usersPwd"];
 
         header("location: ../index.php");
@@ -382,7 +381,7 @@ function createProduct($conn, $productname, $price, $adderid, $productdesc, $fil
     mysqli_stmt_bind_param($stmt, "sssss", $productname, intval($price), intval($adderid), $productdesc, $fileTmpName);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
-    header("location: ../products.php?error=none");
+    header("location: ../products.php?state=productcreated");
     exit();
 }
 
@@ -400,9 +399,9 @@ function createProduct($conn, $productname, $price, $adderid, $productdesc, $fil
 //     exit();
 // }
 
-function updateUser($conn, $name, $email, $username, $userid, $pwdHashedP) {
+function updateUser($conn, $name, $email, $username, $userid, $pwdHashedP, $fileNameNew) {
     require('dbh.inc.php');
-    $sql = "UPDATE users SET usersName='" . $name . "',usersEmail='" . $email . "',usersUid='" . $username . "' WHERE usersId='" .$userid. "' ";
+    $sql = "UPDATE users SET usersName='" . $name . "',usersEmail='" . $email . "',usersUid='" . $username . "',usersImage='" . $fileNameNew . "' WHERE usersId='" .$userid. "' ";
     mysqli_query($conn, $sql);
     
 
@@ -420,6 +419,7 @@ function updateUser($conn, $name, $email, $username, $userid, $pwdHashedP) {
         $_SESSION["ismanager"] = $emailExists["isManager"];
         // $_SESSION["profileimg"] = $uidExists["profileImg"];
         $_SESSION["userpwd"] = $emailExists["usersPwd"];
+        $_SESSION["userimg"] = $emailExists["usersImage"];
 
         header("location: ../profile.php?succes=profilechanged");
         exit();
@@ -432,6 +432,42 @@ function updateUser($conn, $name, $email, $username, $userid, $pwdHashedP) {
     // header("location: ../profile.php");
     // exit();
 }
+
+
+function updateProduct($conn, $productname, $productprice, $productdescription, $productid, $file) {
+    require('dbh.inc.php');
+    $sql = "UPDATE products SET productsName='" . $productname . "',productsPrice='" . $productprice . "',productsDescription='" . $productdescription . "' WHERE productsId='" .$productid. "' ";
+    mysqli_query($conn, $sql);
+    
+
+    // $uidExists = usernameoremailExists($conn, $username, $email);
+    $emailExists = emailExists($conn, $email);
+    $pwdHashed = $emailExists["usersPwd"];
+    $checkPwd = password_verify($pwd, $pwdHashed);
+
+    if ($pwdHashed == $pwdHashedP) {
+        session_start();
+        $_SESSION["userid"] = $emailExists["usersId"];
+        $_SESSION["username"] = $emailExists["usersName"];
+        $_SESSION["useruid"] = $emailExists["usersUid"];
+        $_SESSION["useremail"] = $emailExists["usersEmail"];
+        $_SESSION["ismanager"] = $emailExists["isManager"];
+        // $_SESSION["profileimg"] = $uidExists["profileImg"];
+        $_SESSION["userpwd"] = $emailExists["usersPwd"];
+        $_SESSION["userimg"] = $emailExists["usersImage"];
+
+        header("location: ../profile.php?succes=profilechanged");
+        exit();
+    }
+    else {
+        header("location: ../profile.php?error=wronglogin");
+        exit();
+    }
+
+    // header("location: ../profile.php");
+    // exit();
+}
+
 
 function deleteProduct($conn, $deleted_product) {
     require('dbh.inc.php');

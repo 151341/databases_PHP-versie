@@ -32,9 +32,15 @@ if ($resultCheck == 1) {
 <p><?php echo $productdescription ?></p>
 <p>$<?php echo $productid ?></p>
 <p><?php echo $productimage ?></p>
-<img src="uploads/6274dc0e03f6f5.38572746.jpg" alt="">
-
 <?php
+if ($productimage!=null) {
+    $imglink = "productimg/".$productimage;
+    echo $imglink. "<br>";
+    ?>
+    <img src="<?php echo $imglink; ?>" alt="" height="100" width="100">
+    <?php
+}
+
 include_once 'footer.php';
 ?>
 

@@ -7,6 +7,9 @@ if (isset($_POST["submit"])) {
     $username = $_POST["uid"];
     $userid = $_POST["id"];
     $pwdHashed = $_POST["pwd"];
+    $file = $_POST["file"];
+    
+
     if (invalidEmail($email) !== false) {
         header("location: ../profile.php?error=invalidemail");
         exit();
@@ -23,7 +26,42 @@ if (isset($_POST["submit"])) {
         header("location: ../profile.php?error=emailtaken");
         exit();
     }
-    updateUser($conn, $name, $email, $username, $userid, $pwdHashed);
+    $fileName = $_FILES['file']['name'];
+    $fileTmpName = $_FILES['file']['tmp_name'];
+    $fileSize = $_FILES['file']['size'];
+    $fileError = $_FILES['file']['error'];
+    $fileType = $_FILES['file']['type'];
+    $fileExt = explode('.', $fileName);
+    $fileActualExt = strtolower(end($fileExt));
+    $allowed = array('jpg','jpeg','png','pdf');
+    if ($fileSize!=0) {
+        if (in_array($fileActualExt, $allowed)) {
+            if ($fileError === 0) {
+                if ($fileSize < 2000000) {
+                    $fileNameNew = uniqid('', true).".".$fileActualExt;
+                    $fileDestination = '../profileimg/'.$fileNameNew;
+                    move_uploaded_file($fileTmpName,$fileDestination);
+                }
+                else {
+                    header("location: ../profile.php?error=imgtoobig");
+                    exit();
+                }
+            }
+            else {
+                header("location: ../profile.php?error=unknown");
+                exit();
+            }
+        }
+        else {
+            echo 'you cannot upload this file';
+            header("location: ../profile.php?error=typeunaccept");
+            exit();
+        }
+    }
+    if (isset($_POST['delete'])){
+        $fileNameNew = null;
+    }
+    updateUser($conn, $name, $email, $username, $userid, $pwdHashed, $fileNameNew);
 }
 else {
     header("location: ../profile.php");

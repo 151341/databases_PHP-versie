@@ -33,28 +33,32 @@ if (isset($_POST["submit"])) {
     $fileActualExt = strtolower(end($fileExt));
 
     $allowed = array('jpg','jpeg','png','pdf');
-
-    if (in_array($fileActualExt, $allowed)) {
-        if ($fileError === 0) {
-            if ($fileSize < 2000000) {
-                $fileNameNew = uniqid('', true).".".$fileActualExt;
-                $fileDestination = 'uploads/'.$fileNameNew;
-                move_uploaded_file($fileTmpName,$fileDestination);
+    if ($fileSize!=0) {
+        if (in_array($fileActualExt, $allowed)) {
+            if ($fileError === 0) {
+                if ($fileSize < 2000000) {
+                    $fileNameNew = uniqid('', true).".".$fileActualExt;
+                    $fileDestination = '../productimg/'.$fileNameNew;
+                    move_uploaded_file($fileTmpName,$fileDestination);
+    
+                }
+                else {
+                    header("location: ../add_product.php?error=imgtoobig");
+                    exit();
+                }
             }
             else {
-                // header("location: ../signup.php?error=imgtoobig");
-                // exit();
-                echo 'file too big';
+                header("location: ../add_product.php?error=unknown");
+                exit();
             }
         }
         else {
-            header("location: ../add_product.php?error=unknown");
+            echo 'you cannot upload this file';
+            header("location: ../add_product.php?error=typeunaccept");
             exit();
         }
     }
-    else {
-        echo 'you cannot upload this file';
-    }
+    
 
 
 
@@ -78,7 +82,7 @@ if (isset($_POST["submit"])) {
     //     if ($profile_image_error === 0) {
     //         if ($profile_image_size < 1000000) {
     //             $profile_image_name_new = uniqid('', true).".".$profile_image_actualext;
-    //             $profile_image_destination = 'uploads/'.$profile_image_name_new;
+    //             $profile_image_destination = 'productimg/'.$profile_image_name_new;
     //             move_uploaded_file($profile_image_tmpname,$profile_image_destination);
     //             // header("location: ../index.php?uploadsuccess");
     //         }
@@ -109,7 +113,7 @@ if (isset($_POST["submit"])) {
     //     exit();
     // }
     
-    createProduct($conn, $productname, $price, $adderid, $productdesc, $fileTmpName);
+    createProduct($conn, $productname, $price, $adderid, $productdesc, $fileNameNew);
 }
 else {
     header("location: ../add_product.php");
