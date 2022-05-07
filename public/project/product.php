@@ -30,7 +30,7 @@ if ($resultCheck == 1) {
 
 <h1><?php echo $productname ?></h1>
 <p><?php echo $productdescription ?></p>
-<p>$<?php echo $productid ?></p>
+<p>$<?php echo $productprice ?></p>
 <p><?php echo $productimage ?></p>
 <?php
 if ($productimage!=null) {

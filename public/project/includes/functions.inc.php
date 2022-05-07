@@ -207,12 +207,10 @@ function createUser($conn, $name, $email, $username, $pwd, $fileNameNew) {
         exit();
     }
     $hashedPwd = password_hash($pwd, PASSWORD_DEFAULT);
-
     mysqli_stmt_bind_param($stmt, "sssss", $name, $email, $username, $hashedPwd, $fileNameNew);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
-    header("location: ../signup.php?error=none");
-    exit();
+    LoginUser($conn, $username, $pwd);
 }
 
 
@@ -308,11 +306,6 @@ function showUsers($conn) {
         }
     }
 }
-
-function ech() {
-    echo 'hoi';
-}
-
 
 function emptyInputAddProduct($productname, $productdesc, $price) {
     $result = null;
@@ -428,13 +421,10 @@ function updateUser($conn, $name, $email, $username, $userid, $pwdHashedP, $file
         header("location: ../profile.php?error=wronglogin");
         exit();
     }
-
-    // header("location: ../profile.php");
-    // exit();
 }
 
 
-function updateProduct($conn, $productname, $productprice, $productdescription, $productid, $file) {
+function updateProduct($conn,$productid, $productname, $productprice, $productdescription, $file) {
     require('dbh.inc.php');
     $sql = "UPDATE products SET productsName='" . $productname . "',productsPrice='" . $productprice . "',productsDescription='" . $productdescription . "' WHERE productsId='" .$productid. "' ";
     mysqli_query($conn, $sql);

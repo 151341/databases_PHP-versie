@@ -27,6 +27,7 @@ if ($resultCheck == 1) {
         $productname = $row['productsName'];
         $productprice = $row['productsPrice'];
         $productdescription = $row['productsDescription'];
+        $productimage = $row['productsImage'];
     }
 }
 ?>
@@ -47,10 +48,18 @@ if ($resultCheck == 1) {
     echo $productprice
     ?>
     ><br>
+    
     description: <input type="text" name="description"
     value=
     <?php
     echo $productdescription
+    ?>
+    ><br>
+
+    image: <input type="file" name="file"
+    value=
+    <?php
+    echo $productimage
     ?>
     ><br>
     <input type="hidden" name="id"

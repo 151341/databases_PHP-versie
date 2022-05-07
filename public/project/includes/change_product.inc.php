@@ -5,15 +5,27 @@ if (isset($_POST["submit"])) {
     $productname = $_POST["name"];
     $productprice = $_POST["price"];
     $productdescription = $_POST["description"];
-    $file = $_POST["file"];
+    $file = $_FILES["file"];
     $productid = $_POST["id"];
     
     if (emptyInputAddProduct($productname, $productdescription, $productprice) !== false) { 
         header("location: ../change_product.php?id=' . $productid . '?error=emptyinput");
         exit();
     }
+    echo $productname;
+    echo '<br>';
+    echo $productprice;
+    echo '<br>';
+
+    echo $productdescription;
+    echo '<br>';
+
+    echo $file;
+    echo '<br>';
+
+    echo $productid;
     
-    updateProduct($conn, $productname, $productprice, $productdescription, $productid, $file);
+    updateProduct($conn, $productid, $productname, $productprice, $productdescription, $file);
 }
 else {
     header("location: ../product.php?id=' . $productid . '");
