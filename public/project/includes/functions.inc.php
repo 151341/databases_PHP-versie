@@ -378,29 +378,51 @@ function createProduct($conn, $productname, $price, $adderid, $productdesc, $fil
     exit();
 }
 
-// function deleteProduct($conn, $deleteproductid) {
-//     $sql = "DELETE * FROM products WHERE productsId = ?;";
-//     $stmt = mysqli_stmt_init($conn);
-//     if (!mysqli_stmt_prepare($stmt, $sql)) {
-//         header("location: ../products.php?error=stmtfailed");
-//         exit();
-//     }
-//     mysqli_stmt_bind_param($stmt, "s", $deleteproductid);
-//     mysqli_stmt_execute($stmt);
-//     mysqli_stmt_close($stmt);
-//     header("location: ../products.php?error=productdeleted");
-//     exit();
-// }
-
-function updateUser($conn, $name, $email, $username, $userid, $pwdHashedP, $fileNameNew) {
+function updateUser($conn, $name, $email, $username, $userid, $pwdHashed, $fileName, $fileTmpName, $fileSize, $fileError, $fileDelete) {
     require('dbh.inc.php');
-    $sql = "UPDATE users SET usersName='" . $name . "',usersEmail='" . $email . "',usersUid='" . $username . "',usersImage='" . $fileNameNew . "' WHERE usersId='" .$userid. "' ";
-    mysqli_query($conn, $sql);
+    // $fileExt = explode('.', $fileName);
+    $fileActualExt = strtolower(end(explode('.', $fileName)));
+    $allowed = array('jpg','jpeg','png','pdf');
     
-
-    // $uidExists = usernameoremailExists($conn, $username, $email);
+    if ($fileDelete) {
+        $fileNameNew = null;
+        $sql = "UPDATE users SET usersName='" . $name . "',usersEmail='" . $email . "',usersUid='" . $username . "',usersImage='" . $fileNameNew . "' WHERE usersId='" .$userid. "' ";
+        mysqli_query($conn, $sql);
+    }
+    else if ($fileDelete!=true) {
+        if ($fileSize!=0) {
+            if (in_array($fileActualExt, $allowed)) {
+                if ($fileError === 0) {
+                    if ($fileSize < 2000000) {
+                        $fileNameNew = uniqid('', true).".".$fileActualExt;
+                        $fileDestination = '../profileimg/'.$fileNameNew;
+                        move_uploaded_file($fileTmpName,$fileDestination);
+                        $sql = "UPDATE users SET usersName='" . $name . "',usersEmail='" . $email . "',usersUid='" . $username . "',usersImage='" . $fileNameNew . "' WHERE usersId='" .$userid. "' ";
+                        mysqli_query($conn, $sql);
+                    }
+                    else {
+                        header("location: ../profile.php?error=imgtoobig");
+                        exit();
+                    }
+                }
+                else {
+                    header("location: ../profile.php?error=unknown");
+                    exit();
+                }
+            }
+            else {
+                echo 'you cannot upload this file';
+                header("location: ../profile.php?error=typeunaccept");
+                exit();
+            }
+        }
+        else {
+            $sql = "UPDATE users SET usersName='" . $name . "',usersEmail='" . $email . "',usersUid='" . $username . "' WHERE usersId='" .$userid. "' ";
+            mysqli_query($conn, $sql);
+        }
+    }
     $emailExists = emailExists($conn, $email);
-    $pwdHashed = $emailExists["usersPwd"];
+    $pwdHashedP = $emailExists["usersPwd"];
     $checkPwd = password_verify($pwd, $pwdHashed);
 
     if ($pwdHashed == $pwdHashedP) {
@@ -410,11 +432,10 @@ function updateUser($conn, $name, $email, $username, $userid, $pwdHashedP, $file
         $_SESSION["useruid"] = $emailExists["usersUid"];
         $_SESSION["useremail"] = $emailExists["usersEmail"];
         $_SESSION["ismanager"] = $emailExists["isManager"];
-        // $_SESSION["profileimg"] = $uidExists["profileImg"];
         $_SESSION["userpwd"] = $emailExists["usersPwd"];
         $_SESSION["userimg"] = $emailExists["usersImage"];
 
-        header("location: ../profile.php?succes=profilechanged");
+        header("location: ../profile.php?inf=profilechanged");
         exit();
     }
     else {
@@ -442,7 +463,6 @@ function updateProduct($conn,$productid, $productname, $productprice, $productde
         $_SESSION["useruid"] = $emailExists["usersUid"];
         $_SESSION["useremail"] = $emailExists["usersEmail"];
         $_SESSION["ismanager"] = $emailExists["isManager"];
-        // $_SESSION["profileimg"] = $uidExists["profileImg"];
         $_SESSION["userpwd"] = $emailExists["usersPwd"];
         $_SESSION["userimg"] = $emailExists["usersImage"];
 

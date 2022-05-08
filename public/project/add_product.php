@@ -29,6 +29,7 @@ echo $_SESSION['userid']
         <input type="text" name="productname" placeholder="name product"><br>
         <input type="text" name="productdesc" placeholder="description of product"><br>
         <input type="number" name="price" placeholder="price"><br>
+        <input type="hidden" name="adderid" placeholder="userid" value=<?php echo $_SESSION["userid"]  ?>><br>
         <input type="file" name="file">
         <button type="submit" name="submit">Add</button>
     </form>
@@ -54,7 +55,7 @@ if (isset($_GET["error"])) {
         echo 'you cannot upload files of this type';
     }
     else if ($_GET["error"] == "invalidproductname") {
-        echo 'you cannot upload files of this type';
+        echo 'invalid product name';
     }
     else if ($_GET["error"] == "notint") {
         echo 'price has to be a number';

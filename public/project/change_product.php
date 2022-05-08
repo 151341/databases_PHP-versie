@@ -16,7 +16,6 @@ $sql = "SELECT * FROM products WHERE productsId = '" .$productid. "';";
 $stmt = mysqli_stmt_init($conn);
 if (!mysqli_stmt_prepare($stmt, $sql)) {
     header("location: products.php?error=stmtfailed");
-    // change later!!!
     exit();
 }
 $result = mysqli_query($conn, $sql);
@@ -28,6 +27,7 @@ if ($resultCheck == 1) {
         $productprice = $row['productsPrice'];
         $productdescription = $row['productsDescription'];
         $productimage = $row['productsImage'];
+        $productid = $row['productsId'];
     }
 }
 ?>
@@ -44,9 +44,9 @@ if ($resultCheck == 1) {
     ><br>
     price: <input type="number" name="price"
     value=
-    <?php
+    "<?php
     echo $productprice
-    ?>
+    ?>"
     ><br>
     
     description: <input type="text" name="description"
@@ -68,9 +68,23 @@ if ($resultCheck == 1) {
     echo $productid
     ?>
     ><br>
+    <input type="checkbox" name="delete" value="delete">delete profile image<br>
+
     <button type="submit" name="submit">Change</button>
 </form>
+
 <?php
+$imglink = "productimg/".$productimage;
+if ($productimage != null) {
+    ?>
+    current product img
+    <img src="<?php echo $imglink; ?>" alt="" height="100" width="100"><br>
+    <?php
+} else {
+    echo 'there is no product image yet<br>';
+}
+echo 'id:';
+echo $productid;
 include_once 'footer.php';
 ?>
 

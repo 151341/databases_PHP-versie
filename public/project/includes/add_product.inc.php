@@ -4,7 +4,7 @@ if (isset($_POST["submit"])) {
     $productname = $_POST["productname"];
     $productdesc = $_POST["productdesc"];
     $price = $_POST["price"];
-    $adderid = intval($_SESSION['userid']);
+    $adderid = $_POST["adderid"];
 
     require_once 'dbh.inc.php';
     require_once 'functions.inc.php';

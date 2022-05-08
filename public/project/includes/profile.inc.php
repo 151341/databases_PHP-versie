@@ -31,37 +31,28 @@ if (isset($_POST["submit"])) {
     $fileSize = $_FILES['file']['size'];
     $fileError = $_FILES['file']['error'];
     $fileType = $_FILES['file']['type'];
-    $fileExt = explode('.', $fileName);
-    $fileActualExt = strtolower(end($fileExt));
-    $allowed = array('jpg','jpeg','png','pdf');
-    if ($fileSize!=0) {
-        if (in_array($fileActualExt, $allowed)) {
-            if ($fileError === 0) {
-                if ($fileSize < 2000000) {
-                    $fileNameNew = uniqid('', true).".".$fileActualExt;
-                    $fileDestination = '../profileimg/'.$fileNameNew;
-                    move_uploaded_file($fileTmpName,$fileDestination);
-                }
-                else {
-                    header("location: ../profile.php?error=imgtoobig");
-                    exit();
-                }
-            }
-            else {
-                header("location: ../profile.php?error=unknown");
-                exit();
-            }
-        }
-        else {
-            echo 'you cannot upload this file';
-            header("location: ../profile.php?error=typeunaccept");
-            exit();
-        }
-    }
-    if (isset($_POST['delete'])){
-        $fileNameNew = null;
-    }
-    updateUser($conn, $name, $email, $username, $userid, $pwdHashed, $fileNameNew);
+    $fileDelete = isset($_POST['delete']);
+
+    // echo $name. '<br>';
+    // echo $email. '<br>';
+    // echo $username. '<br>';
+    // echo $userid. '<br>';
+    // echo $pwdHashed. '<br>';
+    // echo $file;
+    // if ($fileSize!=0) {
+    //     echo $file. '<br>';
+    //     echo $fileName. '<br>';
+    //     echo $fileTmpName. '<br>';
+    //     echo $fileSize. '<br>';
+    //     echo $fileError. '<br>';
+    //     echo $fileType. '<br>';
+    //     echo $fileDelete. '<br>';    
+        
+    // }
+    // if ($fileDelete!=true) {
+    //     echo 'not delete';
+    // }
+    updateUser($conn, $name, $email, $username, $userid, $pwdHashed, $fileName, $fileTmpName, $fileSize, $fileError, $fileDelete);
 }
 else {
     header("location: ../profile.php");

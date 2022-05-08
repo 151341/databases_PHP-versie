@@ -24,6 +24,23 @@ if ($resultCheck == 1) {
         $productprice = $row['productsPrice'];
         $productdescription = $row['productsDescription'];
         $productimage = $row['productsImage'];
+
+
+        $productcreator;
+        $sql = "SELECT * FROM users WHERE usersId = '" .$row['productAddedByUserId']. "';";
+        $stmt = mysqli_stmt_init($conn);
+        if (!mysqli_stmt_prepare($stmt, $sql)) {
+            header("location: products.php?error=stmtfailed");
+            // change later!!!
+            exit();
+        }
+        $result = mysqli_query($conn, $sql);
+        $resultCheck = mysqli_num_rows($result);
+        if ($resultCheck == 1) {
+            while ($row = mysqli_fetch_assoc($result)) {
+                $productcreator = $row['usersEmail'];
+            }
+        }
     }
 }
 ?>
@@ -32,6 +49,8 @@ if ($resultCheck == 1) {
 <p><?php echo $productdescription ?></p>
 <p>$<?php echo $productprice ?></p>
 <p><?php echo $productimage ?></p>
+<p>created by <?php echo $productcreator ?></p>
+
 <?php
 if ($productimage!=null) {
     $imglink = "productimg/".$productimage;
