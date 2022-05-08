@@ -36,9 +36,12 @@ if ($resultCheck > 0) {
     while ($row = mysqli_fetch_assoc($result)) {
         echo "<br>". $row['productsName'] . "<br>";  
         if ($_SESSION['ismanager'] === 1) {
-            print '<a href="change_product.php?id=' . $row['productsId'] . '">Change product</a>';
+            print '<a href="change_product.php?id=' . $row['productsId'] . '">Change product</a><br>';
         }
         print '<a href="product.php?id=' . $row['productsId'] . '">View product</a>';
+        if ($_SESSION['userid']!=null) {
+            print '<br><button>add to shopping card</button>';
+        }
     }
 }
 include_once 'footer.php'

@@ -11,6 +11,7 @@ session_start();
         if ($_SESSION['useremail'] === 'stef.delnoye@gmail.com') {
             echo "<li><a href='select.php'>select new employees</a></li>";
         }
+        echo "<li><a href='shopping_cart.php'>Shopping Cart</a></li>";
         echo "<li><a href='includes/logout.inc.php'>logout</a></li>";
     }
     else {

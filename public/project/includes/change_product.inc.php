@@ -5,38 +5,27 @@ if (isset($_POST["submit"])) {
     $productname = $_POST["name"];
     $productprice = $_POST["price"];
     $productdescription = $_POST["description"];
-    $file = $_FILES["file"];
+    $file = $_POST["file"];
+    // $file = $_FILES["file"];
     $productid = $_POST["id"];
     
     if (emptyInputAddProduct($productname, $productdescription, $productprice) !== false) { 
-        header("location: ../change_product.php?id=' . $productid . '");
+        header("location: ../index.php");
+        // header("location: ../change_product.php?id=' . $productid . '");
         exit();
     }
     
-    // $fileName = $_FILES['file']['name'];
-    // $fileTmpName = $_FILES['file']['tmp_name'];
-    // $fileSize = $_FILES['file']['size'];
-    // $fileError = $_FILES['file']['error'];
-    // $fileType = $_FILES['file']['type'];
-    // $fileDelete = isset($_POST['delete']);
-
-    
-    // echo $productname;
-    // echo '<br>';
-    // echo $productprice;
-    // echo '<br>';
-
-    // echo $productdescription;
-    // echo '<br>';
-
-    // echo $file;
-    // echo '<br>';
-
-    // echo $productid;
-    
+    $fileName = $_FILES['file']['name'];
+    $fileTmpName = $_FILES['file']['tmp_name'];
+    $fileSize = $_FILES['file']['size'];
+    $fileError = $_FILES['file']['error'];
+    $fileType = $_FILES['file']['type'];
+    $fileDelete = isset($_POST['delete']);
     // updateProduct($conn, $productid, $productname, $productprice, $productdescription, $fileNameNew);
+    updateProduct2($conn, $productname, $productprice, $productdescription, $productid,$fileName, $fileTmpName, $fileSize, $fileError, $fileDelete);
+
 }
 else {
-    header("location: ../product.php?id=' . $productid . '");
+    header("location: ../change_product.php?id=' . $productid . '");
     exit();
 }

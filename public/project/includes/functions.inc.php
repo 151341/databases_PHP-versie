@@ -214,7 +214,6 @@ function createUser($conn, $name, $email, $username, $pwd, $fileNameNew) {
 }
 
 
-
 function emptyInputLogin($username, $pwd) {
     $result = null;
     if (empty($username) || empty($pwd)) {
@@ -374,7 +373,7 @@ function createProduct($conn, $productname, $price, $adderid, $productdesc, $fil
     mysqli_stmt_bind_param($stmt, "sssss", $productname, intval($price), intval($adderid), $productdesc, $fileTmpName);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
-    header("location: ../products.php?state=productcreated");
+    header("location: ../products.php?inf=productcreated");
     exit();
 }
 
@@ -444,6 +443,54 @@ function updateUser($conn, $name, $email, $username, $userid, $pwdHashed, $fileN
     }
 }
 
+function updateProduct2($conn, $productname, $productprice, $productdescription, $productid,$fileName, $fileTmpName, $fileSize, $fileError, $fileDelete) {
+    require('dbh.inc.php');
+    // $fileExt = explode('.', $fileName);
+    $fileActualExt = strtolower(end(explode('.', $fileName)));
+    $allowed = array('jpg','jpeg','png','pdf');
+    if ($fileDelete) {
+        $fileNameNew = null;
+        $sql = "UPDATE products SET productsName='" . $productname . "',productsPrice='" . $productprice . "',productsDescription='" . $productdescription . "',productsImage='" . $fileNameNew . "' WHERE productsId='" .$productid. "' ";
+        mysqli_query($conn, $sql);
+        header("location: ../product.php?id=' . $productid . '");
+    }
+    else if ($fileDelete!=true) {
+        if ($fileSize!=0) {
+            if (in_array($fileActualExt, $allowed)) {
+                if ($fileError === 0) {
+                    if ($fileSize < 2000000) {
+                        $fileNameNew = uniqid('', true).".".$fileActualExt;
+                        $fileDestination = '../productimg/'.$fileNameNew;
+                        move_uploaded_file($fileTmpName,$fileDestination);
+                        $sql = "UPDATE products SET productsName='" . $productname . "',productsPrice='" . $productprice . "',productsDescription='" . $productdescription . "',productsImage='" . $fileNameNew . "' WHERE productsId='" .$productid. "' ";
+                        mysqli_query($conn, $sql);
+                        header("location: ../product.php?id=' . $productid . '");
+
+                    }
+                    else {
+                        header("location: ../product.php?id=' . $productid . '?error=imgtoobig");
+                        exit();
+                    }
+                }
+                else {
+                    header("location: ../product.php?id=' . $productid . '?error=unknown");
+                    exit();
+                }
+            }
+            else {
+                echo 'you cannot upload this file';
+                header("location: ../product.php?id=' . $productid . '?error=typeunaccept");
+                exit();
+            }
+        }
+        else {
+            $sql = "UPDATE products SET productsName='" . $productname . "',productsPrice='" . $productprice . "',productsDescription='" . $productdescription . "' WHERE productsId='" .$productid. "' ";
+            mysqli_query($conn, $sql);
+            header("location: ../product.php?id=' . $productid . '");
+        }
+    }
+}
+
 
 function updateProduct($conn,$productid, $productname, $productprice, $productdescription, $file) {
     require('dbh.inc.php');
@@ -507,4 +554,23 @@ function addEmployee($conn, $deleted_employee) {
     require('dbh.inc.php');
     $sql = "UPDATE users SET isManager = 1 WHERE usersEmail='" .$deleted_employee. "';";
     mysqli_query($conn, $sql);   
+}
+
+function productName($conn, $productId) {
+    $sql = "SELECT * FROM products WHERE productsId = '" .$productId. "';";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: products.php?error=stmtfailed");
+        exit();
+    }
+    $result = mysqli_query($conn, $sql);
+    $resultCheck = mysqli_num_rows($result);
+    if ($resultCheck == 1) {
+        while ($row = mysqli_fetch_assoc($result)) {
+            // echo "<br>". $row['productsName'] . "<br>";
+            $productname = $row['productsName'];
+        }
+    }
+    return $productname;
+
 }
