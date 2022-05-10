@@ -46,3 +46,13 @@ stond bij products.php
     echo $row['usersName'] .' | '. $row['usersEmail']. ' | '. $row['usersId'] . ' | '. $row['isManager']; ?>
         <br> <?php
     }
+
+
+
+    CREATE TABLE reviews (
+        reviewsId int(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,
+        reviewsName varchar(255) NOT NULL,
+        productsId int(11) NOT NULL,
+        reviewsImage varbinary(max) NOT NULL,
+        UserId int(11) NOT NULL
+    );

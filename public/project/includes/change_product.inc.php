@@ -5,6 +5,7 @@ if (isset($_POST["submit"])) {
     $productname = $_POST["name"];
     $productprice = $_POST["price"];
     $productdescription = $_POST["description"];
+    $productquantity = $_POST["stock"];
     $file = $_POST["file"];
     // $file = $_FILES["file"];
     $productid = $_POST["id"];
@@ -22,7 +23,7 @@ if (isset($_POST["submit"])) {
     $fileType = $_FILES['file']['type'];
     $fileDelete = isset($_POST['delete']);
     // updateProduct($conn, $productid, $productname, $productprice, $productdescription, $fileNameNew);
-    updateProduct2($conn, $productname, $productprice, $productdescription, $productid,$fileName, $fileTmpName, $fileSize, $fileError, $fileDelete);
+    updateProduct2($conn, $productname, $productprice, $productdescription,$productquantity, $productid,$fileName, $fileTmpName, $fileSize, $fileError, $fileDelete);
 
 }
 else {

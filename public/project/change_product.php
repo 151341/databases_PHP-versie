@@ -28,6 +28,7 @@ if ($resultCheck == 1) {
         $productdescription = $row['productsDescription'];
         $productimage = $row['productsImage'];
         $productid = $row['productsId'];
+        $productquantity = $row['productsQuantity'];
     }
 }
 ?>
@@ -55,7 +56,12 @@ if ($resultCheck == 1) {
     echo $productdescription
     ?>
     ><br>
-
+    quantity: <input type="number" name="stock"
+    value=
+    <?php
+    echo $productquantity
+    ?>
+    ><br>
     image: <input type="file" name="file"
     value=
     <?php

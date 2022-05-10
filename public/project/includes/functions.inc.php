@@ -443,14 +443,14 @@ function updateUser($conn, $name, $email, $username, $userid, $pwdHashed, $fileN
     }
 }
 
-function updateProduct2($conn, $productname, $productprice, $productdescription, $productid,$fileName, $fileTmpName, $fileSize, $fileError, $fileDelete) {
+function updateProduct2($conn, $productname, $productprice, $productdescription,$productquantity, $productid,$fileName, $fileTmpName, $fileSize, $fileError, $fileDelete) {
     require('dbh.inc.php');
     // $fileExt = explode('.', $fileName);
     $fileActualExt = strtolower(end(explode('.', $fileName)));
     $allowed = array('jpg','jpeg','png','pdf');
     if ($fileDelete) {
         $fileNameNew = null;
-        $sql = "UPDATE products SET productsName='" . $productname . "',productsPrice='" . $productprice . "',productsDescription='" . $productdescription . "',productsImage='" . $fileNameNew . "' WHERE productsId='" .$productid. "' ";
+        $sql = "UPDATE products SET productsName='" . $productname . "',productsPrice='" . $productprice . "',productsDescription='" . $productdescription . "',productsQuantity='" . $productquantity . "', productsImage='" . $fileNameNew . "' WHERE productsId='" .$productid. "' ";
         mysqli_query($conn, $sql);
         header("location: ../product.php?id=' . $productid . '");
     }
@@ -462,7 +462,7 @@ function updateProduct2($conn, $productname, $productprice, $productdescription,
                         $fileNameNew = uniqid('', true).".".$fileActualExt;
                         $fileDestination = '../productimg/'.$fileNameNew;
                         move_uploaded_file($fileTmpName,$fileDestination);
-                        $sql = "UPDATE products SET productsName='" . $productname . "',productsPrice='" . $productprice . "',productsDescription='" . $productdescription . "',productsImage='" . $fileNameNew . "' WHERE productsId='" .$productid. "' ";
+                        $sql = "UPDATE products SET productsName='" . $productname . "',productsPrice='" . $productprice . "',productsDescription='" . $productdescription . "',productsQuantity='" . $productquantity . "',productsImage='" . $fileNameNew . "' WHERE productsId='" .$productid. "' ";
                         mysqli_query($conn, $sql);
                         header("location: ../product.php?id=' . $productid . '");
 
@@ -484,7 +484,7 @@ function updateProduct2($conn, $productname, $productprice, $productdescription,
             }
         }
         else {
-            $sql = "UPDATE products SET productsName='" . $productname . "',productsPrice='" . $productprice . "',productsDescription='" . $productdescription . "' WHERE productsId='" .$productid. "' ";
+            $sql = "UPDATE products SET productsName='" . $productname . "',productsPrice='" . $productprice . "',productsDescription='" . $productdescription . "', productsQuantity='" . $productquantity . "' WHERE productsId='" .$productid. "' ";
             mysqli_query($conn, $sql);
             header("location: ../product.php?id=' . $productid . '");
         }
