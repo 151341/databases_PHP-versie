@@ -1,5 +1,5 @@
 <head>
-<title>profile</title>
+<title>product</title>
 </head>
 <?php
 include_once 'header.php';
@@ -65,6 +65,17 @@ if ($productimage!=null) {
 }
 ?>
 <h1>reviews</h1>
+<section>
+    <form action="includes/review.inc.php" method="POST" enctype="multipart/form-data">
+        <input type="text" name="reviewname" placeholder="name review"><br>
+        <input type="number" name="stars" min="1" max="5" placeholder="stars"><br>
+        <input type="text" name="reviewcontent" placeholder="your review...."><br>
+        <input type="hidden" name="userid" placeholder="userid" value=<?php echo $_SESSION["userid"]  ?>><br>
+        <input type="hidden" name="productid" placeholder="productid" value=<?php echo $productid ?>><br>
+        <input type="file" name="file">
+        <button type="submit" name="submit">Add</button>
+    </form>
+</section>
 <?php
 $sql = "SELECT * FROM reviews WHERE productsId='" . $productid . "';";
 $stmt = mysqli_stmt_init($conn);
@@ -76,7 +87,24 @@ $result = mysqli_query($conn, $sql);
 $resultCheck = mysqli_num_rows($result);
 if ($resultCheck > 0) {
     while ($row = mysqli_fetch_assoc($result)) {
-        echo "<br>". $row['reviewsName'] . "<br>";
+        echo $row['reviewsName'] . "<br>";
+        echo $row['stars'] . "<br>";
+        $userid = $row['usersId'];
+        $sql = "SELECT * FROM users WHERE usersId = '" .$userid. "';";
+        $stmt = mysqli_stmt_init($conn);
+        if (!mysqli_stmt_prepare($stmt, $sql)) {
+            header("location: products.php?error=stmtfailed");
+            exit();
+        }
+        $result = mysqli_query($conn, $sql);
+        $resultCheck = mysqli_num_rows($result);
+        if ($resultCheck == 1) {
+            while ($row = mysqli_fetch_assoc($result)) {
+                echo $row['usersEmail'];
+            }
+        }
+        echo $row['reviewsContent'] . "<br>";
+        echo '<br>';
     }
 }
 include_once 'footer.php';

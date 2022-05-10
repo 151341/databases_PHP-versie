@@ -377,6 +377,19 @@ function createProduct($conn, $productname, $price, $adderid, $productdesc, $fil
     exit();
 }
 
+function createReview($conn, $reviewname, $stars, $reviewcontent, $userid, $productid, $fileNameNew) {
+    $sql = "INSERT INTO reviews (reviewsName, productsId, reviewsImage, usersId, reviewsContent, stars) VALUES (?, ?, ?, ?, ?, ?);";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: ../products.php?error=test");
+        exit();
+    }
+    mysqli_stmt_bind_param($stmt, "ssssss",$reviewname,$productid, $fileNameNew,$userid,$reviewcontent,$stars);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
+}
+
+
 function updateUser($conn, $name, $email, $username, $userid, $pwdHashed, $fileName, $fileTmpName, $fileSize, $fileError, $fileDelete) {
     require('dbh.inc.php');
     // $fileExt = explode('.', $fileName);
