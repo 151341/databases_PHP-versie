@@ -5,8 +5,6 @@
 include_once 'header.php';
 ?>
 <h1>home</h1>
-<label for="theinput">Input here:</label>
-<input type='checkbox' name='whatever' id='theinput'>
 <?php
 if (isset($_SESSION['useruid'])) {
     echo "<p>Hi " . $_SESSION["useruid"] . "</p>";

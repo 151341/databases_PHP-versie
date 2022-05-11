@@ -587,3 +587,19 @@ function productName($conn, $productId) {
     return $productname;
 
 }
+
+function returnEmail($conn, $userid) {
+    $sql = "SELECT * FROM users WHERE usersId = '" .$userid. "';";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: products.php?error=stmtfailed");
+        exit();
+    }
+    $result = mysqli_query($conn, $sql);
+    $resultCheck = mysqli_num_rows($result);
+    if ($resultCheck == 1) {
+        while ($row = mysqli_fetch_assoc($result)) {
+            return $row["usersEmail"];
+        }
+    }
+}

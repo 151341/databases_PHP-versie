@@ -51,6 +51,7 @@ if (isset($_POST["submit"])) {
     }
     // echo $fileNameNew;
     createReview($conn, $reviewname, $stars, $reviewcontent, $userid, $productid, $fileNameNew);
+    // change later!!
     header("location: ../product.php?id=' . $productid . '");
     exit();
 }
