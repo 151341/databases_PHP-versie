@@ -3,6 +3,7 @@
 </head>
 <?php
 include_once 'header.php';
+require('includes/functions.inc.php');
 if ($_SESSION['ismanager'] !== 1) {
     header("location: ./products.php");
     exit();
@@ -77,7 +78,3 @@ if (isset($_GET["error"])) {
 ?>
 
 </section>
-
-<?php
-require('includes/functions.inc.php');
-?>

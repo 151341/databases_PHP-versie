@@ -95,8 +95,7 @@ $resultCheck = mysqli_num_rows($result);
 if ($resultCheck > 0) {
     while ($row = mysqli_fetch_assoc($result)) {
         echo $row['reviewsName'] . "<br>";
-        echo 'by ' .returnEmail($conn,$row["usersId"]);
-        echo $row['stars'] . "<br>";
+        echo 'by ' .returnEmail($conn,$row["usersId"]). '<br>';
         $imglink = "reviewimg/".$row['reviewsImage'];
         if ($row['reviewsImage'] != null) {
             ?>
@@ -104,8 +103,16 @@ if ($resultCheck > 0) {
             <?php
         }
         echo $row['reviewsContent'] . "<br>";
-        echo intval($row['productsId']) . "<br>";
+        echo 'productsid: '. intval($row['productsId']) . "<br>";
+        echo 'reviewssid: '. intval($row['reviewsId']) . "<br>";
         echo 'stars: '. $row['stars'] . "<br>";
+        ?>
+        <form action="includes/like_review.inc.php" method="POST">
+            <button type="submit" name="sumbit">Like</button>
+        </form>
+        <?php
+        echo countLikesReview($conn, intval($row['reviewsId'])) . " likes <br>";
+        
         
         echo '<hr>';
         echo '<br>';

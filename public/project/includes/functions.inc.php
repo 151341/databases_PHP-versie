@@ -605,17 +605,10 @@ function returnEmail($conn, $userid) {
 }
 
 function countLikesReview($conn, $reviewid) {
-    $sql = "SELECT COUNT(usersId) FROM likereview WHERE reviewsId = '" .$reviewid. "';";
-    $stmt = mysqli_stmt_init($conn);
-    if (!mysqli_stmt_prepare($stmt, $sql)) {
-        header("location: products.php?error=stmtfailed");
-        exit();
-    }
-    $result = mysqli_query($conn, $sql);
-    $resultCheck = mysqli_num_rows($result);
-    if ($resultCheck == 1) {
-        while ($row = mysqli_fetch_assoc($result)) {
-            return $row["usersEmail"];
-        }
+    $sql = "SELECT * FROM likereview WHERE reviewsId = '" .$reviewid. "'";
+
+    if ($result=mysqli_query($conn,$sql)) {
+        $rowcount=mysqli_num_rows($result);
+        echo $rowcount; 
     }
 }
