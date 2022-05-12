@@ -65,6 +65,9 @@ if ($productimage!=null) {
 }
 ?>
 <h1>reviews</h1>
+<?php
+if (isset($_SESSION['useruid'])) {
+?>
 <section>
     <form action="includes/review.inc.php" method="POST" enctype="multipart/form-data">
         <input type="text" name="reviewname" placeholder="name review"><br>
@@ -77,6 +80,10 @@ if ($productimage!=null) {
     </form>
 </section>
 <?php
+}
+    
+
+
 $sql = "SELECT * FROM reviews WHERE productsId='" . $productid . "';";
 $stmt = mysqli_stmt_init($conn);
 if (!mysqli_stmt_prepare($stmt, $sql)) {
@@ -99,6 +106,7 @@ if ($resultCheck > 0) {
         echo $row['reviewsContent'] . "<br>";
         echo intval($row['productsId']) . "<br>";
         echo 'stars: '. $row['stars'] . "<br>";
+        
         echo '<hr>';
         echo '<br>';
     
