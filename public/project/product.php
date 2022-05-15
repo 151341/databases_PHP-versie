@@ -108,15 +108,26 @@ if ($resultCheck > 0) {
         echo 'stars: '. $row['stars'] . "<br>";
         ?>
         <form action="includes/like_review.inc.php" method="POST">
-            <button type="submit" name="sumbit">Like</button>
+            <?php
+            // echo $row['reviewsId'];
+            // echo $_SESSION['userid'];
+            if (isLiked($conn, $row['reviewsId'], $_SESSION["userid"])){
+                ?>
+                <!-- <button type="submit" name="sumbit">Unlike</button> -->
+                <button type="submit" class="button" name="unlike" value="unlike">Unlike</button>
+                <?php
+            } else {
+                ?>
+                <!-- <button type="submit" name="submit">Like</button> -->
+                <button type="submit" class="button" name="like" value="like">Like</button>
+                <?php
+            }
+            ?>
         </form>
         <?php
         echo countLikesReview($conn, intval($row['reviewsId'])) . " likes <br>";
-        
-        
         echo '<hr>';
         echo '<br>';
-    
     }
 }
 include_once 'footer.php';

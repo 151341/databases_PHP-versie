@@ -5,6 +5,8 @@ session_start();
 <nav>
     <li><a href="index.php">home</a></li>
     <li><a href="products.php">products</a></li>
+    <li><a href="test.php">test</a></li>
+    <li><a href="test2.php">test2</a></li>
     <?php
     if (isset($_SESSION["useruid"])) {
         echo "<li><a href='profile.php'>profile</a></li>";
