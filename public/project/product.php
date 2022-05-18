@@ -76,6 +76,10 @@ if ($productimage!=null) {
 if (isset($_SESSION['useruid'])) {
     date_default_timezone_set("Europe/Amsterdam");
     $time = date('Y-m-d H:i:s');
+    echo $time;
+    echo '<br>';
+    echo date("Y-m-d H:i:s");
+    echo '<br>';
 ?>
 <section>
     <form action="includes/review.inc.php" method="POST" enctype="multipart/form-data">
