@@ -108,17 +108,16 @@ if ($resultCheck > 0) {
         echo 'stars: '. $row['stars'] . "<br>";
         ?>
         <form action="includes/like_review.inc.php" method="POST">
+            <input type="hidden" name="userid" placeholder="userid" value=<?php echo $_SESSION["userid"]  ?>><br>
+            <input type="hidden" name="reviewid" placeholder="reviewid" value=<?php echo $row["reviewsId"] ?>><br>
+            <input type="hidden" name="productid" placeholder="productid" value=<?php echo $productid ?>><br>
             <?php
-            // echo $row['reviewsId'];
-            // echo $_SESSION['userid'];
             if (isLiked($conn, $row['reviewsId'], $_SESSION["userid"])){
                 ?>
-                <!-- <button type="submit" name="sumbit">Unlike</button> -->
                 <button type="submit" class="button" name="unlike" value="unlike">Unlike</button>
                 <?php
             } else {
                 ?>
-                <!-- <button type="submit" name="submit">Like</button> -->
                 <button type="submit" class="button" name="like" value="like">Like</button>
                 <?php
             }

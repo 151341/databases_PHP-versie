@@ -632,3 +632,18 @@ function countLikesReview($conn, $reviewid) {
         echo $rowcount; 
     }
 }
+
+function likeReview($conn, $reviewid, $userid, $productid) {
+    $sql = "INSERT INTO likereview (reviewsId, usersId) VALUES (?, ?);";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: ../products.php?error=likestmtfailed");
+        exit();
+    }
+    mysqli_stmt_bind_param($stmt, "ss", $reviewid, $userid);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
+    // header("location: ../product.php?id=' . $productid . '");
+    header("location: ../product.php?id=".$productid);
+    exit();
+}
