@@ -2,6 +2,7 @@
 
 if (isset($_POST["submit"])) {
     $reviewname = $_POST["reviewname"];
+    $reviewTime = $_POST["time"];
     $stars = $_POST["stars"];
     $reviewcontent = $_POST["reviewcontent"];
     $userid = $_POST["userid"];
@@ -50,7 +51,7 @@ if (isset($_POST["submit"])) {
         }
     }
     // echo $fileNameNew;
-    createReview($conn, $reviewname, $stars, $reviewcontent, $userid, $productid, $fileNameNew);
+    createReview($conn, $reviewname, $stars, $reviewTime, $reviewcontent, $userid, $productid, $fileNameNew);
     // change later!!
     header("location: ../product.php?id=' . $productid . '");
     exit();

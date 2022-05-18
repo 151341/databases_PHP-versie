@@ -377,14 +377,14 @@ function createProduct($conn, $productname, $price, $adderid, $productdesc, $fil
     exit();
 }
 
-function createReview($conn, $reviewname, $stars, $reviewcontent, $userid, $productid, $fileNameNew) {
-    $sql = "INSERT INTO reviews (reviewsName, productsId, reviewsImage, usersId, reviewsContent, stars) VALUES (?, ?, ?, ?, ?, ?);";
+function createReview($conn, $reviewname, $stars, $reviewTime, $reviewcontent, $userid, $productid, $fileNameNew) {
+    $sql = "INSERT INTO reviews (reviewsName, productsId, reviewsImage, usersId, reviewsContent, stars, reviewsDate) VALUES (?, ?, ?, ?, ?, ?, ?);";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
         header("location: ../products.php?error=test");
         exit();
     }
-    mysqli_stmt_bind_param($stmt, "ssssss",$reviewname,$productid, $fileNameNew,$userid,$reviewcontent,$stars);
+    mysqli_stmt_bind_param($stmt, "sssssss",$reviewname,$productid, $fileNameNew,$userid,$reviewcontent,$stars, $reviewTime);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
 }
@@ -543,9 +543,6 @@ function deleteProduct($conn, $deleted_product) {
     require('dbh.inc.php');
     $sql = "DELETE FROM products WHERE productsName='" .$deleted_product. "';";
     mysqli_query($conn, $sql);
-    
-    // header("location: ../profile.php");
-    // exit();
 }
 
 function isBoss() {
@@ -643,7 +640,13 @@ function likeReview($conn, $reviewid, $userid, $productid) {
     mysqli_stmt_bind_param($stmt, "ss", $reviewid, $userid);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
-    // header("location: ../product.php?id=' . $productid . '");
+    header("location: ../product.php?id=".$productid);
+    exit();
+}
+
+function unLikeReview($conn, $reviewid, $userid, $productid) {
+    $sql = "DELETE FROM likereview WHERE reviewsId='" .$reviewid. "' AND usersId='" .$userid. "';";
+    mysqli_query($conn, $sql);
     header("location: ../product.php?id=".$productid);
     exit();
 }

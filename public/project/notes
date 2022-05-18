@@ -56,3 +56,5 @@ stond bij products.php
         reviewsImage varbinary(max) NOT NULL,
         UserId int(11) NOT NULL
     );
+
+    INSERT INTO `reviews` (`reviewsId`, `reviewsName`, `productsId`, `reviewsImage`, `usersId`, `reviewsContent`, `stars`, `reviewsDate`) VALUES (NULL, 'test3', '28', NULL, '1', 'this is just test', '4', '2022-05-18 07:40:55');

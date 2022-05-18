@@ -4,6 +4,10 @@
 <?php
 include_once 'header.php';
 $productid = $_GET['id'];
+if ($productid == null) {
+    header("location: products.php");
+    exit();    
+}
 $productname;
 $productprice;
 $productdescription;
@@ -64,9 +68,14 @@ if ($productimage!=null) {
     <?php
 }
 ?>
+<hr>
+<hr>
+<hr>
 <h1>reviews</h1>
 <?php
 if (isset($_SESSION['useruid'])) {
+    date_default_timezone_set("Europe/Amsterdam");
+    $time = date('Y-m-d H:i:s');
 ?>
 <section>
     <form action="includes/review.inc.php" method="POST" enctype="multipart/form-data">
@@ -75,6 +84,7 @@ if (isset($_SESSION['useruid'])) {
         <input type="text" name="reviewcontent" placeholder="your review...."><br>
         <input type="hidden" name="userid" placeholder="userid" value=<?php echo $_SESSION["userid"]  ?>><br>
         <input type="hidden" name="productid" placeholder="productid" value=<?php echo $productid ?>><br>
+        <input type="hidden" name="time" placeholder="time" value=<?php echo $time ?>><br>
         <input type="file" name="file">
         <button type="submit" name="submit">Add</button>
     </form>
@@ -102,7 +112,9 @@ if ($resultCheck > 0) {
             <img src="<?php echo $imglink; ?>" alt="" height="100" width="100"><br>
             <?php
         }
+        
         echo $row['reviewsContent'] . "<br>";
+        echo "date: ". $row['reviewsDate'] . "<br>";
         echo 'productsid: '. intval($row['productsId']) . "<br>";
         echo 'reviewssid: '. intval($row['reviewsId']) . "<br>";
         echo 'stars: '. $row['stars'] . "<br>";

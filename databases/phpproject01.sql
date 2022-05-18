@@ -5,9 +5,9 @@ CREATE TABLE `likereview` (
   `reviewsId` int NOT NULL,
   `usersId` int NOT NULL,
   PRIMARY KEY (`likeReviewId`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-INSERT INTO `likereview` (`likeReviewId`, `reviewsId`, `usersId`) VALUES (1,11,1),(2,2,2),(3,11,2),(4,10,2),(5,10,1);
+INSERT INTO `likereview` (`likeReviewId`, `reviewsId`, `usersId`) VALUES (2,2,2),(3,11,2),(4,10,2),(13,12,1);
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `products` (
@@ -32,10 +32,11 @@ CREATE TABLE `reviews` (
   `usersId` int NOT NULL,
   `reviewsContent` varchar(128) NOT NULL,
   `stars` int NOT NULL,
+  `reviewsDate` datetime DEFAULT NULL,
   PRIMARY KEY (`reviewsId`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-INSERT INTO `reviews` (`reviewsId`, `reviewsName`, `productsId`, `reviewsImage`, `usersId`, `reviewsContent`, `stars`) VALUES (10,'test',28,NULL,1,'test review',3),(11,'blue',28,'627a805a463716.05976711.jpg',1,'nice car',3);
+INSERT INTO `reviews` (`reviewsId`, `reviewsName`, `productsId`, `reviewsImage`, `usersId`, `reviewsContent`, `stars`, `reviewsDate`) VALUES (10,'test',28,NULL,1,'test review',3,NULL),(11,'blue',28,'627a805a463716.05976711.jpg',1,'nice car',3,NULL),(12,'test2',28,NULL,1,'test message',4,NULL),(13,'test3',28,NULL,1,'this is just test',4,'2022-05-18 07:40:55'),(14,'sdfa',28,NULL,1,'testtttttt hoi',3,'2022-05-18 00:00:00');
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `shopping_cart` (
