@@ -34,7 +34,7 @@ stond bij products.php
 ?>
     <section>
         <form action="includes/delete_product.inc.php" method="POST">
-            <input type="checkbox" id="delete" name="delete" value="delete" />
+            <input typ  e="checkbox" id="delete" name="delete" value="delete" />
             <label for="delete"> test</label><br />
             <button class="btn btn--main" type="submit">Submit</button>
         </form>
@@ -58,3 +58,8 @@ stond bij products.php
     );
 
     INSERT INTO `reviews` (`reviewsId`, `reviewsName`, `productsId`, `reviewsImage`, `usersId`, `reviewsContent`, `stars`, `reviewsDate`) VALUES (NULL, 'test3', '28', NULL, '1', 'this is just test', '4', '2022-05-18 07:40:55');
+
+    starten
+    pull -> importeren
+    stoppen:
+    exporteren -> push

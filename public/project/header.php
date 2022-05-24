@@ -10,7 +10,7 @@ session_start();
     <?php
     if (isset($_SESSION["useruid"])) {
         echo "<li><a href='profile.php'>profile</a></li>";
-        if ($_SESSION['useremail'] === 'stef.delnoye@gmail.com') {
+        if ($_SESSION['useremail'] === 'stef.delnoye@gmail.com' or $_SESSION['useremail'] === 'stef.delnoye@gmail.com' or $_SESSION['useremail'] === 'stef.delnoye@gmail.com') {
             echo "<li><a href='select.php'>select new employees</a></li>";
         }
         echo "<li><a href='shopping_cart.php'>Shopping Cart</a></li>";
