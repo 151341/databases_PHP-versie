@@ -1,11 +1,11 @@
 <?php
 session_start();
 ?>
-<body>
+<body class="header"> 
 <nav>
-    <li><a href="index.php">home</a></li>
-    <li><a href="products.php">products</a></li>
-    <li><a href="test.php">test</a></li>
+    <li><a href="index.php">Home</a></li>
+    <li><a href="products.php">Products</a></li>
+    <li><a href="about.php">About us</a></li>
     <li><a href="test2.php">test2</a></li>
     <?php
     if (isset($_SESSION["useruid"])) {
@@ -17,8 +17,12 @@ session_start();
         echo "<li><a href='includes/logout.inc.php'>logout</a></li>";
     }
     else {
-        echo "<li><a href='signup.php'>signup</a></li>";
-        echo "<li><a href='login.php'>login</a></li>";
+        echo "<li><a href='signup.php'>Signup</a></li>";
+        echo "<li><a href='login.php'>Login</a></li>";
     }
     ?>
 </nav>
+</body>
+<?php 
+  echo "<link rel='stylesheet' type='text/css' href='/project/design.css' />"; 
+?>

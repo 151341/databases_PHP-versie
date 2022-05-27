@@ -1,5 +1,8 @@
 <head>
-    <title>home page</title>
+    <title>Webshop | Koop hier je wiet</title>
+    <?php 
+  echo "<link rel='stylesheet' type='text/css' href='/project/design.css' />"; 
+?>
 </head>
 <?php
 include_once 'header.php';
