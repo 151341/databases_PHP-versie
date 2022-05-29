@@ -1,9 +1,12 @@
 <?php
 session_start();
 ?>
-<body class="header"> 
+<div class="header">
+<h1>Webshop</h1>
+</div>
+<body> 
 <nav>
-    <li><a href="index.php">Home</a></li>
+    <li><a class="active" href="index.php">Home</a></li>
     <li><a href="products.php">Products</a></li>
     <li><a href="about.php">About us</a></li>
     <li><a href="test2.php">test2</a></li>

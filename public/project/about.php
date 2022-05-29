@@ -23,3 +23,6 @@ require('includes/functions.inc.php');
 <div id="about">
     <p>Wij zijn Stef, Nynke en Christiaan.</p>
 </div>
+<?php
+include_once 'footer.php'
+?>

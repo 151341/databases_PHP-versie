@@ -1,23 +1,32 @@
+* {
+  box-sizing: border-box;
+}
 body {
     background-color: lightblue;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    height: 100px;
   }
 
-  header {
-    height: 30px;
-    background-color: #F1F1F1;
+  .header {
+    background-color: whitesmoke;
     text-align: center;
     padding: 20px;
   }
 
-  footer {
-    background-color: #F1F1F1;
+  .footer {
+    padding: 20px;
     text-align: center;
-    padding: 10px;
+    background: whitesmoke;
+    margin-top: 20px;
   }
-  h1 {
+  h1{
+    color:#111;
+    text-align: center;
+
+  }
+  h2 {
     color: white;
     text-align: center;
   }
@@ -27,10 +36,16 @@ body {
   padding: 0;
   overflow: hidden;
   background-color: #333;
+  
+}
+.active {
+  background-color: red;
 }
 
+
 li {
-  float: right;
+  float: left;
+  
 }
 
 li a {
@@ -44,4 +59,27 @@ li a {
 /* Change the link color to #111 (black) on hover */
 li a:hover {
   background-color: #111;
+}
+
+.content{
+  content: "";
+  display: inline-flex;
+  clear: both;
+  background-color: whitesmoke;
+  width: 100%;
+
+}
+.column{
+  float: center;
+  padding:30px;
+  text-align: center;
+  margin: 20px;
+}
+.column.side{
+  width: 25%;
+  background-color: white;
+}
+.column.mid{
+  width: 50%;
+    background-color: white;
 }
