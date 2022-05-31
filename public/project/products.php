@@ -11,7 +11,7 @@ if (isset($_GET["error"])) {
     }
 }
 ?>
-<h1>all products</h1>
+<h1>All products</h1>
 <?php
 if ($_SESSION['ismanager'] === 1) {
     ?>
@@ -20,8 +20,13 @@ if ($_SESSION['ismanager'] === 1) {
     <?php
 }
 ?>
+    <div class="content">
+  <div class="column side">
+<p>leeg</p>
+</div>
 
-
+<div class="column mid">
+    <div class="producten">
 <?php
 require('includes/functions.inc.php');
 $sql = "SELECT * FROM products;";
@@ -40,9 +45,21 @@ if ($resultCheck > 0) {
         }
         print '<a href="product.php?id=' . $row['productsId'] . '">View product</a>';
         if ($_SESSION['userid']!=null) {
-            print '<br><button>add to shopping card</button>';
+            print '<br><button>Add to shopping card</button>';
         }
     }
 }
+?>
+    </div>
+</div>
+
+<div class="column side">
+<p>leeg</p>
+
+  </div>
+  </div>
+
+
+<?php
 include_once 'footer.php'
 ?>

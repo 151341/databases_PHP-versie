@@ -76,10 +76,17 @@ li a:hover {
   margin: 20px;
 }
 .column.side{
-  width: 25%;
+  width: 15%;
   background-color: white;
 }
 .column.mid{
-  width: 50%;
+  width: 70%;
     background-color: white;
+}
+
+.producten{
+  display: inline-block;
+
+
+
 }

@@ -63,3 +63,23 @@ stond bij products.php
     pull -> importeren
     stoppen:
     exporteren -> push
+
+
+    <div class="content">
+  <div class="column side">
+    <h3>Welkom</h3>
+<?php
+
+?>
+</div>
+
+<div class="column mid">
+
+</div>
+
+<div class="column side">
+<?php
+
+?>
+  </div>
+</div>
