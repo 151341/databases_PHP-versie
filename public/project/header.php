@@ -10,6 +10,7 @@ session_start();
     <li><a href="products.php">Products</a></li>
     <li><a href="about.php">About us</a></li>
     <li><a href="test2.php">test2</a></li>
+    
     <?php
     if (isset($_SESSION["useruid"])) {
         echo "<li><a href='profile.php'>profile</a></li>";
@@ -23,7 +24,9 @@ session_start();
         echo "<li><a href='signup.php'>Signup</a></li>";
         echo "<li><a href='login.php'>Login</a></li>";
     }
+    
     ?>
+    <li><a href="contact.php">Contact</a></li>
 </nav>
 </body>
 <?php 

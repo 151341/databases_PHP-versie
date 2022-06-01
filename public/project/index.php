@@ -16,37 +16,39 @@ require('includes/functions.inc.php');
 <div class="content">
   <div class="column side">
     <h3>Welkom</h3>
-<?php
+    <?php
+      if (isset($_SESSION['useruid'])) {
+          echo "<p>Hi " . $_SESSION["useruid"] . "</p>";
+      }
+      else {
+      echo "Login";
+      }
+    ?>
+  </div>
 
-if (isset($_SESSION['useruid'])) {
-    echo "<p>Hi " . $_SESSION["useruid"] . "</p>";
-}
-else {
- echo "Login";
+  <div class="column mid">
+    <h3>Welkom!</h3>
+    <p>bekijk ons uitgebreide assortiment</p>
+  
 
-}
+    <!-- /<img src="<?php echo $imglink; ?>" alt="" height="100" width="100"> -->
+    <!-- hier ga ik nog ff naar kijken -->
+        
+  </div>
 
-
-?>
-</div>
-
-<div class="column mid">
-<h3>Content</h3>
-  <p>Hier wat leuke dingen</p>
-</div>
-
-<div class="column side">
-<h3>Datum</h3>
-<?php
-date_default_timezone_set("Europe/Amsterdam");
-$timestamp = date('Y-m-d H:i:s');
-print $timestamp;
-?>
+  <div class="column side">
+    <h3>Datum</h3>
+    <?php
+    date_default_timezone_set("Europe/Amsterdam");
+    $timestamp = date('Y-m-d H:i:s');
+    print $timestamp;
+    ?>
 
   </div>
+
 </div>
+  
 
 <?php
 include_once 'footer.php'
 ?>
-<!-- oi -->
