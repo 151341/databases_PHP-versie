@@ -60,6 +60,18 @@ if ($resultCheck == 1) {
 <p>created by <?php echo $productcreator ?></p>
 
 <?php
+if ($_SESSION['userid']!=null) {
+    ?>
+    <form method="post" action="includes/shopping_cart.inc.php">
+        <input type="number" name="productq" placeholder="quantity" value="1" min="1">
+        <input type="hidden" name="userid" placeholder="userid" value=<?php echo $_SESSION["userid"] ?>>
+        <input type="hidden" name="productid" placeholder="productid" value=<?php echo $productid ?>>
+        <button type="submit" name="submit">add to shopping cart</button>
+    </form>
+    <?php
+}
+
+
 if ($productimage!=null) {
     $imglink = "productimg/".$productimage;
     echo $imglink. "<br>";
