@@ -64,7 +64,7 @@ if ($_SESSION['ismanager'] === 1) {
                             <input type="number" name="productq" placeholder="quantity" value="1" min="1">
                             <input type="hidden" name="userid" placeholder="userid" value=<?php echo $_SESSION["userid"] ?>>
                             <input type="hidden" name="productid" placeholder="productid" value=<?php echo $row['productsId'] ?>>
-                            <button type="submit" name="submit">add to shopping cart</button>
+                            <button type="submit" name="submit">Add to cart</button>
                         </form>
                         <?php
                     }

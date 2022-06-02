@@ -20,8 +20,11 @@ require('includes/functions.inc.php');
       if (isset($_SESSION['useruid'])) {
           echo "<p>Hi " . $_SESSION["useruid"] . "</p>";
       }
-      else {
-      echo "Login";
+      else {  
+        ?>
+        <a href="login.php"><button>Login</button></a>
+      
+         <?php
       }
     ?>
   </div>
