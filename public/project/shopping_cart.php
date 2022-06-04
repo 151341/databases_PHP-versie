@@ -26,13 +26,14 @@ if ($resultCheck > 0) {
         ?>
         <form action="includes/change_cart.inc.php"  method="POST">
             quantity: 
-            <input type="number" name="productq"
+            <input type="number" name="productq" min="1"
             value=
             "<?php
             echo $row['productQ'];
             ?>"
             >
             <input type="hidden" name="cartid" placeholder="cartid" value=<?php echo $row["cartId"] ?>>
+            <button type="submit" name="submit">change</button>
 
             
         </form>
