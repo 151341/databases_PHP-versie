@@ -22,7 +22,6 @@ $resultCheck = mysqli_num_rows($result);
 if ($resultCheck > 0) {
     while ($row = mysqli_fetch_assoc($result)) { 
         if (productName($conn, $row['productsId']) == null) {
-            echo $row["cartId"];
             deleteFromSC($conn, $row["cartId"]);
         } else {
             echo "product:" .productName($conn, $row['productsId']). "<br>";

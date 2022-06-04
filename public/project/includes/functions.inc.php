@@ -667,18 +667,14 @@ function addToShoppingCart($conn, $userid, $productid, $productq) {
     mysqli_stmt_execute($stmt);
     $resultData = mysqli_stmt_get_result($stmt);
     if ($row = mysqli_fetch_assoc($resultData)) {
-        // return true;
+        $newq = $row["productQ"] + $productq;
+        $sql = "UPDATE shopping_cart SET productQ='" . $newq  . "' WHERE cartId='" .$row["cartId"]. "' ";
+        mysqli_query($conn, $sql);
+        header("location: ../products.php?inf=productadded");
+        exit();
 
-        return $row;
-        
-        // $sql = "UPDATE shopping_cart SET productQ='" . $productq . "' WHERE cartId='" .$cartId. "' ";
-        // mysqli_query($conn, $sql);
-        // header("location: ../product.php?id=' . $productid . '");
-        // header("location: ../products.php?inf=productnotadded");
-        // exit();
     }
     else {
-        // return false;
         $sql = "INSERT INTO shopping_cart (usersId, productsId, productQ) VALUES (?, ?, ?);";
         $stmt = mysqli_stmt_init($conn);
         if (!mysqli_stmt_prepare($stmt, $sql)) {
