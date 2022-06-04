@@ -544,6 +544,11 @@ function deleteProduct($conn, $deleted_product) {
     $sql = "DELETE FROM products WHERE productsName='" .$deleted_product. "';";
     mysqli_query($conn, $sql);
 }
+function deleteFromSC($conn, $cartid) {
+    require('dbh.inc.php');
+    $sql = "DELETE FROM shopping_cart WHERE cartId='" .$cartid. "';";
+    mysqli_query($conn, $sql);
+}
 
 function isBoss() {
     if ( !( $_SESSION['useremail'] === 'christiaan.vlas@gmail.com' ) || !( $_SESSION['useremail'] === 'stef.delnoye@gmail.com' ) ) {
@@ -552,26 +557,6 @@ function isBoss() {
     else {
         return true;
     }
-}
-
-function isLiked($conn, $reviewid, $userid) {
-    $sql = "SELECT * FROM likereview WHERE usersId = ? AND reviewsId = ?;";
-    $stmt = mysqli_stmt_init($conn);
-    if (!mysqli_stmt_prepare($stmt, $sql)) {
-        header("location: ../products.php?error=stmtfailed");
-        exit();
-    }
-    mysqli_stmt_bind_param($stmt, "ss", $userid, $reviewid);
-    mysqli_stmt_execute($stmt);
-    $resultData = mysqli_stmt_get_result($stmt);
-    if ($row = mysqli_fetch_assoc($resultData)) {
-        return true;
-    }
-    else {
-        return false;
-    }
-
-    mysqli_stmt_close($stmt);
 }
 
 function deleteEmployee($conn, $deleted_employee) {
@@ -651,18 +636,74 @@ function unLikeReview($conn, $reviewid, $userid, $productid) {
     exit();
 }
 
-
-function addToShoppingCart($conn, $userid, $productid, $productq) {
-    $sql = "INSERT INTO shopping_cart (usersId, productsId, productQ) VALUES (?, ?, ?);";
+function isLiked($conn, $reviewid, $userid) {
+    $sql = "SELECT * FROM likereview WHERE usersId = ? AND reviewsId = ?;";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
-        header("location: ../product.php?id=' . $productid . '");
+        header("location: ../products.php?error=stmtfailed");
+        exit();
+    }
+    mysqli_stmt_bind_param($stmt, "ss", $userid, $reviewid);
+    mysqli_stmt_execute($stmt);
+    $resultData = mysqli_stmt_get_result($stmt);
+    if ($row = mysqli_fetch_assoc($resultData)) {
+        return true;
+    }
+    else {
+        return false;
+    }
+    mysqli_stmt_close($stmt);
+}
+
+
+function addToShoppingCart($conn, $userid, $productid, $productq) {
+    $sql = "SELECT * FROM shopping_cart WHERE usersId = ? AND productsId = ?;";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: ../products.php?error=stmtfailed");
+        exit();
+    }
+    mysqli_stmt_bind_param($stmt, "ss", $userid, $productid);
+    mysqli_stmt_execute($stmt);
+    $resultData = mysqli_stmt_get_result($stmt);
+    if ($row = mysqli_fetch_assoc($resultData)) {
+        // return true;
+
+        return $row;
+        
+        // $sql = "UPDATE shopping_cart SET productQ='" . $productq . "' WHERE cartId='" .$cartId. "' ";
+        // mysqli_query($conn, $sql);
+        // header("location: ../product.php?id=' . $productid . '");
+        // header("location: ../products.php?inf=productnotadded");
+        // exit();
+    }
+    else {
+        // return false;
+        $sql = "INSERT INTO shopping_cart (usersId, productsId, productQ) VALUES (?, ?, ?);";
+        $stmt = mysqli_stmt_init($conn);
+        if (!mysqli_stmt_prepare($stmt, $sql)) {
+            header("location: ../product.php?id=' . $productid . '");
+            exit();
+        }
+
+        mysqli_stmt_bind_param($stmt, "sss", $userid, $productid, $productq);
+        mysqli_stmt_execute($stmt);
+        mysqli_stmt_close($stmt);
+        header("location: ../products.php?inf=productadded");
         exit();
     }
 
-    mysqli_stmt_bind_param($stmt, "sss", $userid, $productid, $productq);
-    mysqli_stmt_execute($stmt);
-    mysqli_stmt_close($stmt);
-    header("location: ../products.php?inf=productadded");
-    exit();
+
+    // $sql = "INSERT INTO shopping_cart (usersId, productsId, productQ) VALUES (?, ?, ?);";
+    // $stmt = mysqli_stmt_init($conn);
+    // if (!mysqli_stmt_prepare($stmt, $sql)) {
+    //     header("location: ../product.php?id=' . $productid . '");
+    //     exit();
+    // }
+
+    // mysqli_stmt_bind_param($stmt, "sss", $userid, $productid, $productq);
+    // mysqli_stmt_execute($stmt);
+    // mysqli_stmt_close($stmt);
+    // header("location: ../products.php?inf=productadded");
+    // exit();
 }
