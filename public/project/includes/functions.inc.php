@@ -688,18 +688,4 @@ function addToShoppingCart($conn, $userid, $productid, $productq) {
         header("location: ../products.php?inf=productadded");
         exit();
     }
-
-
-    // $sql = "INSERT INTO shopping_cart (usersId, productsId, productQ) VALUES (?, ?, ?);";
-    // $stmt = mysqli_stmt_init($conn);
-    // if (!mysqli_stmt_prepare($stmt, $sql)) {
-    //     header("location: ../product.php?id=' . $productid . '");
-    //     exit();
-    // }
-
-    // mysqli_stmt_bind_param($stmt, "sss", $userid, $productid, $productq);
-    // mysqli_stmt_execute($stmt);
-    // mysqli_stmt_close($stmt);
-    // header("location: ../products.php?inf=productadded");
-    // exit();
 }
