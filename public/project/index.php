@@ -30,10 +30,9 @@ require('includes/functions.inc.php');
   </div>
 
   <div class="column mid">
-    <h2>Welkom!</h2>
-    <h3>Onze Nieuwe Producten</h3>
+    <h2>Onze Nieuwste Producten</h2>
     <?php
-      $sql = "SELECT * FROM products WHERE productsId = (SELECT MAX(productsId) FROM products)";
+      $sql = "SELECT * FROM products ORDER BY productsId DESC LIMIT 3";
       $stmt = mysqli_stmt_init($conn);
       if (!mysqli_stmt_prepare($stmt, $sql)) {
         header("location: select.php?error=stmtfailed");
