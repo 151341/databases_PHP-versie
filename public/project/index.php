@@ -32,7 +32,7 @@ require('includes/functions.inc.php');
   <div class="column mid">
     <h2>Onze Nieuwste Producten</h2>
     <?php
-      $sql = "SELECT * FROM products ORDER BY productsId DESC LIMIT 3";
+      $sql = "SELECT * FROM products ORDER BY productsId DESC LIMIT 4";
       $stmt = mysqli_stmt_init($conn);
       if (!mysqli_stmt_prepare($stmt, $sql)) {
         header("location: select.php?error=stmtfailed");

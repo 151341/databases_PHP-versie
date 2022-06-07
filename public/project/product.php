@@ -1,5 +1,5 @@
 <head>
-<title>product</title>
+<title>Product</title>
 </head>
 <?php
 include_once 'header.php';
@@ -52,6 +52,28 @@ if ($resultCheck == 1) {
 ?>
 
 <h1><?php echo $productname ?></h1>
+
+
+
+    <div class="content">
+    
+    <div class="column left">
+
+</div>
+
+
+<div class="column mid">
+
+
+<?php
+if ($productimage!=null) {
+    $imglink = "productimg/".$productimage;
+    echo $imglink. "<br>";
+    ?>
+    <img src="<?php echo $imglink; ?>" alt="" height="200" width="200">
+    <?php
+}
+?>
 <p><?php echo $productdescription ?></p>
 <p>$<?php echo $productprice ?></p>
 <p>in stock: <?php echo $productquantity ?></p>
@@ -66,24 +88,16 @@ if ($_SESSION['userid']!=null) {
         <input type="number" name="productq" placeholder="quantity" value="1" min="1">
         <input type="hidden" name="userid" placeholder="userid" value=<?php echo $_SESSION["userid"] ?>>
         <input type="hidden" name="productid" placeholder="productid" value=<?php echo $productid ?>>
-        <button type="submit" name="submit">add to shopping cart</button>
+        <button type="submit" name="submit">Add to cart</button>
     </form>
     <?php
 }
-
-
-if ($productimage!=null) {
-    $imglink = "productimg/".$productimage;
-    echo $imglink. "<br>";
-    ?>
-    <img src="<?php echo $imglink; ?>" alt="" height="100" width="100">
-    <?php
-}
 ?>
-<hr>
-<hr>
-<hr>
-<h1>reviews</h1>
+</div>
+
+            <div class="productreviews">
+
+<h1>Reviews</h1>
 <?php
 if (isset($_SESSION['useruid'])) {
     date_default_timezone_set("Europe/Amsterdam");
@@ -157,6 +171,14 @@ if ($resultCheck > 0) {
         echo '<br>';
     }
 }
+?>
+
+</div>
+            </div>
+            </div>
+
+
+<?php
 include_once 'footer.php';
 ?>
 

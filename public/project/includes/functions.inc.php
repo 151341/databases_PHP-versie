@@ -611,7 +611,7 @@ function countLikesReview($conn, $reviewid) {
 
     if ($result=mysqli_query($conn,$sql)) {
         $rowcount=mysqli_num_rows($result);
-        echo $rowcount; 
+        return $rowcount; 
     }
 }
 
@@ -688,4 +688,23 @@ function addToShoppingCart($conn, $userid, $productid, $productq) {
         header("location: ../products.php?inf=productadded");
         exit();
     }
+}
+
+function countProducts($conn, $userid) {
+    $sql = "SELECT * FROM shopping_cart WHERE usersId = '" .$userid. "'";
+
+    if ($result=mysqli_query($conn,$sql)) {
+        $rowcount=mysqli_num_rows($result);
+        return $rowcount; 
+    }
+}
+
+function countPrice($conn, $userid) {
+    $sql2 = "SELECT * FROM shopping_cart WHERE usersId = '" .$userid. "'";
+    // $sql = "SELECT price, COUNT(*) FROM employees GROUP BY department_id;";
+
+    // if ($result=mysqli_query($conn,$sql)) {
+    //     $rowcount=mysqli_num_rows($result);
+    //     return $rowcount; 
+    // }
 }

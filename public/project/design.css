@@ -66,6 +66,8 @@ li a:hover {
   background-color: #111;
 }
 
+/* li */
+
 .content{
   content: "";
   display: inline-flex;

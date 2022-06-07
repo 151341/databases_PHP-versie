@@ -5,9 +5,9 @@ CREATE TABLE `likereview` (
   `reviewsId` int NOT NULL,
   `usersId` int NOT NULL,
   PRIMARY KEY (`likeReviewId`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-INSERT INTO `likereview` (`likeReviewId`, `reviewsId`, `usersId`) VALUES (2,2,2),(3,11,2),(4,10,2),(13,12,1);
+INSERT INTO `likereview` (`likeReviewId`, `reviewsId`, `usersId`) VALUES (2,2,2),(3,11,2),(4,10,2),(13,12,1),(14,10,11);
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `products` (
@@ -21,7 +21,7 @@ CREATE TABLE `products` (
   PRIMARY KEY (`productsId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-INSERT INTO `products` (`productsId`, `productsName`, `productsPrice`, `productAddedByUserId`, `productsDescription`, `productsImage`, `productsQuantity`) VALUES (28,'fiets ',48,0,'this','627a7db90d6ae0.67934811.jpg',4),(29,'ddd',999,1,'dddd',NULL,85),(30,'aaaaname',4,3,'aaaadesc','6277a13ec36337.38159121.jpg',0),(31,'pear',44,3,'bulp d','62766e58d161b7.02800633.jpg',0),(32,'testn',45,1,'testd',NULL,0),(33,'neww',80,1,'new product in webshop','627a68cc2ac2a3.98136266.jpg',0),(34,'sdsdfsdfasdf',5,1,'fsadfasdf',NULL,0);
+INSERT INTO `products` (`productsId`, `productsName`, `productsPrice`, `productAddedByUserId`, `productsDescription`, `productsImage`, `productsQuantity`) VALUES (28,'fiets ',48,0,'Mooie goed werkende fiets','627a7db90d6ae0.67934811.jpg',4),(29,'ddd',999,1,'dddd',NULL,85),(30,'aaaaname',4,3,'aaaadesc','6277a13ec36337.38159121.jpg',0),(31,'pear',44,3,'bulp d','62766e58d161b7.02800633.jpg',0),(32,'testn',45,1,'testd',NULL,0),(33,'neww',80,1,'new product in webshop','627a68cc2ac2a3.98136266.jpg',0),(34,'sdsdfsdfasdf',5,1,'fsadfasdf',NULL,0);
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `reviews` (
@@ -46,9 +46,9 @@ CREATE TABLE `shopping_cart` (
   `productQ` int DEFAULT NULL,
   `cartOrder` bit(1) DEFAULT NULL,
   PRIMARY KEY (`cartId`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-INSERT INTO `shopping_cart` (`cartId`, `usersId`, `productsId`, `productQ`, `cartOrder`) VALUES (1,1,30,2,_binary '\0'),(3,1,29,3,_binary '\0'),(4,1,34,6,NULL),(5,1,0,1,NULL),(6,1,29,11000,NULL);
+INSERT INTO `shopping_cart` (`cartId`, `usersId`, `productsId`, `productQ`, `cartOrder`) VALUES (1,1,30,2,_binary '\0'),(3,1,29,3,_binary '\0'),(4,1,34,6,NULL),(6,1,29,11000,NULL),(7,11,34,1,NULL),(8,12,34,1,NULL),(9,12,31,10,NULL);
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `users` (
@@ -60,6 +60,6 @@ CREATE TABLE `users` (
   `isManager` bit(1) DEFAULT b'0',
   `usersImage` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`usersId`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-INSERT INTO `users` (`usersId`, `usersName`, `usersEmail`, `usersUid`, `usersPwd`, `isManager`, `usersImage`) VALUES (1,'Stef f','stef.delnoye@gmail.com','stefdelnoye050d','$2y$10$fcX7kh5Gfl03VgTfNrGCJerFFiDjhNOep9ywoFJUO6sDels7u.tDq',_binary '','627a7ffe917fc8.86242960.jpg'),(2,'jan delnoye','jan.delnoye@gmail.com','jandell','$2y$10$BbwLMn0sf3rBm.Mfbtz2Kea.JkxInVhAUVZP4kFPWciLfP4QjDFBC',_binary '',NULL),(3,'piet','piet.delnoye@gmail.com','piet','$2y$10$RP3VFZ18HvXPx9M2DfLCtenTrdbPgeYDdzVzPBVK2LIA0HEJ0qxFG',_binary '',NULL),(5,'willem','willem@gmail.com','willem','$2y$10$gpXKb7J2vWTa7c71kdnCDuttQzk8pjHEsXV1B72VpLLMhDu6XRCFa',_binary '',NULL),(6,'JHONd','john2@gmail.com','john','$2y$10$GiCXhlbRrjGlK8lSN67avu7T.6qbiY2MHZjjz2ruBAGDY47BV5Bri',_binary '','62751df7170702.92458393.png'),(7,'bas en adrieaa','bas@gmail.com','bas','$2y$10$rD3EzDMxAa78fhz7v0hda./6d.h3x79RU2O6HpVUmjPYq61psUWvW',_binary '\0','62762b5a03d3c0.32902483.jpg'),(8,'bart','bart@gmail.com','bart','$2y$10$FwQLyHFVxX6plMhl/UIg.eaV6mBCzjiuiynDBK0viLYrynfYyyWhe',_binary '\0',''),(9,'asdfa','sdafaf@gmail.com','safsda','$2y$10$l6CD0aC30tMm/Fd4W4391u.0pvEyYXz7Ppx8PGl9jy8K.t1Z0nPn.',_binary '\0',NULL),(10,'e','eee@gmail.com','e','$2y$10$66y7G2x9jS4G.0apXDglWe07Niiej/4i94yepRkq3IzjstctOQ/tG',_binary '\0','62762dfa854c63.73596829.jpg'),(11,'Christiaan Vlas','christiaan@vlas.nl','Christiaan','$2y$10$HziZw.RzPXTsRQ.Mz0GZqObQdIQFQShfxw7ZiniRFCvd1JZw/oi0y',_binary '','6295ef06d33aa7.97220745.png');
+INSERT INTO `users` (`usersId`, `usersName`, `usersEmail`, `usersUid`, `usersPwd`, `isManager`, `usersImage`) VALUES (1,'Stef f','stef.delnoye@gmail.com','stefdelnoye050d','$2y$10$fcX7kh5Gfl03VgTfNrGCJerFFiDjhNOep9ywoFJUO6sDels7u.tDq',_binary '','627a7ffe917fc8.86242960.jpg'),(2,'jan delnoye','jan.delnoye@gmail.com','jandell','$2y$10$BbwLMn0sf3rBm.Mfbtz2Kea.JkxInVhAUVZP4kFPWciLfP4QjDFBC',_binary '',NULL),(3,'piet','piet.delnoye@gmail.com','piet','$2y$10$RP3VFZ18HvXPx9M2DfLCtenTrdbPgeYDdzVzPBVK2LIA0HEJ0qxFG',_binary '',NULL),(5,'willem','willem@gmail.com','willem','$2y$10$gpXKb7J2vWTa7c71kdnCDuttQzk8pjHEsXV1B72VpLLMhDu6XRCFa',_binary '',NULL),(6,'JHONd','john2@gmail.com','john','$2y$10$GiCXhlbRrjGlK8lSN67avu7T.6qbiY2MHZjjz2ruBAGDY47BV5Bri',_binary '','62751df7170702.92458393.png'),(7,'bas en adrieaa','bas@gmail.com','bas','$2y$10$rD3EzDMxAa78fhz7v0hda./6d.h3x79RU2O6HpVUmjPYq61psUWvW',_binary '\0','62762b5a03d3c0.32902483.jpg'),(8,'bart','bart@gmail.com','bart','$2y$10$FwQLyHFVxX6plMhl/UIg.eaV6mBCzjiuiynDBK0viLYrynfYyyWhe',_binary '\0',''),(9,'asdfa','sdafaf@gmail.com','safsda','$2y$10$l6CD0aC30tMm/Fd4W4391u.0pvEyYXz7Ppx8PGl9jy8K.t1Z0nPn.',_binary '\0',NULL),(10,'e','eee@gmail.com','e','$2y$10$66y7G2x9jS4G.0apXDglWe07Niiej/4i94yepRkq3IzjstctOQ/tG',_binary '\0','62762dfa854c63.73596829.jpg'),(11,'Christiaan Vlas','christiaan@vlas.nl','Christiaan','$2y$10$HziZw.RzPXTsRQ.Mz0GZqObQdIQFQShfxw7ZiniRFCvd1JZw/oi0y',_binary '','6295ef06d33aa7.97220745.png'),(12,'Nynke','huppelpup@hallo.com','Nynke','$2y$10$RaPpCuKl1kVzSitRSQ7EuONMv/QpQ2bJOo/B2uGB6GYh0EDmnIXnG',_binary '\0',NULL);

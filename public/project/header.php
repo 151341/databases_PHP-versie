@@ -1,5 +1,7 @@
 <?php
 session_start();
+include 'includes/.inc.php';
+include 'includes/dbh.inc.php';
 ?>
 <div class="header">
 <h1>Webshop</h1>
@@ -17,7 +19,12 @@ session_start();
         if ($_SESSION['useremail'] === 'stef.delnoye@gmail.com' or $_SESSION['useremail'] === 'stef.delnoye@gmail.com' or $_SESSION['useremail'] === 'stef.delnoye@gmail.com') {
             echo "<li><a href='select.php'>select new employees</a></li>";
         }
-        echo "<li><a href='shopping_cart.php'>Shopping Cart</a></li>";
+ 
+        
+        ?>
+        <li><a href="shopping_cart.php">Shopping Cart </a></li>
+        <?php
+
         echo "<li><a href='includes/logout.inc.php'>logout</a></li>";
     }
     else {
@@ -29,6 +36,4 @@ session_start();
     <li><a href="contact.php">Contact</a></li>
 </nav>
 </body>
-<?php 
-  echo "<link rel='stylesheet' type='text/css' href='/project/design.css' />"; 
-?>
+<link rel='stylesheet' type='text/css' href='/project/design.css' />

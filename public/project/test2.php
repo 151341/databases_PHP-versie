@@ -2,15 +2,15 @@
     <title>test page</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
     <script>
-        // $(document).ready(function() {
-        //     var productCount = 2;
-        //     $("button").click(function() {
-        //         productCount = productCount + 2;
-        //         $("#products").load("load-products.php", {
-        //             productNewCount: productCount
-        //         });
-        //     });
-        // });
+        $(document).ready(function() {
+            var productCount = 2;
+            $("button").click(function() {
+                productCount = productCount + 2;
+                $("#products").load("load-products.php", {
+                    productNewCount: productCount
+                });
+            });
+        });
     </script>
 </head>
 <?php
@@ -71,7 +71,7 @@ if ($resultCheck == 1) {
     
 }
 
-<!-- // if ($conn) {
+ if ($conn) {
 //     $sql = "SELECT * from products limit 2";
 //     $result = mysqli_query($conn,$sql);
 //     if (mysqli_num_rows($result) > 0) {
@@ -80,10 +80,12 @@ if ($resultCheck == 1) {
 //         }
 //     }
 // }
-?> -->
+?>
 <div id="products">
 </div>
-<button>show more products</button>
+<button>show more products</button><br>
 <?php
+echo countProducts($conn, $_SESSION["userid"]); 
+
 include_once 'footer.php';
 ?>

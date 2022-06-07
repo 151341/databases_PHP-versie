@@ -53,6 +53,10 @@ if ($resultCheck > 0) {
         }
         
     }
+    ?>
+    
+    <p>total price: <?php echo countPrice($conn, $_SESSION["userid"]) ?></p>
+    <?php
 }
 include_once 'footer.php';
 ?>
