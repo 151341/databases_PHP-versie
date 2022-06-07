@@ -708,3 +708,20 @@ function countPrice($conn, $userid) {
     //     return $rowcount; 
     // }
 }
+
+function idToPrice() {
+    $sql = "SELECT * FROM users WHERE usersId = '" .$row['productAddedByUserId']. "';";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: products.php?error=stmtfailed");
+        // change later!!!
+        exit();
+    }
+    $result = mysqli_query($conn, $sql);
+    $resultCheck = mysqli_num_rows($result);
+    if ($resultCheck == 1) {
+        while ($row = mysqli_fetch_assoc($result)) {
+            $productcreator = $row['usersEmail'];
+        }
+    }
+}

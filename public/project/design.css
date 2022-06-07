@@ -35,6 +35,7 @@ body {
     color: grey;
     font-size: 20px;
   }
+
   nav {
   list-style-type: none;
   margin: 0;
@@ -61,12 +62,9 @@ li a {
   text-decoration: none;
 }
 
-/* Change the link color to #111 (black) on hover */
 li a:hover {
   background-color: #111;
 }
-
-/* li */
 
 .content{
   content: "";
@@ -112,7 +110,7 @@ button{
   padding-left: 35px;
   padding-right: 35px;
   color: white;
-  background-color: black;
+  background-color: red;
   text-align: center;
   cursor: pointer;
   font-size: 18px;
@@ -126,4 +124,41 @@ button{
   position: absolute;
   margin-top: 10px;
 
+}
+
+.column.mid.product{
+  text-align: left;
+  width: 70%;
+  background-color: white;
+  height: 800px;
+  width: 100%;
+  display: inline-flex;
+
+}
+
+.productimg{
+  float: center;
+  text-align: center;
+  height: 500px;
+  width: 500px;
+  margin-left: 15%;
+}
+.productinfo{
+  text-align: left;
+  margin-left: 5%;
+}
+.productname{
+  padding-top: 10px;
+  text-align: center;
+  font-size: 60px;
+  background-color: white;
+  width: 100%;
+  height: 100px;
+
+}
+
+productprice{
+  color: red;
+  font-size: 35px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }

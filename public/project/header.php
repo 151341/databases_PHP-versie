@@ -1,7 +1,7 @@
 <?php
 session_start();
-include 'includes/.inc.php';
 include 'includes/dbh.inc.php';
+// include 'includes/functions.inc.php';
 ?>
 <div class="header">
 <h1>Webshop</h1>
@@ -20,9 +20,21 @@ include 'includes/dbh.inc.php';
             echo "<li><a href='select.php'>select new employees</a></li>";
         }
  
+        // $sql = "SELECT * FROM shopping_cart WHERE usersId = '" .$_SESSION["userid"]. "'";
+        // $sql = "SELECT productQ, COUNT(*) from shopping_cart group by productQ";
+        $sql = "SELECT SUM(productQ) FROM shopping_cart;";
+        $result = mysqli_query($conn, $sql);
+        $stmt = mysqli_stmt_init($conn);
+        if (!mysqli_stmt_prepare($stmt, $sql)) {
+            header("location: products.php?error=stmtfailed");
+            exit();
+        }
+        while($row = mysqli_fetch_array($result)){
+            $countproduct = $row['SUM(productQ)'];
+        }
         
         ?>
-        <li><a href="shopping_cart.php">Shopping Cart </a></li>
+        <li><a href="shopping_cart.php">Shopping Cart <?php echo $countproduct ?></a></li>
         <?php
 
         echo "<li><a href='includes/logout.inc.php'>logout</a></li>";
@@ -37,3 +49,8 @@ include 'includes/dbh.inc.php';
 </nav>
 </body>
 <link rel='stylesheet' type='text/css' href='/project/design.css' />
+<?php
+// include 'includes/functions.inc.php';
+// require('includes/functions.inc.php');
+// echo countProducts($conn, $_SESSION["userid"]); 
+?>

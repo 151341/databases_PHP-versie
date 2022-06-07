@@ -19,8 +19,7 @@ $productprice;
 $productdescription;
 
 include_once 'header.php';
-require('includes/functions.inc.php');
-require('includes/dbh.inc.php');
+// require('includes/dbh.inc.php');
 
 $sql = "SELECT * FROM products WHERE productsId = (SELECT MAX(productsId) FROM products)";
 $stmt = mysqli_stmt_init($conn);
@@ -68,24 +67,23 @@ if ($resultCheck == 1) {
 <p><?php echo $productimage ?></p>
 <p>created by <?php echo $productcreator ?></p>
 
-    
-}
+<?php
 
- if ($conn) {
-//     $sql = "SELECT * from products limit 2";
-//     $result = mysqli_query($conn,$sql);
-//     if (mysqli_num_rows($result) > 0) {
-//         while ($row = mysqli_fetch_assoc($result)) {
-//             echo $row["productsName"]. "<br>";
-//         }
-//     }
-// }
+if ($conn) {
+    $sql = "SELECT * from products limit 2";
+    $result = mysqli_query($conn,$sql);
+    if (mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+            echo $row["productsName"]. "<br>";
+        }
+    }
+}
 ?>
 <div id="products">
 </div>
 <button>show more products</button><br>
 <?php
-echo countProducts($conn, $_SESSION["userid"]); 
+// echo countProducts($conn, $_SESSION["userid"]); 
 
 include_once 'footer.php';
 ?>

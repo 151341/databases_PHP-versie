@@ -48,8 +48,10 @@ if ($resultCheck > 0) {
                 <input type="hidden" name="cartid" placeholder="cartid" value=<?php echo $row["cartId"] ?>>
                 <button type="submit" name="submit">Delete</button>
             </form>
+            total price: 
+
+            <hr>
             <?php
-            echo '<br>';
         }
         
     }

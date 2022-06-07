@@ -46,9 +46,9 @@ CREATE TABLE `shopping_cart` (
   `productQ` int DEFAULT NULL,
   `cartOrder` bit(1) DEFAULT NULL,
   PRIMARY KEY (`cartId`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-INSERT INTO `shopping_cart` (`cartId`, `usersId`, `productsId`, `productQ`, `cartOrder`) VALUES (1,1,30,2,_binary '\0'),(3,1,29,3,_binary '\0'),(4,1,34,6,NULL),(6,1,29,11000,NULL),(7,11,34,1,NULL),(8,12,34,1,NULL),(9,12,31,10,NULL);
+INSERT INTO `shopping_cart` (`cartId`, `usersId`, `productsId`, `productQ`, `cartOrder`) VALUES (1,1,30,10,_binary '\0'),(3,1,29,3,_binary '\0'),(4,1,34,6,NULL),(7,11,34,1,NULL),(8,12,34,1,NULL),(9,12,31,10,NULL),(10,1,31,1,NULL);
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `users` (

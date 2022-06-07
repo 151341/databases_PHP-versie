@@ -51,36 +51,40 @@ if ($resultCheck == 1) {
 }
 ?>
 
-<h1><?php echo $productname ?></h1>
 
+
+<div class="productname">
+<?php echo $productname ?>
+</div>
 
 
     <div class="content">
-    
+
     <div class="column left">
 
 </div>
 
 
-<div class="column mid">
+
+<div class="column mid product">
 
 
 <?php
 if ($productimage!=null) {
     $imglink = "productimg/".$productimage;
-    echo $imglink. "<br>";
     ?>
-    <img src="<?php echo $imglink; ?>" alt="" height="200" width="200">
+    <img class="productimg" src="<?php echo $imglink; ?>" alt="" >
     <?php
 }
 ?>
-<p><?php echo $productdescription ?></p>
-<p>$<?php echo $productprice ?></p>
-<p>in stock: <?php echo $productquantity ?></p>
-<p>id: <?php echo $productid ?></p>
-<p><?php echo $productimage ?></p>
-<p>created by <?php echo $productcreator ?></p>
 
+<div class="productinfo">
+<productprice>$<?php echo $productprice ?></productprice>
+<p><?php echo $productdescription ?></p>
+<p>id: <?php echo $productid ?></p>
+<p>in stock: <?php echo $productquantity ?></p>
+<p>created by <?php echo $productcreator ?></p>
+</div>
 <?php
 if ($_SESSION['userid']!=null) {
     ?>
@@ -104,8 +108,7 @@ if (isset($_SESSION['useruid'])) {
     $time = date('Y-m-d H:i:s');
     echo $time;
     echo '<br>';
-    echo date("Y-m-d H:i:s");
-    echo '<br>';
+
 ?>
 <section>
     <form action="includes/review.inc.php" method="POST" enctype="multipart/form-data">
@@ -118,10 +121,10 @@ if (isset($_SESSION['useruid'])) {
         <input type="file" name="file">
         <button type="submit" name="submit">Add</button>
     </form>
-</section>
+</section><hr>
 <?php
 }
-    
+
 
 
 $sql = "SELECT * FROM reviews WHERE productsId='" . $productid . "';";
@@ -164,6 +167,7 @@ if ($resultCheck > 0) {
                 <?php
             }
             ?>
+
         </form>
         <?php
         echo countLikesReview($conn, intval($row['reviewsId'])) . " likes <br>";
