@@ -48,16 +48,15 @@ if ($resultCheck > 0) {
                 <input type="hidden" name="cartid" placeholder="cartid" value=<?php echo $row["cartId"] ?>>
                 <button type="submit" name="submit">Delete</button>
             </form>
-            total price: 
-
             <hr>
             <?php
+            $totalPrice = $totalPrice + idToPrice($conn, $row["productsId"]) * $row['productQ'];
         }
         
     }
     ?>
     
-    <p>total price: <?php echo countPrice($conn, $_SESSION["userid"]) ?></p>
+    <p>total price: <?php echo $totalPrice ?></p>
     <?php
 }
 include_once 'footer.php';

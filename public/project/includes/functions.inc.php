@@ -709,8 +709,8 @@ function countPrice($conn, $userid) {
     // }
 }
 
-function idToPrice() {
-    $sql = "SELECT * FROM users WHERE usersId = '" .$row['productAddedByUserId']. "';";
+function idToPrice($conn, $productid) {
+    $sql = "SELECT * FROM products WHERE productsId = '" .$productid. "';";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
         header("location: products.php?error=stmtfailed");
@@ -721,7 +721,8 @@ function idToPrice() {
     $resultCheck = mysqli_num_rows($result);
     if ($resultCheck == 1) {
         while ($row = mysqli_fetch_assoc($result)) {
-            $productcreator = $row['usersEmail'];
+            $price = $row['productsPrice'];
+            return $price;
         }
     }
 }
