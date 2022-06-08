@@ -6,7 +6,7 @@
             var productCount = 0;
             $("#revbut").click(function() {
                 productCount = productCount + 2;
-                $("#testreviews").load("load-reviews.php", {
+                $("#productreviews").load("load-reviews.php", {
                     productNewCount: productCount
                 });
             });
@@ -18,7 +18,7 @@ include_once 'header.php';
 $productid = $_GET['id'];
 if ($productid == null) {
     header("location: products.php");
-    exit();    
+    exit();
 }
 $productname;
 $productprice;
@@ -63,9 +63,7 @@ if ($resultCheck == 1) {
 
 
 
-<div id="testreviews">
-</div>
-<button id="revbut">see more</button>
+
 <div class="productname">
 <?php echo $productname ?>
 </div>
@@ -92,8 +90,13 @@ if ($productimage!=null) {
 }
 ?>
 
+
+
 <div class="productinfo">
 <productprice>$<?php echo $productprice ?></productprice>
+
+
+
 <h4>Productbeschrijving:</h4>
 <p class="addtocart"><?php echo $productdescription?></p>
 <p>id: <?php echo $productid ?></p>
@@ -107,21 +110,27 @@ if ($_SESSION['ismanager']==1) {
 if ($_SESSION['userid']!=null) {
     ?>
     <form class="addtocart" method="post" action="includes/shopping_cart.inc.php">
-    <p>In stock: <?php echo $productquantity ?></p>
+        <p style="color: green;">Voor 23:59 uur besteld, vrijdag in huis</p>
+        <p>In stock: <?php echo $productquantity ?></p>
+
         <input class="loginform"type="number" name="productq" placeholder="quantity" value="1" min="1">
         <input class="loginform"type="hidden" name="userid" placeholder="userid" value=<?php echo $_SESSION["userid"] ?>>
         <input class="loginform"type="hidden" name="productid" placeholder="productid" value=<?php echo $productid ?>>
         <button type="submit" name="submit">Add to cart</button>
+        <ul style="display: block;">
+    <li>Inclusief verzendkosten, verstuurd door bol.com</li><br>
+    <li>Ophalen bij een bol.com afhaalpunt mogelijk</li><br>
+    <li>30 dagen bedenktijd en gratis retourneren</li><br>
+    <li>Dag en nacht klantenservice</li><br>
+    <li>Doordeweeks ook ’s avonds in huis</li>
+</ul>
     </form>
     <?php
 }
 ?>
 </div>
-
-
 </div>
-<div class="productreviews">
-
+<div>
 <h1>Reviews</h1>
 <?php
 if (isset($_SESSION['useruid'])) {
@@ -145,61 +154,10 @@ if (isset($_SESSION['useruid'])) {
 </section><hr>
 <?php
 }
-
-
-
-$sql = "SELECT * FROM reviews WHERE productsId='" . $productid . "';";
-$stmt = mysqli_stmt_init($conn);
-if (!mysqli_stmt_prepare($stmt, $sql)) {
-    header("location: products.php?error=stmtfailed");
-    exit();
-}
-$result = mysqli_query($conn, $sql);
-$resultCheck = mysqli_num_rows($result);
-if ($resultCheck > 0) {
-    while ($row = mysqli_fetch_assoc($result)) {
-        echo $row['reviewsName'] . "<br>";
-        echo 'by ' .returnEmail($conn,$row["usersId"]). '<br>';
-        $imglink = "reviewimg/".$row['reviewsImage'];
-        if ($row['reviewsImage'] != null) {
-            ?>
-            <img src="<?php echo $imglink; ?>" alt="" height="100" width="100"><br>
-            <?php
-        }
-        
-        echo $row['reviewsContent'] . "<br>";
-        echo "date: ". $row['reviewsDate'] . "<br>";
-        echo 'productsid: '. intval($row['productsId']) . "<br>";
-        echo 'reviewssid: '. intval($row['reviewsId']) . "<br>";
-        echo 'stars: '. $row['stars'] . "<br>";
-        if (isset($_SESSION["useruid"])) {
-        ?>
-        <form action="includes/like_review.inc.php" method="POST">
-            <input type="hidden" name="userid" placeholder="userid" value=<?php echo $_SESSION["userid"]  ?>><br>
-            <input type="hidden" name="reviewid" placeholder="reviewid" value=<?php echo $row["reviewsId"] ?>><br>
-            <input type="hidden" name="productid" placeholder="productid" value=<?php echo $productid ?>><br>
-            <?php
-            if (isLiked($conn, $row['reviewsId'], $_SESSION["userid"])){
-                ?>
-                <button type="submit" class="button" name="unlike" value="unlike">Unlike</button>
-                <?php
-            } else {
-                ?>
-                <button type="submit" class="button" name="like" value="like">Like</button>
-                <?php
-            }
-            ?>
-
-        </form>
-        <?php
-        }
-        echo countLikesReview($conn, intval($row['reviewsId'])) . " likes <br>";
-        echo '<hr>';
-        echo '<br>';
-    }
-}
 ?>
-
+<div id="productreviews">
+</div>
+<button id="revbut">see more</button>
 </div>
 </div>
 </div>
