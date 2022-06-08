@@ -25,6 +25,7 @@ if ($resultCheck > 0) {
             deleteFromSC($conn, $row["cartId"]);
         } else {
             echo "product:" .productName($conn, $row['productsId']). "<br>";
+            echo "Price Of Product: " .idToPrice($conn, $row['productsId']). "<br>";
             echo 'quantity: '.$row['productQ'] . "<br>";
             ?>
             <form action="includes/change_cart.inc.php"  method="POST">

@@ -1,5 +1,16 @@
 <head>
 <title>Product</title>
+<script>
+        $(document).ready(function() {
+            var reviewCount = 2;
+            $("button").click(function() {
+                reviewCount = reviewCount + 2;
+                $("#products").load("load-products.php", {
+                    reviewNewCount: reviewCount
+                });
+            });
+        });
+    </script>
 </head>
 <?php
 include_once 'header.php';
@@ -83,7 +94,13 @@ if ($productimage!=null) {
 <p><?php echo $productdescription ?></p>
 <p>id: <?php echo $productid ?></p>
 <p>in stock: <?php echo $productquantity ?></p>
-<p>created by <?php echo $productcreator ?></p>
+<?php
+if ($_SESSION['ismanager']==1) {
+    ?>
+    <p>created by <?php echo $productcreator ?></p>
+    <?php
+}
+?>
 </div>
 <?php
 if ($_SESSION['userid']!=null) {
@@ -98,8 +115,7 @@ if ($_SESSION['userid']!=null) {
 }
 ?>
 </div>
-
-            <div class="productreviews">
+<div class="productreviews">
 
 <h1>Reviews</h1>
 <?php
@@ -151,6 +167,7 @@ if ($resultCheck > 0) {
         echo 'productsid: '. intval($row['productsId']) . "<br>";
         echo 'reviewssid: '. intval($row['reviewsId']) . "<br>";
         echo 'stars: '. $row['stars'] . "<br>";
+        if (isset($_SESSION["useruid"])) {
         ?>
         <form action="includes/like_review.inc.php" method="POST">
             <input type="hidden" name="userid" placeholder="userid" value=<?php echo $_SESSION["userid"]  ?>><br>
@@ -170,6 +187,7 @@ if ($resultCheck > 0) {
 
         </form>
         <?php
+        }
         echo countLikesReview($conn, intval($row['reviewsId'])) . " likes <br>";
         echo '<hr>';
         echo '<br>';
@@ -178,8 +196,8 @@ if ($resultCheck > 0) {
 ?>
 
 </div>
-            </div>
-            </div>
+</div>
+</div>
 
 
 <?php

@@ -3,7 +3,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
     <script>
         $(document).ready(function() {
-            var productCount = 2;
+            var productCount = 0;
             $("button").click(function() {
                 productCount = productCount + 2;
                 $("#products").load("load-products.php", {
@@ -57,17 +57,7 @@ if ($resultCheck == 1) {
         }
     }
 }
-?>
 
-<h1><?php echo $productname ?></h1>
-<p><?php echo $productdescription ?></p>
-<p>$<?php echo $productprice ?></p>
-<p>in stock: <?php echo $productquantity ?></p>
-<p>id: <?php echo $productid ?></p>
-<p><?php echo $productimage ?></p>
-<p>created by <?php echo $productcreator ?></p>
-
-<?php
 
 if ($conn) {
     $sql = "SELECT * from products limit 2";
