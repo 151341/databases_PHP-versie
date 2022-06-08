@@ -12,8 +12,8 @@ if (isset($_SESSION["useruid"])) {
 <h1>login</h1>
 <section>
     <form action="includes/login.inc.php" method="post">
-        <input type="text" name="uid" placeholder="username/email">
-        <input type="password" name="pwd" placeholder="password">
+        <input class="loginform" type="text" name="uid" placeholder="username/email">
+        <input class="loginform"type="password" name="pwd" placeholder="password">
         <button type="submit" name="submit">login</button>
     </form>
     <?php

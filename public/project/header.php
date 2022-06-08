@@ -34,7 +34,8 @@ include 'includes/dbh.inc.php';
         }
         
         ?>
-        <li><a href="shopping_cart.php">Shopping Cart <?php echo $countproduct ?></a></li>
+        <li><a href="shopping_cart.php">Shopping Cart 
+            <?php echo $countproduct ?></a></li>
         <?php
 
         echo "<li><a href='includes/logout.inc.php'>logout</a></li>";

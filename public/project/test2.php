@@ -4,76 +4,55 @@
     <script>
         $(document).ready(function() {
             var productCount = 0;
-            $("button").click(function() {
+            $("#revbut").click(function() {
                 productCount = productCount + 2;
-                $("#products").load("load-products.php", {
+                $("#reviewsdiv").load("load-products.php", {
                     productNewCount: productCount
                 });
             });
         });
     </script>
 </head>
-<?php
-$productname;
-$productprice;
-$productdescription;
 
-include_once 'header.php';
+<div id="reviewsdiv">
+</div>
+<button id="revbut">show more products</button><br>
+<!--
 // require('includes/dbh.inc.php');
 
-$sql = "SELECT * FROM products WHERE productsId = (SELECT MAX(productsId) FROM products)";
-$stmt = mysqli_stmt_init($conn);
-if (!mysqli_stmt_prepare($stmt, $sql)) {
-    header("location: products.php?error=stmtfailed");
-    // change later!!!
-    exit();
-}
-$result = mysqli_query($conn, $sql);
-$resultCheck = mysqli_num_rows($result);
-if ($resultCheck == 1) {
-    while ($row = mysqli_fetch_assoc($result)) {
-        $productname = $row['productsName'];
-        $productprice = $row['productsPrice'];
-        $productdescription = $row['productsDescription'];
-        $productquantity = $row['productsQuantity'];
-        $productimage = $row['productsImage'];
-        $productid = $row['productsId'];
+// $sql = "SELECT * FROM products WHERE productsId = (SELECT MAX(productsId) FROM products)";
+// $stmt = mysqli_stmt_init($conn);
+// if (!mysqli_stmt_prepare($stmt, $sql)) {
+//     header("location: products.php?error=stmtfailed");
+//     // change later!!!
+//     exit();
+// }
+// $result = mysqli_query($conn, $sql);
+// $resultCheck = mysqli_num_rows($result);
+// if ($resultCheck == 1) {
+//     while ($row = mysqli_fetch_assoc($result)) {
+//         $productname = $row['productsName'];
+//         $productprice = $row['productsPrice'];
+//         $productdescription = $row['productsDescription'];
+//         $productquantity = $row['productsQuantity'];
+//         $productimage = $row['productsImage'];
+//         $productid = $row['productsId'];
 
 
-        $productcreator;
-        $sql = "SELECT * FROM users WHERE usersId = '" .$row['productAddedByUserId']. "';";
-        $stmt = mysqli_stmt_init($conn);
-        if (!mysqli_stmt_prepare($stmt, $sql)) {
-            header("location: products.php?error=stmtfailed");
-            // change later!!!
-            exit();
-        }
-        $result = mysqli_query($conn, $sql);
-        $resultCheck = mysqli_num_rows($result);
-        if ($resultCheck == 1) {
-            while ($row = mysqli_fetch_assoc($result)) {
-                $productcreator = $row['usersEmail'];
-            }
-        }
-    }
-}
-
-
-if ($conn) {
-    $sql = "SELECT * from products limit 2";
-    $result = mysqli_query($conn,$sql);
-    if (mysqli_num_rows($result) > 0) {
-        while ($row = mysqli_fetch_assoc($result)) {
-            echo $row["productsName"]. "<br>";
-        }
-    }
-}
-?>
-<div id="products">
-</div>
-<button>show more products</button><br>
-<?php
-// echo countProducts($conn, $_SESSION["userid"]); 
-
-include_once 'footer.php';
-?>
+//         $productcreator;
+//         $sql = "SELECT * FROM users WHERE usersId = '" .$row['productAddedByUserId']. "';";
+//         $stmt = mysqli_stmt_init($conn);
+//         if (!mysqli_stmt_prepare($stmt, $sql)) {
+//             header("location: products.php?error=stmtfailed");
+//             // change later!!!
+//             exit();
+//         }
+//         $result = mysqli_query($conn, $sql);
+//         $resultCheck = mysqli_num_rows($result);
+//         if ($resultCheck == 1) {
+//             while ($row = mysqli_fetch_assoc($result)) {
+//                 $productcreator = $row['usersEmail'];
+//             }
+//         }
+//     }
+// }

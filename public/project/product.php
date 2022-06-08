@@ -1,12 +1,13 @@
 <head>
 <title>Product</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 <script>
         $(document).ready(function() {
-            var reviewCount = 2;
-            $("button").click(function() {
-                reviewCount = reviewCount + 2;
-                $("#products").load("load-products.php", {
-                    reviewNewCount: reviewCount
+            var productCount = 0;
+            $("#revbut").click(function() {
+                productCount = productCount + 2;
+                $("#testreviews").load("load-reviews.php", {
+                    productNewCount: productCount
                 });
             });
         });
@@ -41,8 +42,6 @@ if ($resultCheck == 1) {
         $productquantity = $row['productsQuantity'];
         $productimage = $row['productsImage'];
         $productid = $row['productsId'];
-
-
         $productcreator;
         $sql = "SELECT * FROM users WHERE usersId = '" .$row['productAddedByUserId']. "';";
         $stmt = mysqli_stmt_init($conn);
@@ -64,6 +63,9 @@ if ($resultCheck == 1) {
 
 
 
+<div id="testreviews">
+</div>
+<button id="revbut">see more</button>
 <div class="productname">
 <?php echo $productname ?>
 </div>
@@ -71,9 +73,10 @@ if ($resultCheck == 1) {
 
     <div class="content">
 
-    <div class="column left">
+    <div class="column side">
+    <p>leeg</p>
+    </div>
 
-</div>
 
 
 
@@ -91,29 +94,31 @@ if ($productimage!=null) {
 
 <div class="productinfo">
 <productprice>$<?php echo $productprice ?></productprice>
-<p><?php echo $productdescription ?></p>
+<h4>Productbeschrijving:</h4>
+<p class="addtocart"><?php echo $productdescription?></p>
 <p>id: <?php echo $productid ?></p>
-<p>in stock: <?php echo $productquantity ?></p>
 <?php
 if ($_SESSION['ismanager']==1) {
     ?>
-    <p>created by <?php echo $productcreator ?></p>
+    <p>Created by <?php echo $productcreator ?></p>
     <?php
 }
-?>
-</div>
-<?php
+?><?php
 if ($_SESSION['userid']!=null) {
     ?>
-    <form method="post" action="includes/shopping_cart.inc.php">
-        <input type="number" name="productq" placeholder="quantity" value="1" min="1">
-        <input type="hidden" name="userid" placeholder="userid" value=<?php echo $_SESSION["userid"] ?>>
-        <input type="hidden" name="productid" placeholder="productid" value=<?php echo $productid ?>>
+    <form class="addtocart" method="post" action="includes/shopping_cart.inc.php">
+    <p>In stock: <?php echo $productquantity ?></p>
+        <input class="loginform"type="number" name="productq" placeholder="quantity" value="1" min="1">
+        <input class="loginform"type="hidden" name="userid" placeholder="userid" value=<?php echo $_SESSION["userid"] ?>>
+        <input class="loginform"type="hidden" name="productid" placeholder="productid" value=<?php echo $productid ?>>
         <button type="submit" name="submit">Add to cart</button>
     </form>
     <?php
 }
 ?>
+</div>
+
+
 </div>
 <div class="productreviews">
 
@@ -128,13 +133,13 @@ if (isset($_SESSION['useruid'])) {
 ?>
 <section>
     <form action="includes/review.inc.php" method="POST" enctype="multipart/form-data">
-        <input type="text" name="reviewname" placeholder="name review"><br>
-        <input type="number" name="stars" min="1" max="5" placeholder="stars"><br>
-        <input type="text" name="reviewcontent" placeholder="your review...."><br>
-        <input type="hidden" name="userid" placeholder="userid" value=<?php echo $_SESSION["userid"]  ?>><br>
-        <input type="hidden" name="productid" placeholder="productid" value=<?php echo $productid ?>><br>
-        <input type="hidden" name="time" placeholder="time" value=<?php echo $time ?>><br>
-        <input type="file" name="file">
+        <input class="loginform"type="text" name="reviewname" placeholder="name review"><br>
+        <input class="loginform"type="number" name="stars" min="1" max="5" placeholder="stars"><br>
+        <input class="loginform"type="text" name="reviewcontent" placeholder="your review...."><br>
+        <input class="loginform"type="hidden" name="userid" placeholder="userid" value=<?php echo $_SESSION["userid"]  ?>><br>
+        <input class="loginform"type="hidden" name="productid" placeholder="productid" value=<?php echo $productid ?>><br>
+        <input class="loginform"type="hidden" name="time" placeholder="time" value=<?php echo $time ?>><br>
+        <input class="loginform"type="file" name="file">
         <button type="submit" name="submit">Add</button>
     </form>
 </section><hr>

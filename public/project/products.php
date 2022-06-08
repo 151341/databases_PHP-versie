@@ -1,5 +1,5 @@
 <head>
-    <title>products</title>
+    <title>Products</title>
 </head>
 <?php
 include_once 'header.php';
@@ -61,9 +61,9 @@ if ($_SESSION['ismanager'] === 1) {
                     if ($_SESSION['userid']!=null) {
                         ?>
                         <form method="post" action="includes/shopping_cart.inc.php">
-                            <input type="number" name="productq" placeholder="quantity" value="1" min="1">
-                            <input type="hidden" name="userid" placeholder="userid" value=<?php echo $_SESSION["userid"] ?>>
-                            <input type="hidden" name="productid" placeholder="productid" value=<?php echo $row['productsId'] ?>>
+                            <input class="loginform"type="number" name="productq" placeholder="quantity" value="1" min="1">
+                            <input class="loginform"type="hidden" name="userid" placeholder="userid" value=<?php echo $_SESSION["userid"] ?>>
+                            <input class="loginform"type="hidden" name="productid" placeholder="productid" value=<?php echo $row['productsId'] ?>>
                             <button class="buttoncard"  type="submit" name="submit">Add to cart</button>
                         </form>
                         <?php

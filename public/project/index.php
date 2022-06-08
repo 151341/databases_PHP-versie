@@ -15,15 +15,42 @@ require('includes/functions.inc.php');
 
 <div class="content">
   <div class="column side">
-    <h3>Welkom</h3>
     <?php
       if (isset($_SESSION['useruid'])) {
-          echo "<p>Hi " . $_SESSION["useruid"] . "</p>";
+          echo "<h3>Hi " . $_SESSION["useruid"] . "</h3>";
+          echo "<p>Je kunt nu producten bestellen.</p>"
+          ?>
+          
+          <button onclick="window.location.href='includes/logout.inc.php';">Logout</button>
+          <?php
       }
       else {  
-        ?>
-        <a href="login.php"><button>Login</button></a>
-      
+        ?>   
+            <div class="loginplace">
+            <h3>Welkom</h3>
+            <p>Log in om producten te bestellen.</p>
+<section>
+    <form  action="includes/login.inc.php" method="post">
+        <input class="loginform" type="text" name="uid" placeholder="username/email">
+        <input class="loginform" type="password" name="pwd" placeholder="password">
+        <button type="submit" name="submit">Login</button>
+    </form>
+
+    <?php
+    if (isset($_GET["error"])) {
+        if ($_GET["error"] == "emptyinput") {
+            echo "fill in all fields";
+        }
+        else if ($_GET["error"] == "none") {
+            echo 'You Are Signed In';
+        }
+        else if ($_GET["error"] == "wronglogin") {
+            echo "wrong data typed in";
+        }        
+    }
+?>
+</section>
+</div>
          <?php
       }
     ?>
