@@ -2,8 +2,8 @@
 require('includes/functions.inc.php');
 require('includes/dbh.inc.php');
 $productNewCount = $_POST['productNewCount'];
+$userid = $_POST['userid'];
 if ($conn) {
-    // echo 'success';
     $sql = "SELECT * FROM reviews  LIMIT $productNewCount"; //WHERE productsId=$prodid
     $result = mysqli_query($conn,$sql);
     if (mysqli_num_rows($result) > 0) {
@@ -22,17 +22,13 @@ if ($conn) {
             echo 'productsid: '. intval($row['productsId']) . "<br>";
             echo 'reviewssid: '. intval($row['reviewsId']) . "<br>";
             echo 'stars: '. $row['stars'] . "<br>";
-
             if ($_SESSION["useruid"]=!null) {
             ?>
             <form action="includes/like_review.inc.php" method="POST">
                 <input type="hidden" name="userid" placeholder="userid" value=<?php echo $_SESSION["userid"]  ?>>
                 <input type="hidden" name="reviewid" placeholder="reviewid" value=<?php echo $row["reviewsId"] ?>>
                 <input type="hidden" name="productid" placeholder="productid" value=<?php echo $productid ?>>
-                
                 <?php
-                echo 'revid '. $row['reviewsId'] .'<br>';
-                echo "<p>userid:  " . $_SESSION["userid"] . "</p>";
                 if (isLiked($conn, $row['reviewsId'], $_SESSION["userid"])) {
                     ?>
                     <button type="submit" class="button" name="unlike" value="unlike">Unlike</button>
@@ -48,8 +44,7 @@ if ($conn) {
             <?php
             }
             echo countLikesReview($conn, intval($row['reviewsId'])) . " likes <br>";
-            echo $productNewCount;
-
+            echo $_SESSION["userid"];
             echo '<hr>';
             echo '<br>';
         }

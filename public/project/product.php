@@ -1,16 +1,27 @@
+<?php
+$productid = $_GET['id'];
+if ($productid == null) {
+    header("location: products.php");
+    exit();
+}
+$userid = $_SESSION["userid"];
+?>
 <head>
 <title>Product</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-<script>
+<script type="text/javascript">
         $(document).ready(function() {
             var productCount = 0;
+            var userid = "<?php echo $userid;?>";
+            // var userid = 1;
             
             $("#revbut").click(function() {
                 productCount = productCount + 2;
                 $("#productreviews").load("load-reviews.php", {
                     productNewCount: productCount,
+                    userid: userid
+
                     // productid: $productid
-                    userid: $_SESSION['userid']
                 });
             });
         });
@@ -18,11 +29,6 @@
 </head>
 <?php
 include_once 'header.php';
-$productid = $_GET['id'];
-if ($productid == null) {
-    header("location: products.php");
-    exit();
-}
 $productname;
 $productprice;
 $productdescription;
