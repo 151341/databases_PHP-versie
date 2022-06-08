@@ -4,10 +4,13 @@
 <script>
         $(document).ready(function() {
             var productCount = 0;
+            
             $("#revbut").click(function() {
                 productCount = productCount + 2;
                 $("#productreviews").load("load-reviews.php", {
-                    productNewCount: productCount
+                    productNewCount: productCount,
+                    // productid: $productid
+                    userid: $_SESSION['userid']
                 });
             });
         });

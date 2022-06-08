@@ -4,7 +4,7 @@ require('includes/dbh.inc.php');
 $productNewCount = $_POST['productNewCount'];
 if ($conn) {
     // echo 'success';
-    $sql = "SELECT * FROM reviews LIMIT $productNewCount";
+    $sql = "SELECT * FROM reviews  LIMIT $productNewCount"; //WHERE productsId=$prodid
     $result = mysqli_query($conn,$sql);
     if (mysqli_num_rows($result) > 0) {
         while ($row = mysqli_fetch_assoc($result)) {
@@ -48,6 +48,8 @@ if ($conn) {
             <?php
             }
             echo countLikesReview($conn, intval($row['reviewsId'])) . " likes <br>";
+            echo $productNewCount;
+
             echo '<hr>';
             echo '<br>';
         }
