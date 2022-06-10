@@ -387,6 +387,8 @@ function createReview($conn, $reviewname, $stars, $reviewTime, $reviewcontent, $
     mysqli_stmt_bind_param($stmt, "sssssss",$reviewname,$productid, $fileNameNew,$userid,$reviewcontent,$stars, $reviewTime);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
+    header("location: ../product.php?id=' . $productid . '");
+    exit();
 }
 
 
@@ -691,12 +693,24 @@ function addToShoppingCart($conn, $userid, $productid, $productq) {
 }
 
 function countProducts($conn, $userid) {
-    $sql = "SELECT * FROM shopping_cart WHERE usersId = '" .$userid. "'";
+    // $sql = "SELECT * FROM shopping_cart WHERE usersId = '" .$userid. "'";
 
-    if ($result=mysqli_query($conn,$sql)) {
-        $rowcount=mysqli_num_rows($result);
-        return $rowcount; 
+    // if ($result=mysqli_query($conn,$sql)) {
+    //     $rowcount=mysqli_num_rows($result);
+    //     return $rowcount; 
+    // }
+
+    $sql = "SELECT SUM(productQ) FROM shopping_cart where usersId='".$userid."';";
+    $result = mysqli_query($conn, $sql);
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: products.php?error=stmtfailed");
+        exit();
     }
+    while($row = mysqli_fetch_array($result)){
+        $countproduct = $row['SUM(productQ)'];
+    }
+    return $countproduct;
 }
 
 function countPrice($conn, $userid) {

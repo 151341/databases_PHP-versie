@@ -5,9 +5,9 @@ CREATE TABLE `likereview` (
   `reviewsId` int NOT NULL,
   `usersId` int NOT NULL,
   PRIMARY KEY (`likeReviewId`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-INSERT INTO `likereview` (`likeReviewId`, `reviewsId`, `usersId`) VALUES (15,10,0);
+INSERT INTO `likereview` (`likeReviewId`, `reviewsId`, `usersId`) VALUES (15,10,0),(17,10,1),(18,11,1),(19,12,1),(20,18,1);
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `products` (
@@ -19,9 +19,9 @@ CREATE TABLE `products` (
   `productsImage` varchar(200) DEFAULT NULL,
   `productsQuantity` int NOT NULL DEFAULT '0',
   PRIMARY KEY (`productsId`)
-) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-INSERT INTO `products` (`productsId`, `productsName`, `productsPrice`, `productAddedByUserId`, `productsDescription`, `productsImage`, `productsQuantity`) VALUES (28,'fiets ',48,0,'Mooie goed werkende fiets','627a7db90d6ae0.67934811.jpg',4),(29,'ddd',999,1,'dddd',NULL,85),(30,'aaaaname',4,3,'aaaadesc','6277a13ec36337.38159121.jpg',0),(31,'pear',44,3,'bulp d','62766e58d161b7.02800633.jpg',0),(32,'testn',45,1,'testd',NULL,0),(33,'neww',80,1,'new product in webshop','627a68cc2ac2a3.98136266.jpg',0),(34,'sdsdfsdfasdf',5,1,'fsadfasdf',NULL,0);
+INSERT INTO `products` (`productsId`, `productsName`, `productsPrice`, `productAddedByUserId`, `productsDescription`, `productsImage`, `productsQuantity`) VALUES (28,'fiets ',48,0,'Mooie goed werkende fiets','627a7db90d6ae0.67934811.jpg',4),(30,'aaaaname',4,3,'aaaadesc','6277a13ec36337.38159121.jpg',0),(31,'pear',44,3,'bulp d','62766e58d161b7.02800633.jpg',0),(32,'testn',45,1,'testd',NULL,0),(33,'neww',80,1,'new product in webshop','627a68cc2ac2a3.98136266.jpg',0);
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `reviews` (
@@ -34,9 +34,9 @@ CREATE TABLE `reviews` (
   `stars` int NOT NULL,
   `reviewsDate` datetime DEFAULT NULL,
   PRIMARY KEY (`reviewsId`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-INSERT INTO `reviews` (`reviewsId`, `reviewsName`, `productsId`, `reviewsImage`, `usersId`, `reviewsContent`, `stars`, `reviewsDate`) VALUES (10,'test',28,NULL,1,'test review',3,NULL),(11,'blue',28,'627a805a463716.05976711.jpg',1,'nice car',3,NULL),(12,'test2',28,NULL,1,'test message',4,NULL),(13,'test3',28,NULL,1,'this is just test',4,'2022-05-18 07:40:55'),(14,'sdfa',28,NULL,1,'testtttttt hoi',3,'2022-05-18 00:00:00'),(15,'retwer',28,NULL,1,'dfgsdfg',4,'2022-05-18 00:00:00'),(16,'retwer',28,NULL,1,'dfgsdfg',4,'2022-05-18 00:00:00'),(17,'dsafasdf',28,NULL,1,'sdafasdfa',2,'2022-05-18 00:00:00'),(18,'test',28,NULL,2,'test by jan',2,'2022-06-08 00:00:00');
+INSERT INTO `reviews` (`reviewsId`, `reviewsName`, `productsId`, `reviewsImage`, `usersId`, `reviewsContent`, `stars`, `reviewsDate`) VALUES (19,'hoi',28,NULL,1,'test',4,'2022-06-10 00:00:00'),(20,'asfasd',28,NULL,1,'sadfsad',1,'2022-06-10 00:00:00'),(21,'aa',28,NULL,1,'aaa',1,'2022-06-10 00:00:00'),(22,'aa',28,NULL,1,'aa',1,'2022-06-10 00:00:00');
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `shopping_cart` (
@@ -46,9 +46,9 @@ CREATE TABLE `shopping_cart` (
   `productQ` int DEFAULT NULL,
   `cartOrder` bit(1) DEFAULT NULL,
   PRIMARY KEY (`cartId`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-INSERT INTO `shopping_cart` (`cartId`, `usersId`, `productsId`, `productQ`, `cartOrder`) VALUES (1,1,30,10,_binary '\0'),(3,1,29,3,_binary '\0'),(4,1,34,6,NULL),(7,11,34,1,NULL),(8,12,34,1,NULL),(9,12,31,10,NULL),(10,1,31,1,NULL);
+INSERT INTO `shopping_cart` (`cartId`, `usersId`, `productsId`, `productQ`, `cartOrder`) VALUES (1,1,30,10,_binary '\0'),(7,11,34,1,NULL),(8,12,34,1,NULL),(9,12,31,10,NULL),(10,1,31,1,NULL);
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `users` (

@@ -22,7 +22,7 @@ if ($conn) {
             echo 'productsid: '. intval($row['productsId']) . "<br>";
             echo 'reviewssid: '. intval($row['reviewsId']) . "<br>";
             echo 'stars: '. $row['stars'] . "<br>";
-            if ($_SESSION["useruid"]=!null) {
+            if ($userid!=null) {
             ?>
             <form action="includes/like_review.inc.php" method="POST">
                 <input type="hidden" name="userid" placeholder="userid" value=<?php echo $_SESSION["userid"]  ?>>

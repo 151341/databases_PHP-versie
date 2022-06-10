@@ -19,10 +19,7 @@ include 'includes/dbh.inc.php';
         if ($_SESSION['useremail'] === 'stef.delnoye@gmail.com' or $_SESSION['useremail'] === 'stef.delnoye@gmail.com' or $_SESSION['useremail'] === 'stef.delnoye@gmail.com') {
             echo "<li><a href='select.php'>select new employees</a></li>";
         }
- 
-        // $sql = "SELECT * FROM shopping_cart WHERE usersId = '" .$_SESSION["userid"]. "'";
-        // $sql = "SELECT productQ, COUNT(*) from shopping_cart group by productQ";
-        $sql = "SELECT SUM(productQ) FROM shopping_cart;";
+        $sql = "SELECT SUM(productQ) FROM shopping_cart where usersId='".$_SESSION['userid']."';";
         $result = mysqli_query($conn, $sql);
         $stmt = mysqli_stmt_init($conn);
         if (!mysqli_stmt_prepare($stmt, $sql)) {
@@ -33,9 +30,14 @@ include 'includes/dbh.inc.php';
             $countproduct = $row['SUM(productQ)'];
         }
         
+        
         ?>
         <li><a href="shopping_cart.php">Shopping Cart 
-            <?php echo $countproduct ?></a></li>
+            <?php 
+            echo $countproduct;
+            // echo countProducts($conn, $_SESSION['userid']);
+            ?>
+        </a></li>
         <?php
 
         echo "<li><a href='includes/logout.inc.php'>logout</a></li>";

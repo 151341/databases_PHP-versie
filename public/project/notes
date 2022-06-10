@@ -83,3 +83,24 @@ stond bij products.php
 ?>
   </div>
 </div>
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<script type="text/javascript">
+        $(document).ready(function() {
+            var productCount = 0;
+            var userid = "<?php echo $userid;?>";
+            // var userid = 1;
+            
+            $("#revbut").click(function() {
+                productCount = productCount + 2;
+                $("#productreviews").load("load-reviews.php", {
+                    productNewCount: productCount,
+                    userid: userid
+
+                    // productid: $productid
+                });
+            });
+        });
+    </script>
