@@ -19,9 +19,9 @@ CREATE TABLE `products` (
   `productsImage` varchar(200) DEFAULT NULL,
   `productsQuantity` int NOT NULL DEFAULT '0',
   PRIMARY KEY (`productsId`)
-) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-INSERT INTO `products` (`productsId`, `productsName`, `productsPrice`, `productAddedByUserId`, `productsDescription`, `productsImage`, `productsQuantity`) VALUES (28,'fiets ',48,0,'Mooie goed werkende fiets','627a7db90d6ae0.67934811.jpg',4),(30,'aaaaname',4,3,'aaaadesc','6277a13ec36337.38159121.jpg',0),(31,'pear',44,3,'bulp d','62766e58d161b7.02800633.jpg',0),(32,'testn',45,1,'testd',NULL,0),(33,'neww',80,1,'new product in webshop','627a68cc2ac2a3.98136266.jpg',0);
+INSERT INTO `products` (`productsId`, `productsName`, `productsPrice`, `productAddedByUserId`, `productsDescription`, `productsImage`, `productsQuantity`) VALUES (28,'fiets ',48,0,'Mooie goed werkende fiets','627a7db90d6ae0.67934811.jpg',4),(30,'aaaaname',4,3,'aaaadesc','6277a13ec36337.38159121.jpg',0),(31,'pear',44,3,'bulp d','62766e58d161b7.02800633.jpg',0),(32,'testn',45,1,'testd',NULL,0),(33,'neww',80,1,'new product in webshop','627a68cc2ac2a3.98136266.jpg',0),(36,'NYSTIAA DUMBBELLS - VINYL 2 X 3 KG - ROOD',35,11,'Een work-out hoeft helemaal niet saai te zijn. Je maakt jouw training heel eenvoudig gezelliger met deze','62a3ad736bfb75.90956410.png',0);
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `reviews` (
