@@ -70,7 +70,7 @@ if ($_SESSION['ismanager'] === 1) {
                             <img src="<?php echo $imglink; ?>" alt="" height="150" width="150">
                             <?php
                         }
-                        echo "<h2>". $row['productsName'] . "</h2>";    
+                        echo "<h3>". $row['productsName'] . "</h3>";    
                         echo "<price>$". $row['productsPrice'] . "</price><br>";  
                         if ($_SESSION['ismanager'] === 1) {
                             print '<a href="change_product.php?id=' . $row['productsId'] . '">Change product</a><br>';
