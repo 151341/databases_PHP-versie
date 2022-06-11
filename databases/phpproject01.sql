@@ -15,7 +15,7 @@ CREATE TABLE `products` (
   `productsName` varchar(255) NOT NULL,
   `productsPrice` int DEFAULT NULL,
   `productAddedByUserId` int NOT NULL,
-  `productsDescription` varchar(128) DEFAULT NULL,
+  `productsDescription` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `productsImage` varchar(200) DEFAULT NULL,
   `productsQuantity` int NOT NULL DEFAULT '0',
   PRIMARY KEY (`productsId`)
