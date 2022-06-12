@@ -4,7 +4,7 @@ include 'includes/dbh.inc.php';
 // include 'includes/functions.inc.php';
 ?>
 <div class="header">
-<h1>Webshop</h1>
+<img class="logo" src="productimg/logo.png" width="200" height="200">
 </div>
 <body> 
 <nav>

@@ -10,9 +10,8 @@ body {
   }
 
   .header {
-    background-color: whitesmoke;
-    text-align: center;
-    padding: 20px;
+    background-color: red;
+    text-align: left;
   }
 
   .footer {

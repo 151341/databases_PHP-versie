@@ -1,5 +1,5 @@
 <head>
-    <title>Webshop | Koop hier je wiet</title>
+    <title>NYSTIAA | Dumbbell-specialist</title>
     <?php 
   echo "<link rel='stylesheet' type='text/css' href='/project/design.css' />"; 
 ?>
