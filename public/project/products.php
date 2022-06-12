@@ -34,14 +34,15 @@ if (isset($_GET["error"])) {
 <?php
 if ($_SESSION['ismanager'] === 1) {
     ?>
-    <a href="add_product.php">add product</a><br>
-    <a href="delete_product.php">delete product</a><br>
+    <buttonsmall onclick="window.location.href='add_product.php'">Add product</buttonsmall>
+    <buttonsmall onclick="window.location.href='delete_product.php'">Delete product</buttonsmall>
     <?php
 }
 ?>
 <div class="content">
     <div class="column side">
-    <p>leeg</p>
+    <p>Een work-out hoeft helemaal niet saai te zijn. Je maakt jouw training heel eenvoudig gezelliger met deze vrolijke set roze Dumbbells van het merk Tunturi. Muziekje aan en aan de slag! 
+        <br>Zoek hier de dumbbell die bij jou past!</p>
     </div>
 
     <div class="column mid">
@@ -67,13 +68,13 @@ if ($_SESSION['ismanager'] === 1) {
                         if ($row['productsImage']!=null) {
                             $imglink = "productimg/".$row['productsImage'];
                             ?>
-                            <img src="<?php echo $imglink; ?>" alt="" height="150" width="150">
+                            <img src="<?php echo $imglink; ?>" alt="" height="190" width="190">
                             <?php
                         }
                         echo "<h3>". $row['productsName'] . "</h3>";    
                         echo "<price>$". $row['productsPrice'] . "</price><br>";  
                         if ($_SESSION['ismanager'] === 1) {
-                            print '<a href="change_product.php?id=' . $row['productsId'] . '">Change product</a><br>';
+                            print '<a  href="change_product.php?id=' . $row['productsId'] . '">Change product</a><br>';
                         }
                         print '<a href="product.php?id=' . $row['productsId'] . '">View product</a>';
                         if ($_SESSION['userid']!=null) {

@@ -19,9 +19,9 @@ CREATE TABLE `products` (
   `productsImage` varchar(200) DEFAULT NULL,
   `productsQuantity` int NOT NULL DEFAULT '0',
   PRIMARY KEY (`productsId`)
-) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-INSERT INTO `products` (`productsId`, `productsName`, `productsPrice`, `productAddedByUserId`, `productsDescription`, `productsImage`, `productsQuantity`) VALUES (28,'fiets ',48,0,'Mooie goed werkende fiets','627a7db90d6ae0.67934811.jpg',4),(30,'aaaaname',4,3,'aaaadesc','6277a13ec36337.38159121.jpg',0),(31,'pear',44,3,'bulp d','62766e58d161b7.02800633.jpg',0),(32,'testn',45,1,'testd',NULL,0),(33,'neww',80,1,'new product in webshop','627a68cc2ac2a3.98136266.jpg',0),(36,'NYSTIAA DUMBBELLS - VINYL 2 X 3 KG - ROOD',35,11,'Een work-out hoeft helemaal niet saai te zijn. Je maakt jouw training heel eenvoudig gezelliger met deze','62a3ad736bfb75.90956410.png',0);
+INSERT INTO `products` (`productsId`, `productsName`, `productsPrice`, `productAddedByUserId`, `productsDescription`, `productsImage`, `productsQuantity`) VALUES (36,'NYSTIAA DUMBBELLS - VINYL 2 X 3 KG - ROOD',35,11,'Een work-out hoeft helemaal niet saai te zijn. Je maakt jouw training heel eenvoudig gezelliger met deze vrolijke set roze Dumbbells van het merk Tunturi. Muziekje aan en aan de slag! Dit is een set van 2 dumbbells met elk een gewicht van 0,5 kg.','62a3ad736bfb75.90956410.png',0),(37,'NYSTIAA DUMBBELLS - VINYL 2 X 1,5 KG - GEEL',19,11,'Een','62a607db265564.31502858.png',0),(38,'NYSTIAA DUMBBELLS - VINYL 2 X 2 KG - GROEN',25,11,'Een','62a6085bc8db39.15371125.png',0),(39,'NYSTIAA DUMBBELLS - VINYL 2 X 1,0 KG - PAARS',13,11,'Een','62a6086f6d7da2.74119125.png',0),(40,'NYSTIAA DUMBBELLS - VINYL 2 X 4 KG - BLAUW',45,11,'Een','62a6088f4f5eb0.28346914.png',0),(41,'NYSTIAA DUMBBELLS - VINYL 2 X 5 KG - ZWART',55,11,'Een','62a608a2d0b9f5.09929967.png',0),(42,'NYSTIAA DUMBBELLS - VINYL 2 X 0,5 KG - ROZE',8,11,'Een','62a608b6ec57e8.21991952.png',0);
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `reviews` (
@@ -48,7 +48,7 @@ CREATE TABLE `shopping_cart` (
   PRIMARY KEY (`cartId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-INSERT INTO `shopping_cart` (`cartId`, `usersId`, `productsId`, `productQ`, `cartOrder`) VALUES (1,1,30,10,_binary '\0'),(7,11,34,1,NULL),(8,12,34,1,NULL),(9,12,31,10,NULL),(10,1,31,1,NULL);
+INSERT INTO `shopping_cart` (`cartId`, `usersId`, `productsId`, `productQ`, `cartOrder`) VALUES (1,1,30,10,_binary '\0'),(8,12,34,1,NULL),(9,12,31,10,NULL),(10,1,31,1,NULL);
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `users` (
