@@ -32,7 +32,7 @@ if ($resultCheck > 0) {
         if (productName($conn, $row['productsId']) == null) {
             deleteFromSC($conn, $row["cartId"]);
         } else {
-            echo "<h3>" .productName($conn, $row['productsId']). "</h3>";
+            echo '<h3><a href="product.php?id=' . $row['productsId'] . '">'.productName($conn, $row['productsId']).'</a></h3>';
             echo "Price: " .idToPrice($conn, $row['productsId']). "<br>";
             echo 'Quantity: '.$row['productQ'] . "<br>";
             ?>
