@@ -66,42 +66,40 @@ require('includes/functions.inc.php');
         exit();
       }   
     ?>
-    <div class="productengalerij">
+            <div class="productengalerij">
             <?php
             $result = mysqli_query($conn, $sql);
             $resultCheck = mysqli_num_rows($result);
             
             if ($resultCheck > 0) {
                 while ($row = mysqli_fetch_assoc($result)) {
-                    ?>
-                  
+                    ?>                  
                     <div class="producten">
                         <?php
-                    if ($row['productsImage']!=null) {
-                        $imglink = "productimg/".$row['productsImage'];
-                        ?>
-                        <img src="<?php echo $imglink; ?>" alt="" height="150" width="150">
-                        <?php
-                    }
-                    echo "<h2>". $row['productsName'] . "</h2>";    
-                    echo "<price>$". $row['productsPrice'] . "</price><br>";  
-                    if ($_SESSION['ismanager'] === 1) {
-                        print '<a href="change_product.php?id=' . $row['productsId'] . '">Change product</a><br>';
-                    }
-                    print '<a href="product.php?id=' . $row['productsId'] . '">View product</a>';
-                    if ($_SESSION['userid']!=null) {
-                        ?>
-                        <form method="post" action="includes/shopping_cart.inc.php">
-                            <input type="number" name="productq" placeholder="quantity" value="1" min="1">
-                            <input type="hidden" name="userid" placeholder="userid" value=<?php echo $_SESSION["userid"] ?>>
-                            <input type="hidden" name="productid" placeholder="productid" value=<?php echo $row['productsId'] ?>>
-                            <button class="buttoncard"  type="submit" name="submit">Add to cart</button>
-                        </form>
-                        <?php
-                    }
+                        if ($row['productsImage']!=null) {
+                            $imglink = "productimg/".$row['productsImage'];
+                            ?>
+                            <img src="<?php echo $imglink; ?>" alt="" height="190" width="190">
+                            <?php
+                        }
+                        echo "<h3>". $row['productsName'] . "</h3>";    
+                        echo "<price>$". $row['productsPrice'] . "</price><br>";  
+                        if ($_SESSION['ismanager'] === 1) {
+                            print '<a  href="change_product.php?id=' . $row['productsId'] . '">Change product</a><br>';
+                        }
+                        print '<a href="product.php?id=' . $row['productsId'] . '">View product</a>';
+                        if ($_SESSION['userid']!=null) {
+                            ?>
+                            <form method="post" action="includes/shopping_cart.inc.php">
+                                <input class="loginform"type="number" name="productq" placeholder="quantity" value="1" min="1">
+                                <input class="loginform"type="hidden" name="userid" placeholder="userid" value=<?php echo $_SESSION["userid"] ?>>
+                                <input class="loginform"type="hidden" name="productid" placeholder="productid" value=<?php echo $row['productsId'] ?>>
+                                <button class="buttoncard"  type="submit" name="submit">Add to cart</button>
+                            </form>
+                            <?php
+                        }
                     ?>
                     </div>
-                    
                     <?php
                 }
             }

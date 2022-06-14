@@ -21,7 +21,13 @@
 include_once 'header.php';
 require('includes/functions.inc.php');
 ?>
+    <div class="content">
+  <div class="column side">
+    
 
+</div>
+
+<div class="column mid">
 <div id="contact">
     <h1>contact</h1>
     <p>email: randomspullenkopen@gmail.com</p>
@@ -29,6 +35,13 @@ require('includes/functions.inc.php');
 
 
 </div>
+</div>
+
+<div class="column side">
+
+  </div>
+</div>
+
 <?php
 include_once 'footer.php'
 ?>

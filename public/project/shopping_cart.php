@@ -1,5 +1,5 @@
 <head>
-    <title>shopping cart</title>
+    <title>Shopping cart</title>
 </head>
 <?php
 include_once 'header.php';
@@ -8,7 +8,15 @@ if (!isset($_SESSION["useremail"])) {
     exit();
 }
 ?>
-<h1>shopping cart</h1>
+<h1>Shopping cart</h1>
+<div class="content">
+  <div class="column side">
+    
+
+</div>
+
+<div class="column mid">
+<div class="productinfo">
 <?php
 require('includes/functions.inc.php');
 $sql = "SELECT * FROM shopping_cart WHERE usersId = '" .$_SESSION['userid']. "';";
@@ -24,12 +32,12 @@ if ($resultCheck > 0) {
         if (productName($conn, $row['productsId']) == null) {
             deleteFromSC($conn, $row["cartId"]);
         } else {
-            echo "product:" .productName($conn, $row['productsId']). "<br>";
-            echo "Price Of Product: " .idToPrice($conn, $row['productsId']). "<br>";
-            echo 'quantity: '.$row['productQ'] . "<br>";
+            echo "<h3>" .productName($conn, $row['productsId']). "</h3>";
+            echo "Price: " .idToPrice($conn, $row['productsId']). "<br>";
+            echo 'Quantity: '.$row['productQ'] . "<br>";
             ?>
             <form action="includes/change_cart.inc.php"  method="POST">
-                quantity: 
+                Quantity: 
                 <input type="number" name="productq" min="1"
                 value=
                 "<?php
@@ -57,7 +65,14 @@ if ($resultCheck > 0) {
     }
     ?>
     
-    <p>total price: <?php echo $totalPrice ?></p>
+    <h1>Total price: <?php echo $totalPrice ?></h1>
+</div>
+</div>
+<div class="column side">
+
+  </div>
+</div>
+
     <?php
 }
 include_once 'footer.php';
