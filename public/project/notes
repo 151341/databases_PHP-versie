@@ -67,10 +67,8 @@ stond bij products.php
 
     <div class="content">
   <div class="column side">
-    <h3>Welkom</h3>
-<?php
+    
 
-?>
 </div>
 
 <div class="column mid">
@@ -78,9 +76,7 @@ stond bij products.php
 </div>
 
 <div class="column side">
-<?php
 
-?>
   </div>
 </div>
 

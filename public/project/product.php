@@ -134,7 +134,7 @@ if (isset($_SESSION['useruid'])) {
 ?>
 <section>
     <form action="includes/review.inc.php" method="POST" enctype="multipart/form-data">
-        <input class="loginform"type="text" name="reviewname" placeholder="name review"><br>
+        <input class="loginform"type="text" name="reviewname" placeholder="Title"><br>
         <input class="loginform"type="number" name="stars" min="1" max="5" value="1" placeholder="stars"><br>
         <input class="loginform"type="text" name="reviewcontent" placeholder="your review...."><br>
         <input class="loginform"type="hidden" name="userid" placeholder="userid" value=<?php echo $_SESSION["userid"]  ?>><br>

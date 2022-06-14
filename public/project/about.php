@@ -20,9 +20,27 @@
 include_once 'header.php';
 require('includes/functions.inc.php');
 ?>
+
+<div class="content">
+  <div class="column side">
+    
+
+</div>
+
+<div class="column mid">
+    
 <div id="about">
     <p>Wij zijn Stef, Nynke en Christiaan.</p>
 </div>
+
+</div>
+
+<div class="column side">
+
+  </div>
+</div>
+
+
 <?php
 include_once 'footer.php'
 ?>
