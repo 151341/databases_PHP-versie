@@ -7,8 +7,9 @@ include_once 'header.php';
 require('includes/functions.inc.php');
 
 ?>
-
+<div class="producten">
 <p>ontmoet onze trouwe managers. Het zijn echte spotfanaten</p>
+</div>
 <?php
 $sql = "SELECT * FROM users WHERE isManager = 1 order by usersName asc;";
 $stmt = mysqli_stmt_init($conn);
@@ -23,11 +24,23 @@ if ($resultCheck > 0) {?>
         <form action="includes/add_employee.inc.php" method="POST">
             <?php
             while ($row = mysqli_fetch_assoc($result)) {
-              echo $row['usersEmail'] . "<br>";
-               
+                ?>
+                <div class="producten">
+                <?php
+                echo $row['usersEmail'] . "<br>";
+                $imglink = "profileimg/".$row["usersImage"];
+                if ($row["usersImage"] != null) {
+                    ?>
+                    <img src="<?php echo $imglink; ?>" alt="" height="100" width="100"><br>
+                    <?php
+                } else {
+                    echo 'Heeft geen foto<br>';
+                }
+                ?>
+                </div>
+                <?php
             }
             ?>
-            <button type="submit" name="submit">Add</button>
         </form>
     </section>
     <?php

@@ -13,8 +13,6 @@ if (!isset($_SESSION['useruid'])) {
 <div class="content">
 
   <div class="column side">
-    
-
 </div>
 
 <div class="column mid">
