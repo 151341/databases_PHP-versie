@@ -11,7 +11,6 @@ include 'includes/dbh.inc.php';
     <li><a class="active" href="index.php">Home</a></li>
     <li><a href="products.php">Products</a></li>
     <li><a href="about.php">About us</a></li>
-    <li><a href="test2.php">test2</a></li>
     
     <?php
     if (isset($_SESSION["useruid"])) {

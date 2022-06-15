@@ -63,7 +63,7 @@ if ($_SESSION['ismanager'] === 1) {
             if ($resultCheck > 0) {
                 while ($row = mysqli_fetch_assoc($result)) {
                     ?>                  
-                    <div class="producten">
+                    <div  class="producten">
                         <?php
                         if ($row['productsImage']!=null) {
                             $imglink = "productimg/".$row['productsImage'];

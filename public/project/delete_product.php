@@ -1,5 +1,5 @@
 <head>
-    <title>delete products</title>
+    <title>Delete products</title>
 </head>
 <?php
 include_once 'header.php';
@@ -15,7 +15,15 @@ if (isset($_GET["error"])) {
     }
 }
 ?>
-<h1>delete products</h1>
+<h2>Delete products</h2>
+
+<div class="content">
+  <div class="column side">
+    
+
+</div>
+
+<div class="column mid">
 <?php
 require('includes/functions.inc.php');
 $sql = "SELECT * FROM products;";
@@ -56,6 +64,13 @@ if ($resultCheck > 0) {?>
             <button type="submit" name="submit">Delete</button>
         </form>
     </section>
+</div>
+
+<div class="column side">
+
+  </div>
+</div>
+
 <?php
 }
 include_once 'footer.php'
