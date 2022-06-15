@@ -64,7 +64,6 @@ if ($resultCheck == 1) {
     <div class="content">
 
     <div class="column side">
-    <p>leeg</p>
     </div>
 
 

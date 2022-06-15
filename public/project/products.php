@@ -42,7 +42,7 @@ if ($_SESSION['ismanager'] === 1) {
 <div class="content">
     <div class="column side">
     <p>Een work-out hoeft helemaal niet saai te zijn. Je maakt jouw training heel eenvoudig gezelliger met deze vrolijke set roze Dumbbells van het merk Tunturi. Muziekje aan en aan de slag! 
-        <br>Zoek hier de dumbbell die bij jou past!</p>
+        <br>Zoek hier de dumbbell die bij jou past.</p>
     </div>
 
     <div class="column mid">
@@ -97,13 +97,13 @@ if ($_SESSION['ismanager'] === 1) {
     </div>
 
     <div class="column side">
-    <p>leeg</p>
+    <img class="banner3" src="productimg/Vinyl-Dumbbells.png" width="700" height="700">
     </div>
 </div>
 <div id="products"></div>
 <!-- <button id="prodbut">see more</button> -->
 
-
+<img class="banner"src="productimg/photodumbbells.jpg" width="100%" height="100%">
 <?php
 include_once 'footer.php'
 ?>

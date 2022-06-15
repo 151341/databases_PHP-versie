@@ -12,8 +12,10 @@ require('includes/functions.inc.php');
 ?>
 
 <h2>Home</h2>
-
+<img class="banner"src="productimg/photodumbbells.jpg" width="100%" height="100%">
 <div class="content">
+
+
   <div class="column side">
     <?php
       if (isset($_SESSION['useruid'])) {
@@ -53,11 +55,18 @@ require('includes/functions.inc.php');
 </div>
          <?php
       }
+    ?> 
+
+<h3>Datum</h3>
+    <?php
+    date_default_timezone_set("Europe/Amsterdam");
+    $timestamp = date('Y-m-d H:i:s');
+    print $timestamp;
     ?>
   </div>
 
   <div class="column mid">
-    <h2>Onze Nieuwste Producten</h2>
+    <h3>Onze Nieuwste Producten</h3>
     <?php
       $sql = "SELECT * FROM products ORDER BY productsId DESC LIMIT 4";
       $stmt = mysqli_stmt_init($conn);
@@ -110,17 +119,15 @@ require('includes/functions.inc.php');
     
 
   <div class="column side">
-    <h3>Datum</h3>
-    <?php
-    date_default_timezone_set("Europe/Amsterdam");
-    $timestamp = date('Y-m-d H:i:s');
-    print $timestamp;
-    ?>
+ 
+
+    <img class="banner4" src="productimg/dumbbell.webp" width="700" height="700">
+ 
 
   </div>
 
 </div>
-  
+<img class="banner2"src="productimg/woman-with-dumbbells-on-floor-of-gym.jpg" width="100%" height="100%">
 
 <?php
 include_once 'footer.php'

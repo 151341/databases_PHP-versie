@@ -200,3 +200,35 @@ productprice{
   border: 1px solid;
   border-color: gray;
 }
+
+
+
+.banner{
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  object-position: 50% 40%;
+
+}
+.banner2{
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  object-position: 50% 85%;
+
+}
+
+.banner3{
+  width: 200px;
+  height: 700px;
+  object-fit: cover;
+  object-position: 65% 40%;
+
+}
+.banner4{
+  width: 200px;
+  height: 700px;
+  object-fit: cover;
+  object-position: 60% 40%;
+
+}
