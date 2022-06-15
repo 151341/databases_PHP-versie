@@ -8,7 +8,7 @@ if (!isset($_SESSION["useremail"])) {
     exit();
 }
 ?>
-<h1>Shopping cart</h1>
+<h2>Shopping cart</h2>
 <div class="content">
   <div class="column side">
     
@@ -69,7 +69,7 @@ if ($resultCheck > 0) {
 </div>
 </div>
 <div class="column side">
-
+    
   </div>
 </div>
 

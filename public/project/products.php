@@ -34,8 +34,8 @@ if (isset($_GET["error"])) {
 <?php
 if ($_SESSION['ismanager'] === 1) {
     ?>
-    <buttonsmall onclick="window.location.href='add_product.php'">Add product</buttonsmall>
-    <buttonsmall onclick="window.location.href='delete_product.php'">Delete product</buttonsmall>
+    <button onclick="window.location.href='add_product.php'">Add product</button>
+    <button onclick="window.location.href='delete_product.php'">Delete product</button>
     <?php
 }
 ?>

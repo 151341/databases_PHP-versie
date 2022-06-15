@@ -8,6 +8,8 @@ if ($_SESSION['ismanager'] !== 1) {
     header("location: ./products.php");
     exit();
 }
+?>
+<?php
 $productname;
 $productprice;
 $productdescription;
@@ -33,36 +35,43 @@ if ($resultCheck == 1) {
 }
 ?>
 
-<h1>change <?php echo $productname ?></h1>
+<h2>Change: <?php echo $productname ?></h2>
 
+<div class="content">
+  <div class="column side">
+    
 
+</div>
+
+<div class="column mid">
+<div class="productinfo">
 <form action="includes/change_product.inc.php" method="POST" enctype="multipart/form-data">
-    name: <input type="text" name="name"
+    Name: <input class="loginform"type="text" name="name"
     value=
     "<?php
     echo $productname
     ?>"
     ><br>
-    price: <input type="number" name="price"
+    Price: <input class="loginform"type="number" name="price"
     value=
     "<?php
     echo $productprice
     ?>"
     ><br>
     
-    description: <input type="text" name="description"
+    Description: <input class="loginform"type="text" name="description"
     value=
     <?php
     echo $productdescription
     ?>
     ><br>
-    quantity: <input type="number" name="stock"
+    Quantity: <input class="loginform"type="number" name="stock"
     value=
     <?php
     echo $productquantity
     ?>
     ><br>
-    image: <input type="file" name="file"
+    Image: <input class="loginform"type="file" name="file"
     value=
     <?php
     echo $productimage
@@ -74,7 +83,7 @@ if ($resultCheck == 1) {
     echo $productid
     ?>
     ><br>
-    <input type="checkbox" name="delete" value="delete">delete profile image<br>
+    <input class="loginform"type="checkbox" name="delete" value="delete">Delete profile image<br>
 
     <button type="submit" name="submit">Change</button>
 </form>
@@ -83,7 +92,7 @@ if ($resultCheck == 1) {
 $imglink = "productimg/".$productimage;
 if ($productimage != null) {
     ?>
-    current product img
+    Current product img<br>
     <img src="<?php echo $imglink; ?>" alt="" height="100" width="100"><br>
     <?php
 } else {
@@ -91,6 +100,15 @@ if ($productimage != null) {
 }
 echo 'id:';
 echo $productid;
+?>
+</div>
+</div>
+<div class="column side">
+
+  </div>
+</div>
+
+<?php
 include_once 'footer.php';
 ?>
 

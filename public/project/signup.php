@@ -1,5 +1,5 @@
 <head>
-    <title>sign up</title>
+    <title>Sign up</title>
 </head>
 
 <?php
@@ -8,6 +8,13 @@ if (isset($_SESSION["useruid"])) {
     header("location: ./index.php");
     exit();
 }
+?>
+
+<h2>Sign up</h2>
+
+<div class="content">
+  <div class="column side">
+    <?php
 error_reporting(E_ALL & ~E_NOTICE);
 require('includes/dbh.inc.php');
 $DBverbinding = mysqli_connect($serverName, $dbUserName, $dbPassword, $dbName);
@@ -21,21 +28,33 @@ else {
 echo '<i>verbinding database succesvol</i>';
 }
 ?>
-<h1>sign up</h1>
+
+</div>
+
+<div class="column mid">
 <section>
     <form action="includes/signup.inc.php" method="POST" enctype="multipart/form-data">
-        <input type="text" name="name" placeholder="full name"><br>
-        <input type="text" name="email" placeholder="email"><br>
-        <input type="text" name="uid" placeholder="username"><br>
+        <input class="loginform"type="text" name="name" placeholder="full name"><br>
+        <input class="loginform"type="text" name="email" placeholder="email"><br>
+        <input class="loginform"type="text" name="uid" placeholder="username"><br>
 <!-- added later -->
         <!-- <label for="profile_image">Pick Your Profile Image:</label> -->
         <!-- <input type="file" id="profile_image" name="file"> -->
 <!-- added later -->
-        <input type="file" name="file"><br>
-        <input type="password" name="pwd" placeholder="password"><br>
-        <input type="password" name="pwdrepeat" placeholder="repeat password"><br>
+
+        <input class="loginform"type="password" name="pwd" placeholder="password"><br>
+        <input class="loginform"type="password" name="pwdrepeat" placeholder="repeat password"><br>
+        <p>Voeg een profielfoto toe:</p>
+        <input class="loginform"type="file" name="file"><br>
         <button type="submit" name="submit">Sign Up</button>
     </form>
+</div>
+
+<div class="column side">
+
+  </div>
+</div>
+
     
 <?php
 if (isset($_GET["error"])) {

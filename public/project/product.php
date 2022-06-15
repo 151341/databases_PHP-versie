@@ -110,8 +110,8 @@ if ($_SESSION['userid']!=null) {
         <input class="loginform"type="hidden" name="productid" placeholder="productid" value=<?php echo $productid ?>>
         <button type="submit" name="submit">Add to cart</button>
         <ul style="display: block;">
-    <li>Inclusief verzendkosten, verstuurd door bol.com</li><br>
-    <li>Ophalen bij een bol.com afhaalpunt mogelijk</li><br>
+    <li>Inclusief verzendkosten, verstuurd door nystiaa.nl</li><br>
+    <li>Ophalen bij een nystiaa.nl afhaalpunt mogelijk</li><br>
     <li>30 dagen bedenktijd en gratis retourneren</li><br>
     <li>Dag en nacht klantenservice</li><br>
     <li>Doordeweeks ook ’s avonds in huis</li>

@@ -10,6 +10,13 @@ if (isset($_SESSION["useruid"])) {
 }
 ?>
 <h1>login</h1>
+<div class="content">
+  <div class="column side">
+    
+
+</div>
+
+<div class="column mid">
 <section>
     <form action="includes/login.inc.php" method="post">
         <input class="loginform" type="text" name="uid" placeholder="username/email">
@@ -30,6 +37,14 @@ if (isset($_SESSION["useruid"])) {
     }
 ?>
 </section>
+</div>
+
+<div class="column side">
+
+  </div>
+</div>
+
+
 <?php
 include_once 'footer.php'
 ?>

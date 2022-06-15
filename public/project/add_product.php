@@ -8,6 +8,13 @@ if ($_SESSION['ismanager'] !== 1) {
     header("location: ./products.php");
     exit();
 }
+?>
+
+
+<h2>Add a new product</h2>
+<div class="content">
+  <div class="column side">
+<?php
 require('includes/dbh.inc.php');
 $DBverbinding = mysqli_connect($serverName, $dbUserName, $dbPassword, $dbName);
 if (!$DBverbinding) {
@@ -19,19 +26,23 @@ echo '<i>verbinding database succesvol</i>';
 if ($_GET["error"] == "stmtfailed") {
     echo "sql query went wrong";
 }
-?>
+?>    
 
-<h1>add a new product</h1>
+</div>
+
+<div class="column mid">
+<div class="productinfo">
 <?php
 echo $_SESSION['userid']
 ?>
 <section>
     <form action="includes/add_product.inc.php" method="POST" enctype="multipart/form-data">
-        <input type="text" name="productname" placeholder="name product"><br>
-        <input type="text" name="productdesc" placeholder="description of product"><br>
-        <input type="number" name="price" placeholder="price"><br>
-        <input type="hidden" name="adderid" placeholder="userid" value=<?php echo $_SESSION["userid"]  ?>><br>
-        <input type="file" name="file">
+        <input class="loginform"type="text" name="productname" placeholder="Name product"><br>
+        <input class="loginform"type="text" name="productdesc" placeholder="Description of product"><br>
+        <input class="loginform"type="number" name="price" placeholder="Price"><br>
+        <input class="loginform"type="hidden" name="adderid" placeholder="userid" value=<?php echo $_SESSION["userid"]  ?>><br>
+        <p>Voeg een product foto toe:<p>
+        <input class="loginform"type="file" name="file"><br>
         <button type="submit" name="submit">Add</button>
     </form>
     
@@ -78,3 +89,12 @@ if (isset($_GET["error"])) {
 ?>
 
 </section>
+</div>
+</div>
+<div class="column side">
+
+  </div>
+</div>
+<?php
+include_once 'footer.php'
+?>
