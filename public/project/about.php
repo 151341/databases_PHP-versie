@@ -1,46 +1,37 @@
 <head>
-    <title>Over ons</title>
-    <script
-  src="https://code.jquery.com/jquery-3.6.0.min.js"
-  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
-  crossorigin="anonymous"></script>
-  <!-- https://releases.jquery.com/ -->
-    <script>
-        $(document).ready(function() {
-            $("#btn").click(function() {
-                $("#test").load("data.txt", {Name: "Stef", LastName: "delnoye"
-                }, function() {
-                    alert('hi there');
-                });
-            });
-        });
-    </script>
+<title>over ons</title>
 </head>
 <?php
 include_once 'header.php';
+
 require('includes/functions.inc.php');
+
 ?>
 
-<div class="content">
-  <div class="column side">
-    
-
-</div>
-
-<div class="column mid">
-    
-<div id="about">
-    <p>Wij zijn Stef, Nynke en Christiaan.</p>
-</div>
-
-</div>
-
-<div class="column side">
-
-  </div>
-</div>
-
-
+<p>ontmoet onze trouwe managers. Het zijn echte spotfanaten</p>
 <?php
-include_once 'footer.php'
+$sql = "SELECT * FROM users WHERE isManager = 1 order by usersName asc;";
+$stmt = mysqli_stmt_init($conn);
+if (!mysqli_stmt_prepare($stmt, $sql)) {
+    header("location: select.php?error=stmtfailed");
+    exit();
+}
+$result = mysqli_query($conn, $sql);
+$resultCheck = mysqli_num_rows($result);
+if ($resultCheck > 0) {?>
+    <section>
+        <form action="includes/add_employee.inc.php" method="POST">
+            <?php
+            while ($row = mysqli_fetch_assoc($result)) {
+              echo $row['usersEmail'] . "<br>";
+               
+            }
+            ?>
+            <button type="submit" name="submit">Add</button>
+        </form>
+    </section>
+    <?php
+}
+
+include_once 'footer.php';
 ?>
